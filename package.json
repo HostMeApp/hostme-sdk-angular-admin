@@ -1,17 +1,14 @@
 {
   "name": "hostme-sdk-angular-admin",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "HostMe angular SDK for Admin APIs",
   "main": "index.d.ts",
-  "versionedSources": [
-    "bower.json"
-  ],
+  "versionedSources": "bower.json",
   "repository": {
     "type": "git",
     "url": "https://github.com/HostMeApp/hostme-sdk-angular-admin.git"
   },
   "scripts": {
-    "postversion": "semver-sync",
     "postinstall": "typings install",
     "test": "tsc",
     "build": "rm -rf dist && tsc",
