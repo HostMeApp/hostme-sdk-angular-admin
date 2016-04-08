@@ -3,6 +3,7 @@
   "version": "1.0.6",
   "description": "HostMe angular SDK for Admin APIs",
   "main": "index.d.ts",
+  "versionedSources": ["bower.json"],
   "repository": {
     "type": "git",
     "url": "https://github.com/HostMeApp/hostme-sdk-angular-admin.git"
