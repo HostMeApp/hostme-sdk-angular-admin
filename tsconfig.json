@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "out": "hostme-sdk-admin.js"
+  },
+  "exclude": [
+    "node_modules",
+    "bower_components",
+    "typings"
+  ]	
+}

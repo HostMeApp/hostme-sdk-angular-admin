@@ -1,0 +1,14 @@
+{
+  "name": "hostme-sdk-angular-admin",
+  "version": "1.0.3",
+  "description": "HostMe angular SDK for Admin APIs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HostMeApp/hostme-sdk-angular-admin.git"
+  },
+  "main": [ "index.d.ts", "hostme-sdk-admin.js" ],
+  "dependencies": {
+    "jquery": "2.1.1",
+    "angular": "1.5.0"
+  }
+}
