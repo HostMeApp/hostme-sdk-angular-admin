@@ -11,18 +11,16 @@
   "scripts": {
     "postinstall": "typings install",
     "test": "tsc",
-    "build": "rm -rf dist && tsc",
-    "register-bower": "bower register hostme-sdk-angular-admin https://github.com/HostMeApp/hostme-sdk-angular-admin.git"
+    "build": "rm -rf dist && tsc"
   },
   "author": "HostMe",
   "license": "MIT",
   "dependencies": {
-    "angular": "^1.4.3"
+    "angular": "^1.4.3",
+    "jquery": "^2.2.3"
   },
   "devDependencies": {
     "typings": "^0.7.12",
-    "typescript": "^1.5.3",
-    "bower": "^1.7.9",
-    "semver-sync": "^1.2.2"
+    "typescript": "^1.5.3"
   }
 }
