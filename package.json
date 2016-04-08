@@ -1,6 +1,6 @@
 {
   "name": "hostme-sdk-angular-admin",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "HostMe angular SDK for Admin APIs",
   "main": "index.d.ts",
   "repository": {
