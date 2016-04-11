@@ -4,8 +4,6 @@ namespace HostMe.Sdk {
 
     export interface AdminReservationBindingModel {
 
-        "restaurantId": number;
-
         "reservationTime": Date;
 
         "customerName": string;
