@@ -44,7 +44,7 @@ namespace HostMe.Sdk {
 
         "tableTurnOver"?: number;
 
-        "tableTurnOverByGroup"?: Array<number>;
+        "tableTurnOverByGroup"?: Array<Array<number>>;
 
         "totalCovers"?: number;
     }
