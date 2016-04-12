@@ -388,6 +388,35 @@ namespace HostMe.Sdk {
          * 
          * 
          * @param restaurantId 
+         */
+        public getRestaurantReservationsStatistic (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<ReservationsStatistic> {
+            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/stats'
+                .replace('{' + 'restaurantId' + '}', String(restaurantId));
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'restaurantId' is set
+            if (!restaurantId) {
+                throw new Error('Missing required parameter restaurantId when calling getRestaurantReservationsStatistic');
+            }
+            let httpRequestParams: any = {
+                method: 'GET',
+                url: localVarPath,
+                json: true,
+                                                params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+
+            return this.$http(httpRequestParams);
+        }
+        /**
+         * 
+         * 
+         * @param restaurantId 
          * @param from 
          */
         public getUnreadMessagesCount (restaurantId: number, from?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<number> {

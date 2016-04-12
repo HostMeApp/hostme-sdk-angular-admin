@@ -883,7 +883,7 @@ namespace HostMe.Sdk {
                 throw new Error('Missing required parameter waitingItemId when calling putOnHold');
             }
             let httpRequestParams: any = {
-                method: 'GET',
+                method: 'PUT',
                 url: localVarPath,
                 json: true,
                                                 params: queryParameters,
@@ -918,7 +918,7 @@ namespace HostMe.Sdk {
                 throw new Error('Missing required parameter waitingItemId when calling reOpenWaiting');
             }
             let httpRequestParams: any = {
-                method: 'GET',
+                method: 'PUT',
                 url: localVarPath,
                 json: true,
                                                 params: queryParameters,
@@ -1038,7 +1038,7 @@ namespace HostMe.Sdk {
                 throw new Error('Missing required parameter waitingItemId when calling takeOffHold');
             }
             let httpRequestParams: any = {
-                method: 'GET',
+                method: 'PUT',
                 url: localVarPath,
                 json: true,
                                                 params: queryParameters,

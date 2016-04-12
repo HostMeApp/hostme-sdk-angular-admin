@@ -570,6 +570,35 @@ namespace HostMe.Sdk {
          * 
          * @param restaurantId 
          */
+        public getRestaurantConfiguration (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<RestaurantConfiguration> {
+            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/config'
+                .replace('{' + 'restaurantId' + '}', String(restaurantId));
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'restaurantId' is set
+            if (!restaurantId) {
+                throw new Error('Missing required parameter restaurantId when calling getRestaurantConfiguration');
+            }
+            let httpRequestParams: any = {
+                method: 'GET',
+                url: localVarPath,
+                json: true,
+                                                params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+
+            return this.$http(httpRequestParams);
+        }
+        /**
+         * 
+         * 
+         * @param restaurantId 
+         */
         public getRestaurantSettings (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<RestaurantSettings> {
             const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/settings'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
