@@ -674,6 +674,32 @@ var HostMe;
              *
              * @param restaurantId
              */
+            AdminCoreApi.prototype.getRestaurantConfiguration = function (restaurantId, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/config'
+                    .replace('{' + 'restaurantId' + '}', String(restaurantId));
+                var queryParameters = {};
+                var headerParams = this.extendObj({}, this.defaultHeaders);
+                // verify required parameter 'restaurantId' is set
+                if (!restaurantId) {
+                    throw new Error('Missing required parameter restaurantId when calling getRestaurantConfiguration');
+                }
+                var httpRequestParams = {
+                    method: 'GET',
+                    url: localVarPath,
+                    json: true,
+                    params: queryParameters,
+                    headers: headerParams
+                };
+                if (extraHttpRequestParams) {
+                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+                }
+                return this.$http(httpRequestParams);
+            };
+            /**
+             *
+             *
+             * @param restaurantId
+             */
             AdminCoreApi.prototype.getRestaurantSettings = function (restaurantId, extraHttpRequestParams) {
                 var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/settings'
                     .replace('{' + 'restaurantId' + '}', String(restaurantId));
@@ -2083,6 +2109,32 @@ var HostMe;
                 }
                 if (to !== undefined) {
                     queryParameters['to'] = to;
+                }
+                var httpRequestParams = {
+                    method: 'GET',
+                    url: localVarPath,
+                    json: true,
+                    params: queryParameters,
+                    headers: headerParams
+                };
+                if (extraHttpRequestParams) {
+                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+                }
+                return this.$http(httpRequestParams);
+            };
+            /**
+             *
+             *
+             * @param restaurantId
+             */
+            AdminReservationsApi.prototype.getRestaurantReservationsStatistic = function (restaurantId, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/stats'
+                    .replace('{' + 'restaurantId' + '}', String(restaurantId));
+                var queryParameters = {};
+                var headerParams = this.extendObj({}, this.defaultHeaders);
+                // verify required parameter 'restaurantId' is set
+                if (!restaurantId) {
+                    throw new Error('Missing required parameter restaurantId when calling getRestaurantReservationsStatistic');
                 }
                 var httpRequestParams = {
                     method: 'GET',
@@ -3725,7 +3777,7 @@ var HostMe;
                     throw new Error('Missing required parameter waitingItemId when calling putOnHold');
                 }
                 var httpRequestParams = {
-                    method: 'GET',
+                    method: 'PUT',
                     url: localVarPath,
                     json: true,
                     params: queryParameters,
@@ -3757,7 +3809,7 @@ var HostMe;
                     throw new Error('Missing required parameter waitingItemId when calling reOpenWaiting');
                 }
                 var httpRequestParams = {
-                    method: 'GET',
+                    method: 'PUT',
                     url: localVarPath,
                     json: true,
                     params: queryParameters,
@@ -3867,7 +3919,7 @@ var HostMe;
                     throw new Error('Missing required parameter waitingItemId when calling takeOffHold');
                 }
                 var httpRequestParams = {
-                    method: 'GET',
+                    method: 'PUT',
                     url: localVarPath,
                     json: true,
                     params: queryParameters,
@@ -4205,6 +4257,27 @@ var HostMe;
             })(ReservationSettings.AvailabilityMethodEnum || (ReservationSettings.AvailabilityMethodEnum = {}));
             var AvailabilityMethodEnum = ReservationSettings.AvailabilityMethodEnum;
         })(ReservationSettings = Sdk.ReservationSettings || (Sdk.ReservationSettings = {}));
+    })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
+})(HostMe || (HostMe = {}));
+var HostMe;
+(function (HostMe) {
+    var Sdk;
+    (function (Sdk) {
+        'use strict';
+    })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
+})(HostMe || (HostMe = {}));
+var HostMe;
+(function (HostMe) {
+    var Sdk;
+    (function (Sdk) {
+        'use strict';
+    })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
+})(HostMe || (HostMe = {}));
+var HostMe;
+(function (HostMe) {
+    var Sdk;
+    (function (Sdk) {
+        'use strict';
     })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
 })(HostMe || (HostMe = {}));
 var HostMe;
