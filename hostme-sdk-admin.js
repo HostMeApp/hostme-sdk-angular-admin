@@ -2748,10 +2748,10 @@ var HostMe;
              *
              *
              * @param restaurantId
-             * @param partySize
+             * @param tableTurnOver
              * @param time
              */
-            AdminTableApi.prototype.getTableMonitors = function (restaurantId, partySize, time, extraHttpRequestParams) {
+            AdminTableApi.prototype.getTableMonitors = function (restaurantId, tableTurnOver, time, extraHttpRequestParams) {
                 var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/monitors'
                     .replace('{' + 'restaurantId' + '}', String(restaurantId));
                 var queryParameters = {};
@@ -2760,8 +2760,8 @@ var HostMe;
                 if (!restaurantId) {
                     throw new Error('Missing required parameter restaurantId when calling getTableMonitors');
                 }
-                if (partySize !== undefined) {
-                    queryParameters['partySize'] = partySize;
+                if (tableTurnOver !== undefined) {
+                    queryParameters['tableTurnOver'] = tableTurnOver;
                 }
                 if (time !== undefined) {
                     queryParameters['time'] = time;
@@ -3009,6 +3009,38 @@ var HostMe;
                     }
                 }
                 return objA;
+            };
+            /**
+             *
+             *
+             * @param restaurantId
+             * @param conf
+             */
+            AdminWaitlistApi.prototype.addConfirmedWaiting = function (restaurantId, conf, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/confirmed'
+                    .replace('{' + 'restaurantId' + '}', String(restaurantId));
+                var queryParameters = {};
+                var headerParams = this.extendObj({}, this.defaultHeaders);
+                // verify required parameter 'restaurantId' is set
+                if (!restaurantId) {
+                    throw new Error('Missing required parameter restaurantId when calling addConfirmedWaiting');
+                }
+                // verify required parameter 'conf' is set
+                if (!conf) {
+                    throw new Error('Missing required parameter conf when calling addConfirmedWaiting');
+                }
+                var httpRequestParams = {
+                    method: 'POST',
+                    url: localVarPath,
+                    json: true,
+                    data: conf,
+                    params: queryParameters,
+                    headers: headerParams
+                };
+                if (extraHttpRequestParams) {
+                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+                }
+                return this.$http(httpRequestParams);
             };
             /**
              * Preregister customer for the specified restaurant and returns waiting record with Confirmation Code. Use this method when  customer is going to use HostMe mobile application.\r\n            This registration requires customer confirmation by entering confirmation number.
@@ -3277,6 +3309,32 @@ var HostMe;
                 // verify required parameter 'waitingItemId' is set
                 if (!waitingItemId) {
                     throw new Error('Missing required parameter waitingItemId when calling getMessages');
+                }
+                var httpRequestParams = {
+                    method: 'GET',
+                    url: localVarPath,
+                    json: true,
+                    params: queryParameters,
+                    headers: headerParams
+                };
+                if (extraHttpRequestParams) {
+                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+                }
+                return this.$http(httpRequestParams);
+            };
+            /**
+             *
+             *
+             * @param restaurantId
+             */
+            AdminWaitlistApi.prototype.getRestaurantReservationsStatistic = function (restaurantId, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/stats'
+                    .replace('{' + 'restaurantId' + '}', String(restaurantId));
+                var queryParameters = {};
+                var headerParams = this.extendObj({}, this.defaultHeaders);
+                // verify required parameter 'restaurantId' is set
+                if (!restaurantId) {
+                    throw new Error('Missing required parameter restaurantId when calling getRestaurantReservationsStatistic');
                 }
                 var httpRequestParams = {
                     method: 'GET',
@@ -4180,6 +4238,13 @@ var HostMe;
     var Sdk;
     (function (Sdk) {
         'use strict';
+    })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
+})(HostMe || (HostMe = {}));
+var HostMe;
+(function (HostMe) {
+    var Sdk;
+    (function (Sdk) {
+        'use strict';
         var RedeemRequest;
         (function (RedeemRequest) {
             (function (StatusEnum) {
@@ -4424,6 +4489,13 @@ var HostMe;
             })(TableMonitor.StatusEnum || (TableMonitor.StatusEnum = {}));
             var StatusEnum = TableMonitor.StatusEnum;
         })(TableMonitor = Sdk.TableMonitor || (Sdk.TableMonitor = {}));
+    })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
+})(HostMe || (HostMe = {}));
+var HostMe;
+(function (HostMe) {
+    var Sdk;
+    (function (Sdk) {
+        'use strict';
     })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
 })(HostMe || (HostMe = {}));
 var HostMe;
