@@ -3993,7 +3993,7 @@ var HostMe;
              *
              * @param restaurantId Identifier of the restaurant registered in our system
              * @param waitingItemId Identifier of the waiting record in our system
-             * @param item Update model of witing record
+             * @param item Update model of waiting record
              */
             AdminWaitlistApi.prototype.updateWaiting = function (restaurantId, waitingItemId, item, extraHttpRequestParams) {
                 var localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}'
