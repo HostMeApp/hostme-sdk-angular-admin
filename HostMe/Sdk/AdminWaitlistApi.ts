@@ -25,6 +25,41 @@ namespace HostMe.Sdk {
         }
 
         /**
+         * 
+         * 
+         * @param restaurantId 
+         * @param conf 
+         */
+        public addConfirmedWaiting (restaurantId: number, conf: PanelConfirmationBindingModel, extraHttpRequestParams?: any ) : ng.IHttpPromise<WaitingItem> {
+            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/confirmed'
+                .replace('{' + 'restaurantId' + '}', String(restaurantId));
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'restaurantId' is set
+            if (!restaurantId) {
+                throw new Error('Missing required parameter restaurantId when calling addConfirmedWaiting');
+            }
+            // verify required parameter 'conf' is set
+            if (!conf) {
+                throw new Error('Missing required parameter conf when calling addConfirmedWaiting');
+            }
+            let httpRequestParams: any = {
+                method: 'POST',
+                url: localVarPath,
+                json: true,
+                data: conf,
+                                params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+
+            return this.$http(httpRequestParams);
+        }
+        /**
          * Preregister customer for the specified restaurant and returns waiting record with Confirmation Code. Use this method when  customer is going to use HostMe mobile application.\r\n            This registration requires customer confirmation by entering confirmation number.
          * 
          * @param restaurantId Identifier of the restaurant registered in our system
@@ -318,6 +353,35 @@ namespace HostMe.Sdk {
             // verify required parameter 'waitingItemId' is set
             if (!waitingItemId) {
                 throw new Error('Missing required parameter waitingItemId when calling getMessages');
+            }
+            let httpRequestParams: any = {
+                method: 'GET',
+                url: localVarPath,
+                json: true,
+                                                params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+
+            return this.$http(httpRequestParams);
+        }
+        /**
+         * 
+         * 
+         * @param restaurantId 
+         */
+        public getRestaurantReservationsStatistic (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<WaitingsStatistic> {
+            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/stats'
+                .replace('{' + 'restaurantId' + '}', String(restaurantId));
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'restaurantId' is set
+            if (!restaurantId) {
+                throw new Error('Missing required parameter restaurantId when calling getRestaurantReservationsStatistic');
             }
             let httpRequestParams: any = {
                 method: 'GET',

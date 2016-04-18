@@ -61,6 +61,8 @@ namespace HostMe.Sdk {
         "estimatedTurnOverTime"?: number;
 
         "unreadMessageCount"?: number;
+
+        "restaurant"?: RestaurantContactInfo;
     }
 
 }

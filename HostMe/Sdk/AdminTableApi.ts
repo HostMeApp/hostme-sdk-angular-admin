@@ -307,10 +307,10 @@ namespace HostMe.Sdk {
          * 
          * 
          * @param restaurantId 
-         * @param partySize 
+         * @param tableTurnOver 
          * @param time 
          */
-        public getTableMonitors (restaurantId: number, partySize?: number, time?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<TableMonitor>> {
+        public getTableMonitors (restaurantId: number, tableTurnOver?: number, time?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<TableMonitor>> {
             const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/monitors'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
@@ -320,8 +320,8 @@ namespace HostMe.Sdk {
             if (!restaurantId) {
                 throw new Error('Missing required parameter restaurantId when calling getTableMonitors');
             }
-            if (partySize !== undefined) {
-                queryParameters['partySize'] = partySize;
+            if (tableTurnOver !== undefined) {
+                queryParameters['tableTurnOver'] = tableTurnOver;
             }
 
             if (time !== undefined) {
