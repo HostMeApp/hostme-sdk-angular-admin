@@ -1120,7 +1120,7 @@ namespace HostMe.Sdk {
          * 
          * @param restaurantId Identifier of the restaurant registered in our system
          * @param waitingItemId Identifier of the waiting record in our system
-         * @param item Update model of witing record
+         * @param item Update model of waiting record
          */
         public updateWaiting (restaurantId: number, waitingItemId: number, item: UpdateWaitingItemBindingModel, extraHttpRequestParams?: any ) : ng.IHttpPromise<WaitingItem> {
             const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}'
