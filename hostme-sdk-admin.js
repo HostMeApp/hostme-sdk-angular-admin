@@ -2126,8 +2126,9 @@ var HostMe;
              *
              *
              * @param restaurantId
+             * @param date
              */
-            AdminReservationsApi.prototype.getRestaurantReservationsStatistic = function (restaurantId, extraHttpRequestParams) {
+            AdminReservationsApi.prototype.getRestaurantReservationsStatistic = function (restaurantId, date, extraHttpRequestParams) {
                 var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/stats'
                     .replace('{' + 'restaurantId' + '}', String(restaurantId));
                 var queryParameters = {};
@@ -2135,6 +2136,9 @@ var HostMe;
                 // verify required parameter 'restaurantId' is set
                 if (!restaurantId) {
                     throw new Error('Missing required parameter restaurantId when calling getRestaurantReservationsStatistic');
+                }
+                if (date !== undefined) {
+                    queryParameters['date'] = date;
                 }
                 var httpRequestParams = {
                     method: 'GET',
@@ -3326,8 +3330,9 @@ var HostMe;
              *
              *
              * @param restaurantId
+             * @param area
              */
-            AdminWaitlistApi.prototype.getRestaurantReservationsStatistic = function (restaurantId, extraHttpRequestParams) {
+            AdminWaitlistApi.prototype.getRestaurantReservationsStatistic = function (restaurantId, area, extraHttpRequestParams) {
                 var localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/stats'
                     .replace('{' + 'restaurantId' + '}', String(restaurantId));
                 var queryParameters = {};
@@ -3335,6 +3340,9 @@ var HostMe;
                 // verify required parameter 'restaurantId' is set
                 if (!restaurantId) {
                     throw new Error('Missing required parameter restaurantId when calling getRestaurantReservationsStatistic');
+                }
+                if (area !== undefined) {
+                    queryParameters['area'] = area;
                 }
                 var httpRequestParams = {
                     method: 'GET',
