@@ -388,8 +388,9 @@ namespace HostMe.Sdk {
          * 
          * 
          * @param restaurantId 
+         * @param date 
          */
-        public getRestaurantReservationsStatistic (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<ReservationsStatistic> {
+        public getRestaurantReservationsStatistic (restaurantId: number, date?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<ReservationsStatistic> {
             const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/stats'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
@@ -399,6 +400,10 @@ namespace HostMe.Sdk {
             if (!restaurantId) {
                 throw new Error('Missing required parameter restaurantId when calling getRestaurantReservationsStatistic');
             }
+            if (date !== undefined) {
+                queryParameters['date'] = date;
+            }
+
             let httpRequestParams: any = {
                 method: 'GET',
                 url: localVarPath,

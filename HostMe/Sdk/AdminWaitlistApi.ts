@@ -372,8 +372,9 @@ namespace HostMe.Sdk {
          * 
          * 
          * @param restaurantId 
+         * @param area 
          */
-        public getRestaurantReservationsStatistic (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<WaitingsStatistic> {
+        public getRestaurantReservationsStatistic (restaurantId: number, area?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<WaitingsStatistic> {
             const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/stats'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
@@ -383,6 +384,10 @@ namespace HostMe.Sdk {
             if (!restaurantId) {
                 throw new Error('Missing required parameter restaurantId when calling getRestaurantReservationsStatistic');
             }
+            if (area !== undefined) {
+                queryParameters['area'] = area;
+            }
+
             let httpRequestParams: any = {
                 method: 'GET',
                 url: localVarPath,
