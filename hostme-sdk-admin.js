@@ -632,7 +632,7 @@ var HostMe;
                     queryParameters['tableNumber'] = tableNumber;
                 }
                 var httpRequestParams = {
-                    method: 'GET',
+                    method: 'PUT',
                     url: localVarPath,
                     json: true,
                     params: queryParameters,
@@ -3332,14 +3332,14 @@ var HostMe;
              * @param restaurantId
              * @param area
              */
-            AdminWaitlistApi.prototype.getRestaurantReservationsStatistic = function (restaurantId, area, extraHttpRequestParams) {
+            AdminWaitlistApi.prototype.getRestaurantWaitingsStatistic = function (restaurantId, area, extraHttpRequestParams) {
                 var localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/stats'
                     .replace('{' + 'restaurantId' + '}', String(restaurantId));
                 var queryParameters = {};
                 var headerParams = this.extendObj({}, this.defaultHeaders);
                 // verify required parameter 'restaurantId' is set
                 if (!restaurantId) {
-                    throw new Error('Missing required parameter restaurantId when calling getRestaurantReservationsStatistic');
+                    throw new Error('Missing required parameter restaurantId when calling getRestaurantWaitingsStatistic');
                 }
                 if (area !== undefined) {
                     queryParameters['area'] = area;
