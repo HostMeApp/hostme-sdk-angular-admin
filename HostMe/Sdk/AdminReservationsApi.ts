@@ -672,7 +672,7 @@ namespace HostMe.Sdk {
          * @param restaurantId 
          * @param settings 
          */
-        public setReservationSettings (restaurantId: number, settings: ReservationSettings, extraHttpRequestParams?: any ) : ng.IHttpPromise<Object> {
+        public setReservationSettings (restaurantId: number, settings: ReservationSettings, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
             const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/settings'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
@@ -731,7 +731,7 @@ namespace HostMe.Sdk {
          * @param reservationId 
          * @param value 
          */
-        public updateReservation (restaurantId: number, reservationId: string, value: AdminReservationBindingModel, extraHttpRequestParams?: any ) : ng.IHttpPromise<Object> {
+        public updateReservation (restaurantId: number, reservationId: string, value: AdminReservationBindingModel, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
             const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'reservationId' + '}', String(reservationId));

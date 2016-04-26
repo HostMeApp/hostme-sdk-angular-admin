@@ -30,7 +30,7 @@ namespace HostMe.Sdk {
          * @param userId 
          * @param code 
          */
-        public confirmEmail (userId: string, code: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Object> {
+        public confirmEmail (userId: string, code: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
             const localVarPath = this.basePath + '/authorization/ConfirmEmail';
 
             let queryParameters: any = {};
@@ -68,24 +68,19 @@ namespace HostMe.Sdk {
         /**
          * 
          * 
-         * @param provider 
-         * @param error 
+         * @param accessToken 
          */
-        public getExternalLogin (provider: string, error?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Object> {
-            const localVarPath = this.basePath + '/authorization/ExternalLogin';
+        public getExternalFacebookLogin (accessToken: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+            const localVarPath = this.basePath + '/authorization/ExternalFacebookLogin';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            // verify required parameter 'provider' is set
-            if (!provider) {
-                throw new Error('Missing required parameter provider when calling getExternalLogin');
+            // verify required parameter 'accessToken' is set
+            if (!accessToken) {
+                throw new Error('Missing required parameter accessToken when calling getExternalFacebookLogin');
             }
-            if (provider !== undefined) {
-                queryParameters['provider'] = provider;
-            }
-
-            if (error !== undefined) {
-                queryParameters['error'] = error;
+            if (accessToken !== undefined) {
+                queryParameters['access_token'] = accessToken;
             }
 
             let httpRequestParams: any = {
@@ -105,19 +100,24 @@ namespace HostMe.Sdk {
         /**
          * 
          * 
-         * @param accessToken 
+         * @param provider 
+         * @param error 
          */
-        public getExternalLogin1 (accessToken: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Object> {
-            const localVarPath = this.basePath + '/authorization/ExternalFacebookLogin';
+        public getExternalLogin (provider: string, error?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+            const localVarPath = this.basePath + '/authorization/ExternalLogin';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            // verify required parameter 'accessToken' is set
-            if (!accessToken) {
-                throw new Error('Missing required parameter accessToken when calling getExternalLogin1');
+            // verify required parameter 'provider' is set
+            if (!provider) {
+                throw new Error('Missing required parameter provider when calling getExternalLogin');
             }
-            if (accessToken !== undefined) {
-                queryParameters['access_token'] = accessToken;
+            if (provider !== undefined) {
+                queryParameters['provider'] = provider;
+            }
+
+            if (error !== undefined) {
+                queryParameters['error'] = error;
             }
 
             let httpRequestParams: any = {

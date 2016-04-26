@@ -116,7 +116,7 @@ namespace HostMe.Sdk {
                 throw new Error('Missing required parameter memberId when calling closeMembership');
             }
             let httpRequestParams: any = {
-                method: 'POST',
+                method: 'PUT',
                 url: localVarPath,
                 json: true,
                                                 params: queryParameters,
@@ -133,9 +133,44 @@ namespace HostMe.Sdk {
          * 
          * 
          * @param restaurantId 
+         * @param model 
+         */
+        public createRestaurantUser (restaurantId: number, model: CreateRestaurantCustomer, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}'
+                .replace('{' + 'restaurantId' + '}', String(restaurantId));
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'restaurantId' is set
+            if (!restaurantId) {
+                throw new Error('Missing required parameter restaurantId when calling createRestaurantUser');
+            }
+            // verify required parameter 'model' is set
+            if (!model) {
+                throw new Error('Missing required parameter model when calling createRestaurantUser');
+            }
+            let httpRequestParams: any = {
+                method: 'POST',
+                url: localVarPath,
+                json: true,
+                data: model,
+                                params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+
+            return this.$http(httpRequestParams);
+        }
+        /**
+         * 
+         * 
+         * @param restaurantId 
          * @param rewardId 
          */
-        public deleteReward (restaurantId: number, rewardId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Object> {
+        public deleteReward (restaurantId: number, rewardId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
             const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'rewardId' + '}', String(rewardId));
@@ -152,6 +187,44 @@ namespace HostMe.Sdk {
             }
             let httpRequestParams: any = {
                 method: 'DELETE',
+                url: localVarPath,
+                json: true,
+                                                params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+
+            return this.$http(httpRequestParams);
+        }
+        /**
+         * 
+         * 
+         * @param restaurantId 
+         * @param token 
+         */
+        public filter (restaurantId: number, token: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<UserProfile>> {
+            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/filter'
+                .replace('{' + 'restaurantId' + '}', String(restaurantId));
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'restaurantId' is set
+            if (!restaurantId) {
+                throw new Error('Missing required parameter restaurantId when calling filter');
+            }
+            // verify required parameter 'token' is set
+            if (!token) {
+                throw new Error('Missing required parameter token when calling filter');
+            }
+            if (token !== undefined) {
+                queryParameters['token'] = token;
+            }
+
+            let httpRequestParams: any = {
+                method: 'GET',
                 url: localVarPath,
                 json: true,
                                                 params: queryParameters,
@@ -189,7 +262,7 @@ namespace HostMe.Sdk {
             }
 
             let httpRequestParams: any = {
-                method: 'POST',
+                method: 'GET',
                 url: localVarPath,
                 json: true,
                                                 params: queryParameters,

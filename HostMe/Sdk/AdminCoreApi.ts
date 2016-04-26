@@ -708,7 +708,7 @@ namespace HostMe.Sdk {
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
             let httpRequestParams: any = {
-                method: 'POST',
+                method: 'GET',
                 url: localVarPath,
                 json: true,
                                                 params: queryParameters,

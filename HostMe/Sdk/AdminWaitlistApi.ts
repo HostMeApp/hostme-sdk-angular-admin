@@ -294,10 +294,10 @@ namespace HostMe.Sdk {
          * 
          * @param restaurantId Restaurant identifier
          * @param queryOptions OData query
-         * @param from 
-         * @param to 
+         * @param area 
+         * @param groupSize 
          */
-        public getAllWaitings (restaurantId: number, queryOptions?: string, from?: string, to?: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<WaitingItem>> {
+        public getAllWaitings (restaurantId: number, queryOptions?: string, area?: string, groupSize?: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<WaitingItem>> {
             const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
@@ -311,12 +311,12 @@ namespace HostMe.Sdk {
                 queryParameters['queryOptions'] = queryOptions;
             }
 
-            if (from !== undefined) {
-                queryParameters['from'] = from;
+            if (area !== undefined) {
+                queryParameters['area'] = area;
             }
 
-            if (to !== undefined) {
-                queryParameters['to'] = to;
+            if (groupSize !== undefined) {
+                queryParameters['groupSize'] = groupSize;
             }
 
             let httpRequestParams: any = {
@@ -610,7 +610,7 @@ namespace HostMe.Sdk {
          * @param to 
          */
         public getWaitingTimeByLine (restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<WaitingsStatReportItem>> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/groupby/line'
+            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/waitings/groupby/line'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};

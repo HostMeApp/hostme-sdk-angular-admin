@@ -4,6 +4,7 @@
 /// <reference path="AvailabilityResponse.ts" />
 /// <reference path="AverageWaitingTime.ts" />
 /// <reference path="ChangePasswordBindingModel.ts" />
+/// <reference path="CreateRestaurantCustomer.ts" />
 /// <reference path="ExternalLoginViewModel.ts" />
 /// <reference path="Floor.ts" />
 /// <reference path="FloorInfo.ts" />
