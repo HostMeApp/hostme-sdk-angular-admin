@@ -68,22 +68,18 @@ var HostMe;
             /**
              *
              *
-             * @param provider
-             * @param error
+             * @param accessToken
              */
-            AdminAuthApi.prototype.getExternalLogin = function (provider, error, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/authorization/ExternalLogin';
+            AdminAuthApi.prototype.getExternalFacebookLogin = function (accessToken, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/authorization/ExternalFacebookLogin';
                 var queryParameters = {};
                 var headerParams = this.extendObj({}, this.defaultHeaders);
-                // verify required parameter 'provider' is set
-                if (!provider) {
-                    throw new Error('Missing required parameter provider when calling getExternalLogin');
+                // verify required parameter 'accessToken' is set
+                if (!accessToken) {
+                    throw new Error('Missing required parameter accessToken when calling getExternalFacebookLogin');
                 }
-                if (provider !== undefined) {
-                    queryParameters['provider'] = provider;
-                }
-                if (error !== undefined) {
-                    queryParameters['error'] = error;
+                if (accessToken !== undefined) {
+                    queryParameters['access_token'] = accessToken;
                 }
                 var httpRequestParams = {
                     method: 'GET',
@@ -100,18 +96,22 @@ var HostMe;
             /**
              *
              *
-             * @param accessToken
+             * @param provider
+             * @param error
              */
-            AdminAuthApi.prototype.getExternalLogin1 = function (accessToken, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/authorization/ExternalFacebookLogin';
+            AdminAuthApi.prototype.getExternalLogin = function (provider, error, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/authorization/ExternalLogin';
                 var queryParameters = {};
                 var headerParams = this.extendObj({}, this.defaultHeaders);
-                // verify required parameter 'accessToken' is set
-                if (!accessToken) {
-                    throw new Error('Missing required parameter accessToken when calling getExternalLogin1');
+                // verify required parameter 'provider' is set
+                if (!provider) {
+                    throw new Error('Missing required parameter provider when calling getExternalLogin');
                 }
-                if (accessToken !== undefined) {
-                    queryParameters['access_token'] = accessToken;
+                if (provider !== undefined) {
+                    queryParameters['provider'] = provider;
+                }
+                if (error !== undefined) {
+                    queryParameters['error'] = error;
                 }
                 var httpRequestParams = {
                     method: 'GET',
@@ -796,7 +796,7 @@ var HostMe;
                 var queryParameters = {};
                 var headerParams = this.extendObj({}, this.defaultHeaders);
                 var httpRequestParams = {
-                    method: 'POST',
+                    method: 'GET',
                     url: localVarPath,
                     json: true,
                     params: queryParameters,
@@ -1246,9 +1246,41 @@ var HostMe;
                     throw new Error('Missing required parameter memberId when calling closeMembership');
                 }
                 var httpRequestParams = {
+                    method: 'PUT',
+                    url: localVarPath,
+                    json: true,
+                    params: queryParameters,
+                    headers: headerParams
+                };
+                if (extraHttpRequestParams) {
+                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+                }
+                return this.$http(httpRequestParams);
+            };
+            /**
+             *
+             *
+             * @param restaurantId
+             * @param model
+             */
+            AdminLoyaltyApi.prototype.createRestaurantUser = function (restaurantId, model, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}'
+                    .replace('{' + 'restaurantId' + '}', String(restaurantId));
+                var queryParameters = {};
+                var headerParams = this.extendObj({}, this.defaultHeaders);
+                // verify required parameter 'restaurantId' is set
+                if (!restaurantId) {
+                    throw new Error('Missing required parameter restaurantId when calling createRestaurantUser');
+                }
+                // verify required parameter 'model' is set
+                if (!model) {
+                    throw new Error('Missing required parameter model when calling createRestaurantUser');
+                }
+                var httpRequestParams = {
                     method: 'POST',
                     url: localVarPath,
                     json: true,
+                    data: model,
                     params: queryParameters,
                     headers: headerParams
                 };
@@ -1293,6 +1325,40 @@ var HostMe;
              *
              *
              * @param restaurantId
+             * @param token
+             */
+            AdminLoyaltyApi.prototype.filter = function (restaurantId, token, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/filter'
+                    .replace('{' + 'restaurantId' + '}', String(restaurantId));
+                var queryParameters = {};
+                var headerParams = this.extendObj({}, this.defaultHeaders);
+                // verify required parameter 'restaurantId' is set
+                if (!restaurantId) {
+                    throw new Error('Missing required parameter restaurantId when calling filter');
+                }
+                // verify required parameter 'token' is set
+                if (!token) {
+                    throw new Error('Missing required parameter token when calling filter');
+                }
+                if (token !== undefined) {
+                    queryParameters['token'] = token;
+                }
+                var httpRequestParams = {
+                    method: 'GET',
+                    url: localVarPath,
+                    json: true,
+                    params: queryParameters,
+                    headers: headerParams
+                };
+                if (extraHttpRequestParams) {
+                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+                }
+                return this.$http(httpRequestParams);
+            };
+            /**
+             *
+             *
+             * @param restaurantId
              * @param phoneNumber
              */
             AdminLoyaltyApi.prototype.findMemberByPhoneNumber = function (restaurantId, phoneNumber, extraHttpRequestParams) {
@@ -1312,7 +1378,7 @@ var HostMe;
                     queryParameters['phoneNumber'] = phoneNumber;
                 }
                 var httpRequestParams = {
-                    method: 'POST',
+                    method: 'GET',
                     url: localVarPath,
                     json: true,
                     params: queryParameters,
@@ -3261,10 +3327,10 @@ var HostMe;
              *
              * @param restaurantId Restaurant identifier
              * @param queryOptions OData query
-             * @param from
-             * @param to
+             * @param area
+             * @param groupSize
              */
-            AdminWaitlistApi.prototype.getAllWaitings = function (restaurantId, queryOptions, from, to, extraHttpRequestParams) {
+            AdminWaitlistApi.prototype.getAllWaitings = function (restaurantId, queryOptions, area, groupSize, extraHttpRequestParams) {
                 var localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings'
                     .replace('{' + 'restaurantId' + '}', String(restaurantId));
                 var queryParameters = {};
@@ -3276,11 +3342,11 @@ var HostMe;
                 if (queryOptions !== undefined) {
                     queryParameters['queryOptions'] = queryOptions;
                 }
-                if (from !== undefined) {
-                    queryParameters['from'] = from;
+                if (area !== undefined) {
+                    queryParameters['area'] = area;
                 }
-                if (to !== undefined) {
-                    queryParameters['to'] = to;
+                if (groupSize !== undefined) {
+                    queryParameters['groupSize'] = groupSize;
                 }
                 var httpRequestParams = {
                     method: 'GET',
@@ -3542,7 +3608,7 @@ var HostMe;
              * @param to
              */
             AdminWaitlistApi.prototype.getWaitingTimeByLine = function (restaurantId, from, to, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/groupby/line'
+                var localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/waitings/groupby/line'
                     .replace('{' + 'restaurantId' + '}', String(restaurantId));
                 var queryParameters = {};
                 var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -4071,6 +4137,13 @@ var HostMe;
             })(AvailabilityResponse.UnitTypeEnum || (AvailabilityResponse.UnitTypeEnum = {}));
             var UnitTypeEnum = AvailabilityResponse.UnitTypeEnum;
         })(AvailabilityResponse = Sdk.AvailabilityResponse || (Sdk.AvailabilityResponse = {}));
+    })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
+})(HostMe || (HostMe = {}));
+var HostMe;
+(function (HostMe) {
+    var Sdk;
+    (function (Sdk) {
+        'use strict';
     })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
 })(HostMe || (HostMe = {}));
 var HostMe;
