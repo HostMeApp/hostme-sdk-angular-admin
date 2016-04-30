@@ -4,7 +4,7 @@ namespace HostMe.Sdk {
 
     export interface RegisterExternalUser {
 
-        "userName"?: string;
+        "email"?: string;
 
         "fullName": string;
 

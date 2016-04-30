@@ -24,7 +24,7 @@ namespace HostMe.Sdk {
 
         "estimatedTurnOverTime"?: number;
 
-        "type"?: CreateReservation.TypeEnum;
+        "type": CreateReservation.TypeEnum;
     }
 
     export namespace CreateReservation {
