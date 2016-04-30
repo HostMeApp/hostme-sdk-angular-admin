@@ -5841,6 +5841,13 @@ var HostMe;
     var Sdk;
     (function (Sdk) {
         'use strict';
+    })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
+})(HostMe || (HostMe = {}));
+var HostMe;
+(function (HostMe) {
+    var Sdk;
+    (function (Sdk) {
+        'use strict';
         var CreateReservation;
         (function (CreateReservation) {
             (function (TypeEnum) {
@@ -6534,6 +6541,13 @@ var HostMe;
             })(TableMonitor.StatusEnum || (TableMonitor.StatusEnum = {}));
             var StatusEnum = TableMonitor.StatusEnum;
         })(TableMonitor = Sdk.TableMonitor || (Sdk.TableMonitor = {}));
+    })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
+})(HostMe || (HostMe = {}));
+var HostMe;
+(function (HostMe) {
+    var Sdk;
+    (function (Sdk) {
+        'use strict';
     })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
 })(HostMe || (HostMe = {}));
 var HostMe;
