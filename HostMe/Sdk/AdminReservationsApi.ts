@@ -424,7 +424,7 @@ namespace HostMe.Sdk {
          * @param restaurantId 
          * @param from 
          */
-        public getUnreadMessagesCount (restaurantId: number, from?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<number> {
+        public getUnreadMessagesCount (restaurantId: number, from?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Count> {
             const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/messages/count-unread'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 

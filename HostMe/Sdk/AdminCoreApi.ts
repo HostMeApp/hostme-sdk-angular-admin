@@ -152,7 +152,7 @@ namespace HostMe.Sdk {
          * @param restaurantId 
          * @param invitation 
          */
-        public createInvitationCode (restaurantId: number, invitation: Invitation, extraHttpRequestParams?: any ) : ng.IHttpPromise<string> {
+        public createInvitationCode (restaurantId: number, invitation: Invitation, extraHttpRequestParams?: any ) : ng.IHttpPromise<Token> {
             const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
@@ -508,7 +508,7 @@ namespace HostMe.Sdk {
          * @param restaurantId 
          * @param tableNumber 
          */
-        public getRegistrationToken (restaurantId: number, tableNumber?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<string> {
+        public getRegistrationToken (restaurantId: number, tableNumber?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Token> {
             const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/loyalty/token'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
