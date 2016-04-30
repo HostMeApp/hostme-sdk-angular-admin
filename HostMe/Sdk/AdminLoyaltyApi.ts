@@ -4,7 +4,7 @@ namespace HostMe.Sdk {
     'use strict';
 
     export class AdminLoyaltyApi {
-        protected basePath = 'http://hostme-services-dev.azurewebsites.net';
+        protected basePath = 'http://hostme-services-tables.azurewebsites.net';
         public defaultHeaders : any = {};
 
         static $inject: string[] = ['$http', '$httpParamSerializer'];
@@ -133,41 +133,6 @@ namespace HostMe.Sdk {
          * 
          * 
          * @param restaurantId 
-         * @param model 
-         */
-        public createRestaurantUser (restaurantId: number, model: CreateRestaurantCustomer, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}'
-                .replace('{' + 'restaurantId' + '}', String(restaurantId));
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            // verify required parameter 'restaurantId' is set
-            if (!restaurantId) {
-                throw new Error('Missing required parameter restaurantId when calling createRestaurantUser');
-            }
-            // verify required parameter 'model' is set
-            if (!model) {
-                throw new Error('Missing required parameter model when calling createRestaurantUser');
-            }
-            let httpRequestParams: any = {
-                method: 'POST',
-                url: localVarPath,
-                json: true,
-                data: model,
-                                params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-
-            return this.$http(httpRequestParams);
-        }
-        /**
-         * 
-         * 
-         * @param restaurantId 
          * @param rewardId 
          */
         public deleteReward (restaurantId: number, rewardId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
@@ -205,7 +170,7 @@ namespace HostMe.Sdk {
          * @param restaurantId 
          * @param token 
          */
-        public filter (restaurantId: number, token: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<UserProfile>> {
+        public filter (restaurantId: number, token: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<CustomerProfile>> {
             const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/filter'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
@@ -600,9 +565,9 @@ namespace HostMe.Sdk {
          * 
          * @param restaurantId 
          * @param redeemId 
-         * @param reason 
+         * @param reject 
          */
-        public rejectRedeemRequest (restaurantId: number, redeemId: string, reason: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<RedeemRequest> {
+        public rejectRedeemRequest (restaurantId: number, redeemId: string, reject: RedeemRequestReject, extraHttpRequestParams?: any ) : ng.IHttpPromise<RedeemRequest> {
             const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/redeems/{redeemId}/reject'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'redeemId' + '}', String(redeemId));
@@ -617,15 +582,15 @@ namespace HostMe.Sdk {
             if (!redeemId) {
                 throw new Error('Missing required parameter redeemId when calling rejectRedeemRequest');
             }
-            // verify required parameter 'reason' is set
-            if (!reason) {
-                throw new Error('Missing required parameter reason when calling rejectRedeemRequest');
+            // verify required parameter 'reject' is set
+            if (!reject) {
+                throw new Error('Missing required parameter reject when calling rejectRedeemRequest');
             }
             let httpRequestParams: any = {
                 method: 'POST',
                 url: localVarPath,
                 json: true,
-                data: reason,
+                data: reject,
                                 params: queryParameters,
                 headers: headerParams
             };

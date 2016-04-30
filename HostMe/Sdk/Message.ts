@@ -6,8 +6,6 @@ namespace HostMe.Sdk {
 
         "id"?: number;
 
-        "waitItemId"?: number;
-
         "body"?: string;
 
         "time"?: Date;

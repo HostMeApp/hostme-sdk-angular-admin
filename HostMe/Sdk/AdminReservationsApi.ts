@@ -4,7 +4,7 @@ namespace HostMe.Sdk {
     'use strict';
 
     export class AdminReservationsApi {
-        protected basePath = 'http://hostme-services-dev.azurewebsites.net';
+        protected basePath = 'http://hostme-services-tables.azurewebsites.net';
         public defaultHeaders : any = {};
 
         static $inject: string[] = ['$http', '$httpParamSerializer'];
@@ -30,7 +30,7 @@ namespace HostMe.Sdk {
          * @param restaurantId 
          * @param value 
          */
-        public addNewReservation (restaurantId: number, value: AdminReservationBindingModel, extraHttpRequestParams?: any ) : ng.IHttpPromise<Reservation> {
+        public addNewReservation (restaurantId: number, value: CreateReservation, extraHttpRequestParams?: any ) : ng.IHttpPromise<Reservation> {
             const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
@@ -64,9 +64,9 @@ namespace HostMe.Sdk {
          * 
          * @param restaurantId 
          * @param reservationId 
-         * @param notes 
+         * @param cancelReservationContract 
          */
-        public cancelReservation (restaurantId: number, reservationId: string, notes: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Reservation> {
+        public cancelReservation (restaurantId: number, reservationId: string, cancelReservationContract: CancelReservation, extraHttpRequestParams?: any ) : ng.IHttpPromise<Reservation> {
             const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/cancel'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'reservationId' + '}', String(reservationId));
@@ -81,15 +81,15 @@ namespace HostMe.Sdk {
             if (!reservationId) {
                 throw new Error('Missing required parameter reservationId when calling cancelReservation');
             }
-            // verify required parameter 'notes' is set
-            if (!notes) {
-                throw new Error('Missing required parameter notes when calling cancelReservation');
+            // verify required parameter 'cancelReservationContract' is set
+            if (!cancelReservationContract) {
+                throw new Error('Missing required parameter cancelReservationContract when calling cancelReservation');
             }
             let httpRequestParams: any = {
                 method: 'PUT',
                 url: localVarPath,
                 json: true,
-                data: notes,
+                data: cancelReservationContract,
                                 params: queryParameters,
                 headers: headerParams
             };
@@ -630,9 +630,9 @@ namespace HostMe.Sdk {
          * 
          * @param restaurantId Restaurant identifier
          * @param reservationId Reservation identifier
-         * @param body The body of the message
+         * @param createMessageContract The message with body
          */
-        public sendMessage (restaurantId: number, reservationId: string, body: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Message> {
+        public sendMessage (restaurantId: number, reservationId: string, createMessageContract: CreateMessage, extraHttpRequestParams?: any ) : ng.IHttpPromise<Message> {
             const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/messages'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'reservationId' + '}', String(reservationId));
@@ -647,15 +647,15 @@ namespace HostMe.Sdk {
             if (!reservationId) {
                 throw new Error('Missing required parameter reservationId when calling sendMessage');
             }
-            // verify required parameter 'body' is set
-            if (!body) {
-                throw new Error('Missing required parameter body when calling sendMessage');
+            // verify required parameter 'createMessageContract' is set
+            if (!createMessageContract) {
+                throw new Error('Missing required parameter createMessageContract when calling sendMessage');
             }
             let httpRequestParams: any = {
                 method: 'POST',
                 url: localVarPath,
                 json: true,
-                data: body,
+                data: createMessageContract,
                                 params: queryParameters,
                 headers: headerParams
             };
@@ -731,7 +731,7 @@ namespace HostMe.Sdk {
          * @param reservationId 
          * @param value 
          */
-        public updateReservation (restaurantId: number, reservationId: string, value: AdminReservationBindingModel, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+        public updateReservation (restaurantId: number, reservationId: string, value: CreateReservation, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
             const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'reservationId' + '}', String(reservationId));

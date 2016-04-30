@@ -4,8 +4,6 @@ namespace HostMe.Sdk {
 
     export interface WaitingStats {
 
-        "waitByArea"?: Array<WaitingStatLine>;
-
         "waitByGroup"?: Array<WaitingStatLine>;
     }
 

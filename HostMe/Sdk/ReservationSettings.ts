@@ -38,8 +38,6 @@ namespace HostMe.Sdk {
 
         "reservationHoursStep"?: number;
 
-        "reservationInboxEmail"?: string;
-
         "statusMessages"?: Array<StatusMessage>;
 
         "tableTurnOver"?: number;

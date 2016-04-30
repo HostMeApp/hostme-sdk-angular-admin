@@ -6,13 +6,9 @@ namespace HostMe.Sdk {
 
         "amount"?: number;
 
-        "description"?: string;
-
         "discount"?: number;
 
         "freeMeal"?: string;
-
-        "imageUrl"?: string;
 
         "type"?: RewardValue.TypeEnum;
     }

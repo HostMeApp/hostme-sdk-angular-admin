@@ -12,8 +12,6 @@ namespace HostMe.Sdk {
 
         "closed"?: Date;
 
-        "phoneId"?: string;
-
         "confirmationCode"?: number;
 
         "customerName"?: string;

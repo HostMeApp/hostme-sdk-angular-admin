@@ -16,8 +16,6 @@ namespace HostMe.Sdk {
 
         "rewardId"?: string;
 
-        "customerMembershipId"?: number;
-
         "tableNumber"?: string;
 
         "memberInfo"?: Member;

@@ -21,6 +21,8 @@ namespace HostMe.Sdk {
         "lastVisitDate"?: Date;
 
         "customer"?: UserProfile;
+
+        "profile"?: Profile;
     }
 
 }

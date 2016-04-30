@@ -16,8 +16,6 @@ namespace HostMe.Sdk {
 
         "phone"?: string;
 
-        "timeOffSet"?: number;
-
         "timeZone"?: string;
     }
 

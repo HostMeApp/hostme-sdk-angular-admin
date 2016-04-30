@@ -15,10 +15,6 @@ namespace HostMe.Sdk {
         "phoneNumber"?: string;
 
         "roles"?: Array<RoleInfo>;
-
-        "identities"?: Array<UserIdentityInfo>;
-
-        "subscriptions"?: Array<UserSubscriptionInfo>;
     }
 
 }

@@ -4,7 +4,7 @@ namespace HostMe.Sdk {
     'use strict';
 
     export class AdminCoreApi {
-        protected basePath = 'http://hostme-services-dev.azurewebsites.net';
+        protected basePath = 'http://hostme-services-tables.azurewebsites.net';
         public defaultHeaders : any = {};
 
         static $inject: string[] = ['$http', '$httpParamSerializer'];
@@ -29,8 +29,8 @@ namespace HostMe.Sdk {
          * 
          * @param model 
          */
-        public addExternalLogin (model: AddExternalLoginBindingModel, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/AddExternalLogin';
+        public addExternalLogin (model: AddExternalLogin, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+            const localVarPath = this.basePath + '/api/core/admin/account/addExternalLogin';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -58,7 +58,7 @@ namespace HostMe.Sdk {
          * 
          * @param value 
          */
-        public addNewRestaurant (value: NewRestaurantBindingModel, extraHttpRequestParams?: any ) : ng.IHttpPromise<WithAccessTokenContract1RestaurantContract> {
+        public addNewRestaurant (value: CreateRestaurant, extraHttpRequestParams?: any ) : ng.IHttpPromise<WithAccessTokenContract1RestaurantContract> {
             const localVarPath = this.basePath + '/api/core/admin/restaurants';
 
             let queryParameters: any = {};
@@ -87,8 +87,8 @@ namespace HostMe.Sdk {
          * 
          * @param model 
          */
-        public changePassword (model: ChangePasswordBindingModel, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/ChangePassword';
+        public changePassword (model: ChangePassword, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+            const localVarPath = this.basePath + '/api/core/admin/account/changePassword';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -117,7 +117,7 @@ namespace HostMe.Sdk {
          * @param invitationCode 
          * @param restaurantId 
          */
-        public checkInvitationCode (invitationCode: string, restaurantId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<InvitationViewModel> {
+        public checkInvitationCode (invitationCode: string, restaurantId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<InvitationInfo> {
             const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations/{invitationCode}'
                 .replace('{' + 'invitationCode' + '}', String(invitationCode))
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
@@ -152,7 +152,7 @@ namespace HostMe.Sdk {
          * @param restaurantId 
          * @param invitation 
          */
-        public createInvitationCode (restaurantId: number, invitation: InvitationBindingModel, extraHttpRequestParams?: any ) : ng.IHttpPromise<string> {
+        public createInvitationCode (restaurantId: number, invitation: Invitation, extraHttpRequestParams?: any ) : ng.IHttpPromise<string> {
             const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
@@ -186,7 +186,7 @@ namespace HostMe.Sdk {
          * 
          * @param value 
          */
-        public createNewAccountWithRestaurant (value: NewAccountWithRestaurantBindingModel, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+        public createNewAccountWithRestaurant (value: CreateAccountWithRestaurant, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
             const localVarPath = this.basePath + '/api/core/admin/tenant/restaurants';
 
             let queryParameters: any = {};
@@ -441,7 +441,7 @@ namespace HostMe.Sdk {
          * 
          * @param restaurantId 
          */
-        public getInvitations (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<InvitationViewModel>> {
+        public getInvitations (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<InvitationInfo>> {
             const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
@@ -471,8 +471,8 @@ namespace HostMe.Sdk {
          * @param returnUrl 
          * @param generateState 
          */
-        public getManageInfo (returnUrl: string, generateState?: boolean, extraHttpRequestParams?: any ) : ng.IHttpPromise<ManageInfoViewModel> {
-            const localVarPath = this.basePath + '/api/core/admin/account/ManageInfo';
+        public getManageInfo (returnUrl: string, generateState?: boolean, extraHttpRequestParams?: any ) : ng.IHttpPromise<ManageInfo> {
+            const localVarPath = this.basePath + '/api/core/admin/account/manageInfo';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -626,52 +626,6 @@ namespace HostMe.Sdk {
         /**
          * 
          * 
-         */
-        public getUserInfo (extraHttpRequestParams?: any ) : ng.IHttpPromise<UserInfoViewModel> {
-            const localVarPath = this.basePath + '/api/core/admin/account/UserInfo';
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            let httpRequestParams: any = {
-                method: 'GET',
-                url: localVarPath,
-                json: true,
-                                                params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-
-            return this.$http(httpRequestParams);
-        }
-        /**
-         * 
-         * 
-         */
-        public getUserProfile (extraHttpRequestParams?: any ) : ng.IHttpPromise<UserProfile> {
-            const localVarPath = this.basePath + '/api/core/admin/account/profile';
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            let httpRequestParams: any = {
-                method: 'GET',
-                url: localVarPath,
-                json: true,
-                                                params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-
-            return this.$http(httpRequestParams);
-        }
-        /**
-         * 
-         * 
          * @param restaurantId 
          */
         public getUsers (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<RestaurantUserInfo>> {
@@ -703,7 +657,7 @@ namespace HostMe.Sdk {
          * 
          */
         public logout (extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/Logout';
+            const localVarPath = this.basePath + '/api/core/admin/account/logout';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -801,8 +755,8 @@ namespace HostMe.Sdk {
          * 
          * @param model 
          */
-        public register (model: RegisterBindingModel, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/Register';
+        public register (model: RegisterUser, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+            const localVarPath = this.basePath + '/api/core/admin/account/register';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -830,8 +784,8 @@ namespace HostMe.Sdk {
          * 
          * @param model 
          */
-        public registerExternal (model: RegisterExternalBindingModel, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/RegisterExternal';
+        public registerExternal (model: RegisterExternalUser, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+            const localVarPath = this.basePath + '/api/core/admin/account/registerExternal';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -894,8 +848,8 @@ namespace HostMe.Sdk {
          * 
          * @param model 
          */
-        public resetPassword (model: ResetPasswordBindingModel, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/ResetPassword';
+        public resetPassword (model: ResetPassword, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+            const localVarPath = this.basePath + '/api/core/admin/account/resetPassword';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -958,8 +912,8 @@ namespace HostMe.Sdk {
          * 
          * @param model 
          */
-        public setPassword (model: SetPasswordBindingModel, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/SetPassword';
+        public setPassword (model: SetPassword, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+            const localVarPath = this.basePath + '/api/core/admin/account/setPassword';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);

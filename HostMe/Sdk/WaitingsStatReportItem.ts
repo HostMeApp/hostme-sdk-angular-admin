@@ -8,8 +8,6 @@ namespace HostMe.Sdk {
 
         "totalPartyCount"?: number;
 
-        "totalHeadCount"?: number;
-
         "totalSeatedCount"?: number;
 
         "totalCanceledCount"?: number;
@@ -32,9 +30,6 @@ namespace HostMe.Sdk {
 
         "maxTimeToCancel"?: number;
 
-        /**
-         * Maximum line position at a given period
-         */
         "maxLine"?: number;
 
         "avgLine"?: number;
