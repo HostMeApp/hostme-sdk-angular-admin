@@ -338,7 +338,7 @@ var HostMe;
             function AdminCoreApi($http, $httpParamSerializer, basePath) {
                 this.$http = $http;
                 this.$httpParamSerializer = $httpParamSerializer;
-                this.basePath = 'http://hostme-services-tables.azurewebsites.net';
+                this.basePath = 'http://hostme-services-dev.azurewebsites.net';
                 this.defaultHeaders = {};
                 if (basePath) {
                     this.basePath = basePath;
@@ -351,32 +351,6 @@ var HostMe;
                     }
                 }
                 return objA;
-            };
-            /**
-             *
-             *
-             * @param model
-             */
-            AdminCoreApi.prototype.addExternalLogin = function (model, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/api/core/admin/account/addExternalLogin';
-                var queryParameters = {};
-                var headerParams = this.extendObj({}, this.defaultHeaders);
-                // verify required parameter 'model' is set
-                if (!model) {
-                    throw new Error('Missing required parameter model when calling addExternalLogin');
-                }
-                var httpRequestParams = {
-                    method: 'POST',
-                    url: localVarPath,
-                    json: true,
-                    data: model,
-                    params: queryParameters,
-                    headers: headerParams
-                };
-                if (extraHttpRequestParams) {
-                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-                }
-                return this.$http(httpRequestParams);
             };
             /**
              *
@@ -410,7 +384,7 @@ var HostMe;
              * @param model
              */
             AdminCoreApi.prototype.changePassword = function (model, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/api/core/admin/account/changePassword';
+                var localVarPath = this.basePath + '/api/core/admin/account/password/change';
                 var queryParameters = {};
                 var headerParams = this.extendObj({}, this.defaultHeaders);
                 // verify required parameter 'model' is set
@@ -700,7 +674,7 @@ var HostMe;
              * @param restaurantId
              */
             AdminCoreApi.prototype.getCustomSettings = function (restaurantId, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/customSettings'
+                var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/settings/custom'
                     .replace('{' + 'restaurantId' + '}', String(restaurantId));
                 var queryParameters = {};
                 var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -733,38 +707,6 @@ var HostMe;
                 // verify required parameter 'restaurantId' is set
                 if (!restaurantId) {
                     throw new Error('Missing required parameter restaurantId when calling getInvitations');
-                }
-                var httpRequestParams = {
-                    method: 'GET',
-                    url: localVarPath,
-                    json: true,
-                    params: queryParameters,
-                    headers: headerParams
-                };
-                if (extraHttpRequestParams) {
-                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-                }
-                return this.$http(httpRequestParams);
-            };
-            /**
-             *
-             *
-             * @param returnUrl
-             * @param generateState
-             */
-            AdminCoreApi.prototype.getManageInfo = function (returnUrl, generateState, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/api/core/admin/account/manageInfo';
-                var queryParameters = {};
-                var headerParams = this.extendObj({}, this.defaultHeaders);
-                // verify required parameter 'returnUrl' is set
-                if (!returnUrl) {
-                    throw new Error('Missing required parameter returnUrl when calling getManageInfo');
-                }
-                if (returnUrl !== undefined) {
-                    queryParameters['returnUrl'] = returnUrl;
-                }
-                if (generateState !== undefined) {
-                    queryParameters['generateState'] = generateState;
                 }
                 var httpRequestParams = {
                     method: 'GET',
@@ -889,17 +831,11 @@ var HostMe;
             /**
              *
              *
-             * @param restaurantId
              */
-            AdminCoreApi.prototype.getUsers = function (restaurantId, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/users'
-                    .replace('{' + 'restaurantId' + '}', String(restaurantId));
+            AdminCoreApi.prototype.getUserProfile = function (extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/api/core/admin/account/profile';
                 var queryParameters = {};
                 var headerParams = this.extendObj({}, this.defaultHeaders);
-                // verify required parameter 'restaurantId' is set
-                if (!restaurantId) {
-                    throw new Error('Missing required parameter restaurantId when calling getUsers');
-                }
                 var httpRequestParams = {
                     method: 'GET',
                     url: localVarPath,
@@ -915,11 +851,17 @@ var HostMe;
             /**
              *
              *
+             * @param restaurantId
              */
-            AdminCoreApi.prototype.logout = function (extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/api/core/admin/account/logout';
+            AdminCoreApi.prototype.getUsers = function (restaurantId, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/users'
+                    .replace('{' + 'restaurantId' + '}', String(restaurantId));
                 var queryParameters = {};
                 var headerParams = this.extendObj({}, this.defaultHeaders);
+                // verify required parameter 'restaurantId' is set
+                if (!restaurantId) {
+                    throw new Error('Missing required parameter restaurantId when calling getUsers');
+                }
                 var httpRequestParams = {
                     method: 'GET',
                     url: localVarPath,
@@ -1027,32 +969,6 @@ var HostMe;
             /**
              *
              *
-             * @param model
-             */
-            AdminCoreApi.prototype.registerExternal = function (model, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/api/core/admin/account/registerExternal';
-                var queryParameters = {};
-                var headerParams = this.extendObj({}, this.defaultHeaders);
-                // verify required parameter 'model' is set
-                if (!model) {
-                    throw new Error('Missing required parameter model when calling registerExternal');
-                }
-                var httpRequestParams = {
-                    method: 'POST',
-                    url: localVarPath,
-                    json: true,
-                    data: model,
-                    params: queryParameters,
-                    headers: headerParams
-                };
-                if (extraHttpRequestParams) {
-                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-                }
-                return this.$http(httpRequestParams);
-            };
-            /**
-             *
-             *
              * @param restaurantId
              * @param invitationCode
              */
@@ -1088,7 +1004,7 @@ var HostMe;
              * @param model
              */
             AdminCoreApi.prototype.resetPassword = function (model, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/api/core/admin/account/resetPassword';
+                var localVarPath = this.basePath + '/api/core/admin/account/password/reset';
                 var queryParameters = {};
                 var headerParams = this.extendObj({}, this.defaultHeaders);
                 // verify required parameter 'model' is set
@@ -1115,7 +1031,7 @@ var HostMe;
              * @param settings
              */
             AdminCoreApi.prototype.setCustomSettings = function (restaurantId, settings, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/customSettings'
+                var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/setting/custom'
                     .replace('{' + 'restaurantId' + '}', String(restaurantId));
                 var queryParameters = {};
                 var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -1132,32 +1048,6 @@ var HostMe;
                     url: localVarPath,
                     json: true,
                     data: settings,
-                    params: queryParameters,
-                    headers: headerParams
-                };
-                if (extraHttpRequestParams) {
-                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-                }
-                return this.$http(httpRequestParams);
-            };
-            /**
-             *
-             *
-             * @param model
-             */
-            AdminCoreApi.prototype.setPassword = function (model, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/api/core/admin/account/setPassword';
-                var queryParameters = {};
-                var headerParams = this.extendObj({}, this.defaultHeaders);
-                // verify required parameter 'model' is set
-                if (!model) {
-                    throw new Error('Missing required parameter model when calling setPassword');
-                }
-                var httpRequestParams = {
-                    method: 'POST',
-                    url: localVarPath,
-                    json: true,
-                    data: model,
                     params: queryParameters,
                     headers: headerParams
                 };
@@ -1272,7 +1162,7 @@ var HostMe;
             function AdminLoyaltyApi($http, $httpParamSerializer, basePath) {
                 this.$http = $http;
                 this.$httpParamSerializer = $httpParamSerializer;
-                this.basePath = 'http://hostme-services-tables.azurewebsites.net';
+                this.basePath = 'http://hostme-services-dev.azurewebsites.net';
                 this.defaultHeaders = {};
                 if (basePath) {
                     this.basePath = basePath;
@@ -1285,6 +1175,38 @@ var HostMe;
                     }
                 }
                 return objA;
+            };
+            /**
+             *
+             *
+             * @param restaurantId
+             * @param contract
+             */
+            AdminLoyaltyApi.prototype.addMember = function (restaurantId, contract, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members'
+                    .replace('{' + 'restaurantId' + '}', String(restaurantId));
+                var queryParameters = {};
+                var headerParams = this.extendObj({}, this.defaultHeaders);
+                // verify required parameter 'restaurantId' is set
+                if (!restaurantId) {
+                    throw new Error('Missing required parameter restaurantId when calling addMember');
+                }
+                // verify required parameter 'contract' is set
+                if (!contract) {
+                    throw new Error('Missing required parameter contract when calling addMember');
+                }
+                var httpRequestParams = {
+                    method: 'POST',
+                    url: localVarPath,
+                    json: true,
+                    data: contract,
+                    params: queryParameters,
+                    headers: headerParams
+                };
+                if (extraHttpRequestParams) {
+                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+                }
+                return this.$http(httpRequestParams);
             };
             /**
              *
@@ -1566,7 +1488,7 @@ var HostMe;
              * @param restaurantId
              */
             AdminLoyaltyApi.prototype.getDefaultLoyaltySettings = function (restaurantId, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/defaultSettings'
+                var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/settings/default'
                     .replace('{' + 'restaurantId' + '}', String(restaurantId));
                 var queryParameters = {};
                 var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -1878,6 +1800,44 @@ var HostMe;
              *
              *
              * @param restaurantId
+             * @param memberId
+             * @param contract
+             */
+            AdminLoyaltyApi.prototype.updateMember = function (restaurantId, memberId, contract, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}'
+                    .replace('{' + 'restaurantId' + '}', String(restaurantId))
+                    .replace('{' + 'memberId' + '}', String(memberId));
+                var queryParameters = {};
+                var headerParams = this.extendObj({}, this.defaultHeaders);
+                // verify required parameter 'restaurantId' is set
+                if (!restaurantId) {
+                    throw new Error('Missing required parameter restaurantId when calling updateMember');
+                }
+                // verify required parameter 'memberId' is set
+                if (!memberId) {
+                    throw new Error('Missing required parameter memberId when calling updateMember');
+                }
+                // verify required parameter 'contract' is set
+                if (!contract) {
+                    throw new Error('Missing required parameter contract when calling updateMember');
+                }
+                var httpRequestParams = {
+                    method: 'PUT',
+                    url: localVarPath,
+                    json: true,
+                    data: contract,
+                    params: queryParameters,
+                    headers: headerParams
+                };
+                if (extraHttpRequestParams) {
+                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+                }
+                return this.$http(httpRequestParams);
+            };
+            /**
+             *
+             *
+             * @param restaurantId
              * @param rewardId
              * @param reward
              */
@@ -1943,7 +1903,7 @@ var HostMe;
             function AdminReservationsApi($http, $httpParamSerializer, basePath) {
                 this.$http = $http;
                 this.$httpParamSerializer = $httpParamSerializer;
-                this.basePath = 'http://hostme-services-tables.azurewebsites.net';
+                this.basePath = 'http://hostme-services-dev.azurewebsites.net';
                 this.defaultHeaders = {};
                 if (basePath) {
                     this.basePath = basePath;
@@ -2099,32 +2059,6 @@ var HostMe;
              *
              *
              * @param restaurantId
-             */
-            AdminReservationsApi.prototype.geReservationSettings = function (restaurantId, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/settings'
-                    .replace('{' + 'restaurantId' + '}', String(restaurantId));
-                var queryParameters = {};
-                var headerParams = this.extendObj({}, this.defaultHeaders);
-                // verify required parameter 'restaurantId' is set
-                if (!restaurantId) {
-                    throw new Error('Missing required parameter restaurantId when calling geReservationSettings');
-                }
-                var httpRequestParams = {
-                    method: 'GET',
-                    url: localVarPath,
-                    json: true,
-                    params: queryParameters,
-                    headers: headerParams
-                };
-                if (extraHttpRequestParams) {
-                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-                }
-                return this.$http(httpRequestParams);
-            };
-            /**
-             *
-             *
-             * @param restaurantId
              * @param reservationId
              */
             AdminReservationsApi.prototype.getMessages = function (restaurantId, reservationId, extraHttpRequestParams) {
@@ -2251,6 +2185,32 @@ var HostMe;
              *
              *
              * @param restaurantId
+             */
+            AdminReservationsApi.prototype.getReservationSettings = function (restaurantId, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/settings'
+                    .replace('{' + 'restaurantId' + '}', String(restaurantId));
+                var queryParameters = {};
+                var headerParams = this.extendObj({}, this.defaultHeaders);
+                // verify required parameter 'restaurantId' is set
+                if (!restaurantId) {
+                    throw new Error('Missing required parameter restaurantId when calling getReservationSettings');
+                }
+                var httpRequestParams = {
+                    method: 'GET',
+                    url: localVarPath,
+                    json: true,
+                    params: queryParameters,
+                    headers: headerParams
+                };
+                if (extraHttpRequestParams) {
+                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+                }
+                return this.$http(httpRequestParams);
+            };
+            /**
+             *
+             *
+             * @param restaurantId
              * @param from
              * @param to
              */
@@ -2318,7 +2278,7 @@ var HostMe;
              * @param from
              */
             AdminReservationsApi.prototype.getUnreadMessagesCount = function (restaurantId, from, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/messages/count-unread'
+                var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/messages/unread/count'
                     .replace('{' + 'restaurantId' + '}', String(restaurantId));
                 var queryParameters = {};
                 var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -3159,7 +3119,7 @@ var HostMe;
             function AdminTableManagementApi($http, $httpParamSerializer, basePath) {
                 this.$http = $http;
                 this.$httpParamSerializer = $httpParamSerializer;
-                this.basePath = 'http://hostme-services-tables.azurewebsites.net';
+                this.basePath = 'http://hostme-services-dev.azurewebsites.net';
                 this.defaultHeaders = {};
                 if (basePath) {
                     this.basePath = basePath;
@@ -3677,7 +3637,7 @@ var HostMe;
             function AdminWaitingManagementApi($http, $httpParamSerializer, basePath) {
                 this.$http = $http;
                 this.$httpParamSerializer = $httpParamSerializer;
-                this.basePath = 'http://hostme-services-tables.azurewebsites.net';
+                this.basePath = 'http://hostme-services-dev.azurewebsites.net';
                 this.defaultHeaders = {};
                 if (basePath) {
                     this.basePath = basePath;
@@ -4059,7 +4019,7 @@ var HostMe;
              * @param restaurantId
              */
             AdminWaitingManagementApi.prototype.getUnreadMessagesCount = function (restaurantId, extraHttpRequestParams) {
-                var localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/messages/count-unread'
+                var localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/messages/unread/count'
                     .replace('{' + 'restaurantId' + '}', String(restaurantId));
                 var queryParameters = {};
                 var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -5879,6 +5839,96 @@ var HostMe;
         'use strict';
     })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
 })(HostMe || (HostMe = {}));
+/* tslint:disable:no-unused-variable member-ordering */
+var HostMe;
+(function (HostMe) {
+    var Sdk;
+    (function (Sdk) {
+        'use strict';
+        var ExternalAuthenticationApi = (function () {
+            function ExternalAuthenticationApi($http, $httpParamSerializer, basePath) {
+                this.$http = $http;
+                this.$httpParamSerializer = $httpParamSerializer;
+                this.basePath = 'http://hostme-services-dev.azurewebsites.net';
+                this.defaultHeaders = {};
+                if (basePath) {
+                    this.basePath = basePath;
+                }
+            }
+            ExternalAuthenticationApi.prototype.extendObj = function (objA, objB) {
+                for (var key in objB) {
+                    if (objB.hasOwnProperty(key)) {
+                        objA[key] = objB[key];
+                    }
+                }
+                return objA;
+            };
+            /**
+             *
+             *
+             * @param accessToken
+             */
+            ExternalAuthenticationApi.prototype.getExternalFacebookLogin = function (accessToken, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/authorization/externalFacebookLogin';
+                var queryParameters = {};
+                var headerParams = this.extendObj({}, this.defaultHeaders);
+                // verify required parameter 'accessToken' is set
+                if (!accessToken) {
+                    throw new Error('Missing required parameter accessToken when calling getExternalFacebookLogin');
+                }
+                if (accessToken !== undefined) {
+                    queryParameters['access_token'] = accessToken;
+                }
+                var httpRequestParams = {
+                    method: 'GET',
+                    url: localVarPath,
+                    json: true,
+                    params: queryParameters,
+                    headers: headerParams
+                };
+                if (extraHttpRequestParams) {
+                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+                }
+                return this.$http(httpRequestParams);
+            };
+            /**
+             *
+             *
+             * @param returnUrl
+             * @param generateState
+             */
+            ExternalAuthenticationApi.prototype.getExternalLogins = function (returnUrl, generateState, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/authorization/externalLogins';
+                var queryParameters = {};
+                var headerParams = this.extendObj({}, this.defaultHeaders);
+                // verify required parameter 'returnUrl' is set
+                if (!returnUrl) {
+                    throw new Error('Missing required parameter returnUrl when calling getExternalLogins');
+                }
+                if (returnUrl !== undefined) {
+                    queryParameters['returnUrl'] = returnUrl;
+                }
+                if (generateState !== undefined) {
+                    queryParameters['generateState'] = generateState;
+                }
+                var httpRequestParams = {
+                    method: 'GET',
+                    url: localVarPath,
+                    json: true,
+                    params: queryParameters,
+                    headers: headerParams
+                };
+                if (extraHttpRequestParams) {
+                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+                }
+                return this.$http(httpRequestParams);
+            };
+            ExternalAuthenticationApi.$inject = ['$http', '$httpParamSerializer'];
+            return ExternalAuthenticationApi;
+        }());
+        Sdk.ExternalAuthenticationApi = ExternalAuthenticationApi;
+    })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
+})(HostMe || (HostMe = {}));
 var HostMe;
 (function (HostMe) {
     var Sdk;
@@ -5996,6 +6046,20 @@ var HostMe;
             })(IEdmType.TypeKindEnum || (IEdmType.TypeKindEnum = {}));
             var TypeKindEnum = IEdmType.TypeKindEnum;
         })(IEdmType = Sdk.IEdmType || (Sdk.IEdmType = {}));
+    })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
+})(HostMe || (HostMe = {}));
+var HostMe;
+(function (HostMe) {
+    var Sdk;
+    (function (Sdk) {
+        'use strict';
+    })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
+})(HostMe || (HostMe = {}));
+var HostMe;
+(function (HostMe) {
+    var Sdk;
+    (function (Sdk) {
+        'use strict';
     })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
 })(HostMe || (HostMe = {}));
 var HostMe;
