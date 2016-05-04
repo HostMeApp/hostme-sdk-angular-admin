@@ -17,6 +17,8 @@ namespace HostMe.Sdk {
         "membershipLevel"?: string;
 
         "points"?: number;
+
+        "customerProfile"?: Profile;
     }
 
 }

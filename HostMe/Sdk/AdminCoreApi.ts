@@ -4,7 +4,7 @@ namespace HostMe.Sdk {
     'use strict';
 
     export class AdminCoreApi {
-        protected basePath = 'http://hostme-services-tables.azurewebsites.net';
+        protected basePath = 'http://hostme-services-dev.azurewebsites.net';
         public defaultHeaders : any = {};
 
         static $inject: string[] = ['$http', '$httpParamSerializer'];
@@ -24,35 +24,6 @@ namespace HostMe.Sdk {
             return <T1&T2>objA;
         }
 
-        /**
-         * 
-         * 
-         * @param model 
-         */
-        public addExternalLogin (model: AddExternalLogin, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/addExternalLogin';
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            // verify required parameter 'model' is set
-            if (!model) {
-                throw new Error('Missing required parameter model when calling addExternalLogin');
-            }
-            let httpRequestParams: any = {
-                method: 'POST',
-                url: localVarPath,
-                json: true,
-                data: model,
-                                params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-
-            return this.$http(httpRequestParams);
-        }
         /**
          * 
          * 
@@ -88,7 +59,7 @@ namespace HostMe.Sdk {
          * @param model 
          */
         public changePassword (model: ChangePassword, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/changePassword';
+            const localVarPath = this.basePath + '/api/core/admin/account/password/change';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -413,7 +384,7 @@ namespace HostMe.Sdk {
          * @param restaurantId 
          */
         public getCustomSettings (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Object> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/customSettings'
+            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/settings/custom'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -451,43 +422,6 @@ namespace HostMe.Sdk {
             if (!restaurantId) {
                 throw new Error('Missing required parameter restaurantId when calling getInvitations');
             }
-            let httpRequestParams: any = {
-                method: 'GET',
-                url: localVarPath,
-                json: true,
-                                                params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-
-            return this.$http(httpRequestParams);
-        }
-        /**
-         * 
-         * 
-         * @param returnUrl 
-         * @param generateState 
-         */
-        public getManageInfo (returnUrl: string, generateState?: boolean, extraHttpRequestParams?: any ) : ng.IHttpPromise<ManageInfo> {
-            const localVarPath = this.basePath + '/api/core/admin/account/manageInfo';
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            // verify required parameter 'returnUrl' is set
-            if (!returnUrl) {
-                throw new Error('Missing required parameter returnUrl when calling getManageInfo');
-            }
-            if (returnUrl !== undefined) {
-                queryParameters['returnUrl'] = returnUrl;
-            }
-
-            if (generateState !== undefined) {
-                queryParameters['generateState'] = generateState;
-            }
-
             let httpRequestParams: any = {
                 method: 'GET',
                 url: localVarPath,
@@ -626,18 +560,12 @@ namespace HostMe.Sdk {
         /**
          * 
          * 
-         * @param restaurantId 
          */
-        public getUsers (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<RestaurantUserInfo>> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/users'
-                .replace('{' + 'restaurantId' + '}', String(restaurantId));
+        public getUserProfile (extraHttpRequestParams?: any ) : ng.IHttpPromise<UserProfile> {
+            const localVarPath = this.basePath + '/api/core/admin/account/profile';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            // verify required parameter 'restaurantId' is set
-            if (!restaurantId) {
-                throw new Error('Missing required parameter restaurantId when calling getUsers');
-            }
             let httpRequestParams: any = {
                 method: 'GET',
                 url: localVarPath,
@@ -655,12 +583,18 @@ namespace HostMe.Sdk {
         /**
          * 
          * 
+         * @param restaurantId 
          */
-        public logout (extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/logout';
+        public getUsers (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<RestaurantUserInfo>> {
+            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/users'
+                .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'restaurantId' is set
+            if (!restaurantId) {
+                throw new Error('Missing required parameter restaurantId when calling getUsers');
+            }
             let httpRequestParams: any = {
                 method: 'GET',
                 url: localVarPath,
@@ -782,35 +716,6 @@ namespace HostMe.Sdk {
         /**
          * 
          * 
-         * @param model 
-         */
-        public registerExternal (model: RegisterExternalUser, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/registerExternal';
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            // verify required parameter 'model' is set
-            if (!model) {
-                throw new Error('Missing required parameter model when calling registerExternal');
-            }
-            let httpRequestParams: any = {
-                method: 'POST',
-                url: localVarPath,
-                json: true,
-                data: model,
-                                params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-
-            return this.$http(httpRequestParams);
-        }
-        /**
-         * 
-         * 
          * @param restaurantId 
          * @param invitationCode 
          */
@@ -849,7 +754,7 @@ namespace HostMe.Sdk {
          * @param model 
          */
         public resetPassword (model: ResetPassword, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/resetPassword';
+            const localVarPath = this.basePath + '/api/core/admin/account/password/reset';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -879,7 +784,7 @@ namespace HostMe.Sdk {
          * @param settings 
          */
         public setCustomSettings (restaurantId: number, settings: Object, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/customSettings'
+            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/setting/custom'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -897,35 +802,6 @@ namespace HostMe.Sdk {
                 url: localVarPath,
                 json: true,
                 data: settings,
-                                params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-
-            return this.$http(httpRequestParams);
-        }
-        /**
-         * 
-         * 
-         * @param model 
-         */
-        public setPassword (model: SetPassword, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/setPassword';
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            // verify required parameter 'model' is set
-            if (!model) {
-                throw new Error('Missing required parameter model when calling setPassword');
-            }
-            let httpRequestParams: any = {
-                method: 'POST',
-                url: localVarPath,
-                json: true,
-                data: model,
                                 params: queryParameters,
                 headers: headerParams
             };

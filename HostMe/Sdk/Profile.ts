@@ -6,8 +6,6 @@ namespace HostMe.Sdk {
 
         "allergy"?: Array<string>;
 
-        "note"?: string;
-
         "vegetarian"?: boolean;
     }
 

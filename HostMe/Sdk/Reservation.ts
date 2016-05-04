@@ -43,6 +43,10 @@ namespace HostMe.Sdk {
         "membership"?: MembershipInfo;
 
         "type"?: Reservation.TypeEnum;
+
+        "party"?: boolean;
+
+        "customerProfile"?: Profile;
     }
 
     export namespace Reservation {

@@ -4,7 +4,7 @@ namespace HostMe.Sdk {
     'use strict';
 
     export class AdminWaitingManagementApi {
-        protected basePath = 'http://hostme-services-tables.azurewebsites.net';
+        protected basePath = 'http://hostme-services-dev.azurewebsites.net';
         public defaultHeaders : any = {};
 
         static $inject: string[] = ['$http', '$httpParamSerializer'];
@@ -431,7 +431,7 @@ namespace HostMe.Sdk {
          * @param restaurantId 
          */
         public getUnreadMessagesCount (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Count> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/messages/count-unread'
+            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/messages/unread/count'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};

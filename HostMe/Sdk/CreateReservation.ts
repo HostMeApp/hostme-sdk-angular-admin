@@ -22,9 +22,13 @@ namespace HostMe.Sdk {
 
         "stroller"?: boolean;
 
+        "party"?: boolean;
+
         "estimatedTurnOverTime"?: number;
 
         "type": CreateReservation.TypeEnum;
+
+        "customerProfile"?: Profile;
     }
 
     export namespace CreateReservation {

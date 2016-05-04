@@ -61,6 +61,10 @@ namespace HostMe.Sdk {
         "unreadMessageCount"?: number;
 
         "restaurant"?: RestaurantContactInfo;
+
+        "customerProfile"?: Profile;
+
+        "party"?: boolean;
     }
 
 }

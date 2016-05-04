@@ -4,7 +4,7 @@ namespace HostMe.Sdk {
     'use strict';
 
     export class AdminLoyaltyApi {
-        protected basePath = 'http://hostme-services-tables.azurewebsites.net';
+        protected basePath = 'http://hostme-services-dev.azurewebsites.net';
         public defaultHeaders : any = {};
 
         static $inject: string[] = ['$http', '$httpParamSerializer'];
@@ -24,6 +24,41 @@ namespace HostMe.Sdk {
             return <T1&T2>objA;
         }
 
+        /**
+         * 
+         * 
+         * @param restaurantId 
+         * @param contract 
+         */
+        public addMember (restaurantId: number, contract: MembershipCreate, extraHttpRequestParams?: any ) : ng.IHttpPromise<Object> {
+            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members'
+                .replace('{' + 'restaurantId' + '}', String(restaurantId));
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'restaurantId' is set
+            if (!restaurantId) {
+                throw new Error('Missing required parameter restaurantId when calling addMember');
+            }
+            // verify required parameter 'contract' is set
+            if (!contract) {
+                throw new Error('Missing required parameter contract when calling addMember');
+            }
+            let httpRequestParams: any = {
+                method: 'POST',
+                url: localVarPath,
+                json: true,
+                data: contract,
+                                params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+
+            return this.$http(httpRequestParams);
+        }
         /**
          * 
          * 
@@ -333,7 +368,7 @@ namespace HostMe.Sdk {
          * @param restaurantId 
          */
         public getDefaultLoyaltySettings (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<LoyaltySettings> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/defaultSettings'
+            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/settings/default'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -662,6 +697,47 @@ namespace HostMe.Sdk {
                 url: localVarPath,
                 json: true,
                                                 params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+
+            return this.$http(httpRequestParams);
+        }
+        /**
+         * 
+         * 
+         * @param restaurantId 
+         * @param memberId 
+         * @param contract 
+         */
+        public updateMember (restaurantId: number, memberId: number, contract: MembershipUpdate, extraHttpRequestParams?: any ) : ng.IHttpPromise<Object> {
+            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}'
+                .replace('{' + 'restaurantId' + '}', String(restaurantId))
+                .replace('{' + 'memberId' + '}', String(memberId));
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'restaurantId' is set
+            if (!restaurantId) {
+                throw new Error('Missing required parameter restaurantId when calling updateMember');
+            }
+            // verify required parameter 'memberId' is set
+            if (!memberId) {
+                throw new Error('Missing required parameter memberId when calling updateMember');
+            }
+            // verify required parameter 'contract' is set
+            if (!contract) {
+                throw new Error('Missing required parameter contract when calling updateMember');
+            }
+            let httpRequestParams: any = {
+                method: 'PUT',
+                url: localVarPath,
+                json: true,
+                data: contract,
+                                params: queryParameters,
                 headers: headerParams
             };
 

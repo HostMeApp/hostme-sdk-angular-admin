@@ -23,6 +23,8 @@ namespace HostMe.Sdk {
         "customer"?: UserProfile;
 
         "profile"?: Profile;
+
+        "note"?: string;
     }
 
 }

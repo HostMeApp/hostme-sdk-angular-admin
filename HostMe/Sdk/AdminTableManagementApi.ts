@@ -4,7 +4,7 @@ namespace HostMe.Sdk {
     'use strict';
 
     export class AdminTableManagementApi {
-        protected basePath = 'http://hostme-services-tables.azurewebsites.net';
+        protected basePath = 'http://hostme-services-dev.azurewebsites.net';
         public defaultHeaders : any = {};
 
         static $inject: string[] = ['$http', '$httpParamSerializer'];

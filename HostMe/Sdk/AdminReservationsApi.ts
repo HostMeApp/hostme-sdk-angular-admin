@@ -4,7 +4,7 @@ namespace HostMe.Sdk {
     'use strict';
 
     export class AdminReservationsApi {
-        protected basePath = 'http://hostme-services-tables.azurewebsites.net';
+        protected basePath = 'http://hostme-services-dev.azurewebsites.net';
         public defaultHeaders : any = {};
 
         static $inject: string[] = ['$http', '$httpParamSerializer'];
@@ -179,35 +179,6 @@ namespace HostMe.Sdk {
          * 
          * 
          * @param restaurantId 
-         */
-        public geReservationSettings (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<ReservationSettings> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/settings'
-                .replace('{' + 'restaurantId' + '}', String(restaurantId));
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            // verify required parameter 'restaurantId' is set
-            if (!restaurantId) {
-                throw new Error('Missing required parameter restaurantId when calling geReservationSettings');
-            }
-            let httpRequestParams: any = {
-                method: 'GET',
-                url: localVarPath,
-                json: true,
-                                                params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-
-            return this.$http(httpRequestParams);
-        }
-        /**
-         * 
-         * 
-         * @param restaurantId 
          * @param reservationId 
          */
         public getMessages (restaurantId: number, reservationId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<Message>> {
@@ -349,6 +320,35 @@ namespace HostMe.Sdk {
          * 
          * 
          * @param restaurantId 
+         */
+        public getReservationSettings (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<ReservationSettings> {
+            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/settings'
+                .replace('{' + 'restaurantId' + '}', String(restaurantId));
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'restaurantId' is set
+            if (!restaurantId) {
+                throw new Error('Missing required parameter restaurantId when calling getReservationSettings');
+            }
+            let httpRequestParams: any = {
+                method: 'GET',
+                url: localVarPath,
+                json: true,
+                                                params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+
+            return this.$http(httpRequestParams);
+        }
+        /**
+         * 
+         * 
+         * @param restaurantId 
          * @param from 
          * @param to 
          */
@@ -425,7 +425,7 @@ namespace HostMe.Sdk {
          * @param from 
          */
         public getUnreadMessagesCount (restaurantId: number, from?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Count> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/messages/count-unread'
+            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/messages/unread/count'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -528,7 +528,7 @@ namespace HostMe.Sdk {
          * @param restaurantId Restaurant identifier
          * @param reservationId Reservation identifier
          */
-        public readAllMessage (restaurantId: number, reservationId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Object> {
+        public readAllMessage (restaurantId: number, reservationId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
             const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/messages/readall'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'reservationId' + '}', String(reservationId));
@@ -705,7 +705,7 @@ namespace HostMe.Sdk {
          * 
          * 
          */
-        public submitYelpReservation (extraHttpRequestParams?: any ) : ng.IHttpPromise<Object> {
+        public submitYelpReservation (extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
             const localVarPath = this.basePath + '/api/rsv/admin/email/yelp/inbound';
 
             let queryParameters: any = {};
