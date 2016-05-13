@@ -236,3 +236,4 @@ _Pvt_Extensions
 .fake/
 /bower_components
 /typings
+/dist

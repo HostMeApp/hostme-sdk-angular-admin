@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/HostMeApp/hostme-sdk-angular-admin.git"
   },
-  "main": [ "index.d.ts", "hostme-sdk-admin.js" ],
+  "main": [ "./dist/lib/umd.js" ],
   "dependencies": {
     "jquery": "^2.2.3",
     "angular": "^1.5.3"

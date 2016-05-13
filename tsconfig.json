@@ -1,12 +1,26 @@
 {
-  "compilerOptions": {
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "out": "hostme-sdk-admin.js"
-  },
-  "exclude": [
-    "node_modules",
-    "bower_components",
-    "typings"
-  ]	
+    "compilerOptions": {
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "noImplicitAny": false,
+        "suppressImplicitAnyIndexErrors": true,
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "removeComments": true,
+        "sourceMap": true,
+        "outDir": "./dist/lib",
+        "noLib": false,
+        "declaration": true
+    },
+    "exclude": [
+        "node_modules",
+        "typings/main.d.ts",
+        "typings/main",
+        "lib"
+    ],
+    "filesGlob": [
+        "./src/**/*.ts",
+        "typings/browser.d.ts"
+    ]
 }

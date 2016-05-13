@@ -1,6 +1,6 @@
 {
   "name": "hostme-sdk-angular-admin",
-  "version": "1.1.1",
+  "version": "1.1.6+9",
   "ambientDependencies": {
     "angular": "github:DefinitelyTyped/DefinitelyTyped/angularjs/angular.d.ts#f6c8ca47193fb67947944a3170912672ac3e908e",
     "jquery": "github:DefinitelyTyped/DefinitelyTyped/jquery/jquery.d.ts#f6c8ca47193fb67947944a3170912672ac3e908e"
