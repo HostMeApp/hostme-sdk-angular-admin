@@ -59,6 +59,43 @@ namespace HostMe.Sdk {
         /**
          * 
          * 
+         * @param provider 
+         * @param error 
+         */
+        public getExternalLogin (provider: string, error?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+            const localVarPath = this.basePath + '/authorization/externalLogin';
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'provider' is set
+            if (!provider) {
+                throw new Error('Missing required parameter provider when calling getExternalLogin');
+            }
+            if (provider !== undefined) {
+                queryParameters['provider'] = provider;
+            }
+
+            if (error !== undefined) {
+                queryParameters['error'] = error;
+            }
+
+            let httpRequestParams: any = {
+                method: 'GET',
+                url: localVarPath,
+                json: true,
+                                                params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+
+            return this.$http(httpRequestParams);
+        }
+        /**
+         * 
+         * 
          * @param returnUrl 
          * @param generateState 
          */

@@ -203,9 +203,10 @@ namespace HostMe.Sdk {
          * 
          * 
          * @param restaurantId 
+         * @param take 
          * @param token 
          */
-        public filter (restaurantId: number, token: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<CustomerProfile>> {
+        public filter (restaurantId: number, take: number, token: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<CustomerProfile>> {
             const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/filter'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
@@ -215,10 +216,18 @@ namespace HostMe.Sdk {
             if (!restaurantId) {
                 throw new Error('Missing required parameter restaurantId when calling filter');
             }
+            // verify required parameter 'take' is set
+            if (!take) {
+                throw new Error('Missing required parameter take when calling filter');
+            }
             // verify required parameter 'token' is set
             if (!token) {
                 throw new Error('Missing required parameter token when calling filter');
             }
+            if (take !== undefined) {
+                queryParameters['take'] = take;
+            }
+
             if (token !== undefined) {
                 queryParameters['token'] = token;
             }
@@ -475,6 +484,41 @@ namespace HostMe.Sdk {
             // verify required parameter 'memberId' is set
             if (!memberId) {
                 throw new Error('Missing required parameter memberId when calling getMemberTransactions');
+            }
+            let httpRequestParams: any = {
+                method: 'GET',
+                url: localVarPath,
+                json: true,
+                                                params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+
+            return this.$http(httpRequestParams);
+        }
+        /**
+         * 
+         * 
+         * @param restaurantId 
+         * @param memberId 
+         */
+        public getMemberVisits (restaurantId: number, memberId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<ODataPagedResult1MembershipVisitItemContract> {
+            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/visits'
+                .replace('{' + 'restaurantId' + '}', String(restaurantId))
+                .replace('{' + 'memberId' + '}', String(memberId));
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'restaurantId' is set
+            if (!restaurantId) {
+                throw new Error('Missing required parameter restaurantId when calling getMemberVisits');
+            }
+            // verify required parameter 'memberId' is set
+            if (!memberId) {
+                throw new Error('Missing required parameter memberId when calling getMemberVisits');
             }
             let httpRequestParams: any = {
                 method: 'GET',
