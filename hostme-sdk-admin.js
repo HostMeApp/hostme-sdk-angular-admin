@@ -1340,9 +1340,10 @@ var HostMe;
              *
              *
              * @param restaurantId
+             * @param take
              * @param token
              */
-            AdminLoyaltyApi.prototype.filter = function (restaurantId, token, extraHttpRequestParams) {
+            AdminLoyaltyApi.prototype.filter = function (restaurantId, take, token, extraHttpRequestParams) {
                 var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/filter'
                     .replace('{' + 'restaurantId' + '}', String(restaurantId));
                 var queryParameters = {};
@@ -1351,9 +1352,16 @@ var HostMe;
                 if (!restaurantId) {
                     throw new Error('Missing required parameter restaurantId when calling filter');
                 }
+                // verify required parameter 'take' is set
+                if (!take) {
+                    throw new Error('Missing required parameter take when calling filter');
+                }
                 // verify required parameter 'token' is set
                 if (!token) {
                     throw new Error('Missing required parameter token when calling filter');
+                }
+                if (take !== undefined) {
+                    queryParameters['take'] = take;
                 }
                 if (token !== undefined) {
                     queryParameters['token'] = token;
@@ -1585,6 +1593,38 @@ var HostMe;
                 // verify required parameter 'memberId' is set
                 if (!memberId) {
                     throw new Error('Missing required parameter memberId when calling getMemberTransactions');
+                }
+                var httpRequestParams = {
+                    method: 'GET',
+                    url: localVarPath,
+                    json: true,
+                    params: queryParameters,
+                    headers: headerParams
+                };
+                if (extraHttpRequestParams) {
+                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+                }
+                return this.$http(httpRequestParams);
+            };
+            /**
+             *
+             *
+             * @param restaurantId
+             * @param memberId
+             */
+            AdminLoyaltyApi.prototype.getMemberVisits = function (restaurantId, memberId, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/visits'
+                    .replace('{' + 'restaurantId' + '}', String(restaurantId))
+                    .replace('{' + 'memberId' + '}', String(memberId));
+                var queryParameters = {};
+                var headerParams = this.extendObj({}, this.defaultHeaders);
+                // verify required parameter 'restaurantId' is set
+                if (!restaurantId) {
+                    throw new Error('Missing required parameter restaurantId when calling getMemberVisits');
+                }
+                // verify required parameter 'memberId' is set
+                if (!memberId) {
+                    throw new Error('Missing required parameter memberId when calling getMemberVisits');
                 }
                 var httpRequestParams = {
                     method: 'GET',
@@ -5894,6 +5934,38 @@ var HostMe;
             /**
              *
              *
+             * @param provider
+             * @param error
+             */
+            ExternalAuthenticationApi.prototype.getExternalLogin = function (provider, error, extraHttpRequestParams) {
+                var localVarPath = this.basePath + '/authorization/externalLogin';
+                var queryParameters = {};
+                var headerParams = this.extendObj({}, this.defaultHeaders);
+                // verify required parameter 'provider' is set
+                if (!provider) {
+                    throw new Error('Missing required parameter provider when calling getExternalLogin');
+                }
+                if (provider !== undefined) {
+                    queryParameters['provider'] = provider;
+                }
+                if (error !== undefined) {
+                    queryParameters['error'] = error;
+                }
+                var httpRequestParams = {
+                    method: 'GET',
+                    url: localVarPath,
+                    json: true,
+                    params: queryParameters,
+                    headers: headerParams
+                };
+                if (extraHttpRequestParams) {
+                    httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+                }
+                return this.$http(httpRequestParams);
+            };
+            /**
+             *
+             *
              * @param returnUrl
              * @param generateState
              */
@@ -6046,6 +6118,20 @@ var HostMe;
             })(IEdmType.TypeKindEnum || (IEdmType.TypeKindEnum = {}));
             var TypeKindEnum = IEdmType.TypeKindEnum;
         })(IEdmType = Sdk.IEdmType || (Sdk.IEdmType = {}));
+    })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
+})(HostMe || (HostMe = {}));
+var HostMe;
+(function (HostMe) {
+    var Sdk;
+    (function (Sdk) {
+        'use strict';
+    })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
+})(HostMe || (HostMe = {}));
+var HostMe;
+(function (HostMe) {
+    var Sdk;
+    (function (Sdk) {
+        'use strict';
     })(Sdk = HostMe.Sdk || (HostMe.Sdk = {}));
 })(HostMe || (HostMe = {}));
 var HostMe;
