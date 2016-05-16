@@ -1,0 +1,45 @@
+import * as models from '../model/models';
+import * as auth from './auth';
+export declare class AdminCoreApi {
+    protected $http: ng.IHttpService;
+    protected $httpParamSerializer: (d: any) => any;
+    protected basePath: string;
+    defaultHeaders: any;
+    static $inject: string[];
+    constructor($http: ng.IHttpService, $httpParamSerializer?: (d: any) => any, basePath?: string);
+    authentications: {
+        'default': auth.Authentication;
+        'oauth2': auth.OAuth;
+    };
+    accessToken: string;
+    private extendObj<T1, T2>(objA, objB);
+    addNewRestaurant(value: models.CreateRestaurant, extraHttpRequestParams?: any): ng.IHttpPromise<models.WithAccessTokenContract1RestaurantContract>;
+    changePassword(model: models.ChangePassword, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    checkInvitationCode(invitationCode: string, restaurantId: string, extraHttpRequestParams?: any): ng.IHttpPromise<models.InvitationInfo>;
+    createInvitationCode(restaurantId: number, invitation: models.Invitation, extraHttpRequestParams?: any): ng.IHttpPromise<models.Token>;
+    createNewAccountWithRestaurant(value: models.CreateAccountWithRestaurant, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    deleteInvitation(restaurantId: number, invitationCode: string, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    deleteRestaurant(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    deleteUser(restaurantId: number, userId: string, role: string, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    findRestaurantsByUserPhone(phone?: string, email?: string, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.Restaurant>>;
+    findUserByPhoneAsync(phone?: string, email?: string, extraHttpRequestParams?: any): ng.IHttpPromise<models.UserInfo>;
+    getAllUserRestaurants(extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.Restaurant>>;
+    getCustomSettings(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<models.Object>;
+    getInvitations(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.InvitationInfo>>;
+    getRegistrationToken(restaurantId: number, tableNumber?: string, extraHttpRequestParams?: any): ng.IHttpPromise<models.Token>;
+    getRestaurantById(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<models.Restaurant>;
+    getRestaurantConfiguration(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<models.RestaurantConfiguration>;
+    getRestaurantSettings(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<models.RestaurantSettings>;
+    getUserProfile(extraHttpRequestParams?: any): ng.IHttpPromise<models.UserProfile>;
+    getUsers(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.RestaurantUserInfo>>;
+    me(extraHttpRequestParams?: any): ng.IHttpPromise<models.UserInfo>;
+    postProfileImage(image: string, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    profileImage(extraHttpRequestParams?: any): ng.IHttpPromise<string>;
+    register(model: models.RegisterUser, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    reinvite(restaurantId: number, invitationCode: string, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    resetPassword(model: models.ResetPassword, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    setCustomSettings(restaurantId: number, settings: models.Object, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    setRestaurantSettings(restaurantId: number, settings: models.RestaurantSettings, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    updateRestaurant(restaurantId: number, value: models.Restaurant, extraHttpRequestParams?: any): ng.IHttpPromise<models.Restaurant>;
+    updateUserProfile(profile: models.UserProfile, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+}

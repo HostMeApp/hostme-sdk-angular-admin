@@ -1,0 +1,46 @@
+import * as models from '../model/models';
+import * as auth from './auth';
+export declare class AdminWaitingManagementApi {
+    protected $http: ng.IHttpService;
+    protected $httpParamSerializer: (d: any) => any;
+    protected basePath: string;
+    defaultHeaders: any;
+    static $inject: string[];
+    constructor($http: ng.IHttpService, $httpParamSerializer?: (d: any) => any, basePath?: string);
+    authentications: {
+        'default': auth.Authentication;
+        'oauth2': auth.OAuth;
+    };
+    accessToken: string;
+    private extendObj<T1, T2>(objA, objB);
+    addConfirmedWaiting(restaurantId: number, conf: models.PanelConfirmation, extraHttpRequestParams?: any): ng.IHttpPromise<models.WaitingItem>;
+    addNewWaiting(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<models.WaitingItem>;
+    callWaitingParty(restaurantId: number, waitingItemId: number, tableNumber?: string, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    close(restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    closeAsCanceled(restaurantId: number, waitingItemId: number, origin: string, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    closeAsSeated(restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    confirm(restaurantId: number, waitingItemId: number, conf: models.PanelConfirmation, extraHttpRequestParams?: any): ng.IHttpPromise<models.WaitingItem>;
+    getAllWaitings(restaurantId: number, queryOptions?: string, area?: string, groupSize?: number, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.WaitingItem>>;
+    getMessages(restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.Message>>;
+    getRestaurantWaitingsStatistic(restaurantId: number, area?: string, extraHttpRequestParams?: any): ng.IHttpPromise<models.WaitingsStatistic>;
+    getTodayStats(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<models.WaitingStats>;
+    getUnreadMessagesCount(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<models.Count>;
+    getWaitingById(restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any): ng.IHttpPromise<models.WaitingItem>;
+    getWaitingSettings(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<models.WaitingSettings>;
+    getWaitingTimeByGroup(restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.WaitingsStatReportItem>>;
+    getWaitingTimeByHour(restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.WaitingsStatReportItem>>;
+    getWaitingTimeByLine(restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.WaitingsStatReportItem>>;
+    getWaitingTimeByMeal(restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.WaitingsStatReportItem>>;
+    getWaitingTimeByWeek(restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.WaitingsStatReportItem>>;
+    getWaitingTimeByWeekDay(restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.WaitingsStatReportItem>>;
+    getWaitingsForPeriod(restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.WaitingReportItem>>;
+    getWaitingsGroupBy(restaurantId: number, groupBy: string, from?: Date, to?: Date, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.WaitingsStatReportItem>>;
+    incoming(from: string, to: string, body: string, extraHttpRequestParams?: any): ng.IHttpPromise<models.Object>;
+    markAllMessagesAsRead(restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    putOnHold(restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    reOpenWaiting(restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any): ng.IHttpPromise<models.WaitingItem>;
+    sendMessage(restaurantId: number, waitingItemId: number, origin: string, createMessage: models.CreateMessage, extraHttpRequestParams?: any): ng.IHttpPromise<models.Message>;
+    setWaitingSettings(restaurantId: number, settings: models.WaitingSettings, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    takeOffHold(restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    updateWaiting(restaurantId: number, waitingItemId: number, item: models.UpdateWaitingItem, extraHttpRequestParams?: any): ng.IHttpPromise<models.WaitingItem>;
+}
