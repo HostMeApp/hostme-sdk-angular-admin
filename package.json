@@ -9,6 +9,7 @@
     "type": "git",
     "url": "https://github.com/HostMeApp/hostme-sdk-angular-admin.git"
   },
+  
   "scripts": {
     "postinstall": "typings install",
     "clean": "rimraf ./dist",
