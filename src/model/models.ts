@@ -90,5 +90,7 @@ export * from './WaitingStats';
 export * from './WaitingsStatDimensions';
 export * from './WaitingsStatReportItem';
 export * from './WaitingsStatistic';
+export * from './WebHook';
+export * from './WebHookFilter';
 export * from './WeekDayOpenHours';
 export * from './WithAccessTokenContract1RestaurantContract';
