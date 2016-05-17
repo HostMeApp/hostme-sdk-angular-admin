@@ -7,5 +7,6 @@ __export(require('./AdminLoyaltyApi'));
 __export(require('./AdminReservationsApi'));
 __export(require('./AdminTableManagementApi'));
 __export(require('./AdminWaitingManagementApi'));
+__export(require('./AdminWebHookManagementApi'));
 __export(require('./ExternalAuthenticationApi'));
 //# sourceMappingURL=api.js.map
