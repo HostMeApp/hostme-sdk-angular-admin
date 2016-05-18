@@ -1,6 +1,6 @@
 {
   "name": "hostme-sdk-angular-admin",
-  "version": "1.1.18+9",
+  "version": "1.1.22",
   "description": "HostMe angular SDK for Admin APIs",
   "main": "./dist/lib/umd.js",
   "typings": "./dist/lib/index.d.ts",
@@ -10,7 +10,7 @@
     "url": "https://github.com/HostMeApp/hostme-sdk-angular-admin.git"
   },
   "scripts": {
-    "postinstall": "typings install",
+    "install_tools": "npm install && typings install",
     "clean": "rimraf ./dist",
     "lint": "tslint -c ./tslint.json ./src/**/*.ts",
     "tsc": "tsc",
@@ -18,7 +18,8 @@
     "minify": "node minify-umd.js",
     "build": "npm run lint && npm run tsc && npm run umd && npm run minify",
     "all": "npm run clean && npm run build",
-    "version": "semver-sync"
+    "version": "semver-sync",
+    "prepublish": "npm run all && npm run version -- -b"
   },
   "author": "HostMe",
   "license": "MIT",

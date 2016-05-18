@@ -17,7 +17,7 @@ var bundled = browserify({
 		extensions: [".js", ".json"],
 		debug: true
 	})
-	.require("./dist/lib/index.js", { expose: "hostme-sdk-admin" })
+	.require("./dist/lib/index.js", { expose: "hostme-sdk-angular-admin" })
 	.bundle()
 	.pipe(new Umd());
 
