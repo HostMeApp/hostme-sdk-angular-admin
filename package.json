@@ -19,7 +19,7 @@
     "build": "npm run lint && npm run tsc && npm run umd && npm run minify",
     "all": "npm run clean && npm run build",
     "version": "semver-sync",
-    "prepublish": "npm run all && npm run version -- -b"
+    "prepublish": "npm run all && npm run version -- -t"
   },
   "author": "HostMe",
   "license": "MIT",
