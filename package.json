@@ -18,7 +18,7 @@
     "minify": "node minify-umd.js",
     "build": "npm run lint && npm run tsc && npm run umd && npm run minify",
     "all": "npm run clean && npm run build",
-    "version": "sync-version bower.json typings.json && npm run all && git add dist/\*.*",
+    "version": "sync-version bower.json typings.json && npm run all && git add .",
     "postversion": "git push && git push --tags"
   },
   "author": "HostMe",
