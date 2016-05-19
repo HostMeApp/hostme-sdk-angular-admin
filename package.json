@@ -25,9 +25,7 @@
   "license": "MIT",
   "dependencies": {
     "angular": "^1.5.3",
-    "git": "^0.1.5",
-    "jquery": "^2.2.3",
-    "sync-version": "^0.1.1"
+    "jquery": "^2.2.3"
   },
   "devDependencies": {
     "browserify": "^13.0.0",
@@ -39,6 +37,8 @@
     "rimraf": "^2.5.2",
     "semver-sync": "^1.2.2",
     "mkdirp": "^0.5.1",
-    "uglify-js": "^2.6.2"
+    "uglify-js": "^2.6.2",
+    "sync-version": "^0.1.1",
+    "git": "^0.1.5"
   }
 }
