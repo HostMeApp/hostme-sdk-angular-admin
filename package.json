@@ -1,6 +1,6 @@
 {
   "name": "hostme-sdk-angular-admin",
-  "version": "1.1.27-1",
+  "version": "1.1.27-2",
   "description": "HostMe angular SDK for Admin APIs",
   "main": "./dist/lib/umd.js",
   "typings": "./dist/lib/index.d.ts",
@@ -24,7 +24,9 @@
   "license": "MIT",
   "dependencies": {
     "angular": "^1.5.3",
-    "jquery": "^2.2.3"
+    "git": "^0.1.5",
+    "jquery": "^2.2.3",
+    "sync-version": "^0.1.1"
   },
   "devDependencies": {
     "browserify": "^13.0.0",
