@@ -1,6 +1,6 @@
 {
   "name": "hostme-sdk-angular-admin",
-  "version": "1.1.27-5",
+  "version": "1.1.27-6",
   "description": "HostMe angular SDK for Admin APIs",
   "main": "./dist/lib/umd.js",
   "typings": "./dist/lib/index.d.ts",
@@ -18,7 +18,7 @@
     "minify": "node minify-umd.js",
     "build": "npm run lint && npm run tsc && npm run umd && npm run minify",
     "all": "npm run clean && npm run build",
-    "version": "sync-version bower.json typings.json && npm run all && git add -A dist",
+    "version": "sync-version bower.json typings.json && npm run all && git add dist/\*.*",
     "postversion": "git push && git push --tags"
   },
   "author": "HostMe",
