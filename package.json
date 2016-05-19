@@ -1,6 +1,6 @@
 {
   "name": "hostme-sdk-angular-admin",
-  "version": "1.1.24",
+  "version": "1.1.25",
   "description": "HostMe angular SDK for Admin APIs",
   "main": "./dist/lib/umd.js",
   "typings": "./dist/lib/index.d.ts",
@@ -19,7 +19,7 @@
     "build": "npm run lint && npm run tsc && npm run umd && npm run minify",
     "all": "npm run clean && npm run build",
     "version": "semver-sync",
-    "prepublish": "npm run version -- -t"
+    "publish": "npm run version -- -t"
   },
   "author": "HostMe",
   "license": "MIT",
