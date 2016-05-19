@@ -2,18 +2,15 @@
 var auth = require('./auth');
 'use strict';
 var AdminLoyaltyApi = (function () {
-    function AdminLoyaltyApi($http, $httpParamSerializer, basePath) {
+    function AdminLoyaltyApi($http, config, $httpParamSerializer) {
         this.$http = $http;
+        this.config = config;
         this.$httpParamSerializer = $httpParamSerializer;
-        this.basePath = 'http://hostme-services-dev.azurewebsites.net';
         this.defaultHeaders = {};
         this.authentications = {
             'default': new auth.VoidAuth(),
             'oauth2': new auth.OAuth(),
         };
-        if (basePath) {
-            this.basePath = basePath;
-        }
     }
     Object.defineProperty(AdminLoyaltyApi.prototype, "accessToken", {
         set: function (token) {
@@ -31,7 +28,7 @@ var AdminLoyaltyApi = (function () {
         return objA;
     };
     AdminLoyaltyApi.prototype.addMember = function (restaurantId, contract, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -57,7 +54,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.addNewReward = function (restaurantId, reward, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -83,7 +80,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.approveRedeemRequest = function (restaurantId, redeemId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/redeems/{redeemId}/approve'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/redeems/{redeemId}/approve'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'redeemId' + '}', String(redeemId));
         var queryParameters = {};
@@ -109,7 +106,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.closeMembership = function (restaurantId, memberId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/close'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/close'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'memberId' + '}', String(memberId));
         var queryParameters = {};
@@ -135,7 +132,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.deleteReward = function (restaurantId, rewardId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'rewardId' + '}', String(rewardId));
         var queryParameters = {};
@@ -161,7 +158,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.filter = function (restaurantId, take, token, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/filter'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/filter'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -195,7 +192,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.findMemberByPhoneNumber = function (restaurantId, phoneNumber, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/find'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/find'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -223,7 +220,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.getAlRewards = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -245,7 +242,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.getAllMembers = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -267,7 +264,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.getAllRedeemRequests = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/redeems'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/redeems'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -289,7 +286,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.getDefaultLoyaltySettings = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/settings/default'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/settings/default'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -311,7 +308,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.getLoyaltySettings = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/settings'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/settings'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -333,7 +330,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.getMemberAvatar = function (restaurantId, memberId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/avatar'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/avatar'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'memberId' + '}', String(memberId));
         var queryParameters = {};
@@ -359,7 +356,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.getMemberTransactions = function (restaurantId, memberId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/transactions'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/transactions'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'memberId' + '}', String(memberId));
         var queryParameters = {};
@@ -385,7 +382,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.getMemberVisits = function (restaurantId, memberId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/visits'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/visits'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'memberId' + '}', String(memberId));
         var queryParameters = {};
@@ -411,7 +408,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.getMembershipInfo = function (restaurantId, memberId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'memberId' + '}', String(memberId));
         var queryParameters = {};
@@ -437,7 +434,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.getRewardById = function (restaurantId, rewardId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'rewardId' + '}', String(rewardId));
         var queryParameters = {};
@@ -463,7 +460,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.publishReward = function (restaurantId, rewardId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}/publish'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}/publish'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'rewardId' + '}', String(rewardId));
         var queryParameters = {};
@@ -489,7 +486,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.rejectRedeemRequest = function (restaurantId, redeemId, reject, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/redeems/{redeemId}/reject'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/redeems/{redeemId}/reject'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'redeemId' + '}', String(redeemId));
         var queryParameters = {};
@@ -519,7 +516,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.setLoyaltySettings = function (restaurantId, settings, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/settings'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/settings'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -545,7 +542,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.unpublishReward = function (restaurantId, rewardId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}/unpublish'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}/unpublish'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'rewardId' + '}', String(rewardId));
         var queryParameters = {};
@@ -571,7 +568,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.updateMember = function (restaurantId, memberId, contract, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'memberId' + '}', String(memberId));
         var queryParameters = {};
@@ -601,7 +598,7 @@ var AdminLoyaltyApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminLoyaltyApi.prototype.updateReward = function (restaurantId, rewardId, reward, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}'
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'rewardId' + '}', String(rewardId));
         var queryParameters = {};
@@ -630,7 +627,7 @@ var AdminLoyaltyApi = (function () {
         this.authentications.default.applyToRequest(httpRequestParams);
         return this.$http(httpRequestParams);
     };
-    AdminLoyaltyApi.$inject = ['$http', '$httpParamSerializer'];
+    AdminLoyaltyApi.$inject = ['$http', 'IApiConfig', '$httpParamSerializer'];
     return AdminLoyaltyApi;
 }());
 exports.AdminLoyaltyApi = AdminLoyaltyApi;

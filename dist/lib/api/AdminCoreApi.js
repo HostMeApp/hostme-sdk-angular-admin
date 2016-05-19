@@ -2,18 +2,15 @@
 var auth = require('./auth');
 'use strict';
 var AdminCoreApi = (function () {
-    function AdminCoreApi($http, $httpParamSerializer, basePath) {
+    function AdminCoreApi($http, config, $httpParamSerializer) {
         this.$http = $http;
+        this.config = config;
         this.$httpParamSerializer = $httpParamSerializer;
-        this.basePath = 'http://hostme-services-dev.azurewebsites.net';
         this.defaultHeaders = {};
         this.authentications = {
             'default': new auth.VoidAuth(),
             'oauth2': new auth.OAuth(),
         };
-        if (basePath) {
-            this.basePath = basePath;
-        }
     }
     Object.defineProperty(AdminCoreApi.prototype, "accessToken", {
         set: function (token) {
@@ -31,7 +28,7 @@ var AdminCoreApi = (function () {
         return objA;
     };
     AdminCoreApi.prototype.addNewRestaurant = function (value, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants';
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         if (!value) {
@@ -53,7 +50,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.changePassword = function (model, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/account/password/change';
+        var localVarPath = this.config.basePath + '/api/core/admin/account/password/change';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         if (!model) {
@@ -75,7 +72,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.checkInvitationCode = function (invitationCode, restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations/{invitationCode}'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations/{invitationCode}'
             .replace('{' + 'invitationCode' + '}', String(invitationCode))
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
@@ -101,7 +98,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.createInvitationCode = function (restaurantId, invitation, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -127,7 +124,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.createNewAccountWithRestaurant = function (value, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/tenant/restaurants';
+        var localVarPath = this.config.basePath + '/api/core/admin/tenant/restaurants';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         if (!value) {
@@ -148,7 +145,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.deleteInvitation = function (restaurantId, invitationCode, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations/{invitationCode}'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations/{invitationCode}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'invitationCode' + '}', String(invitationCode));
         var queryParameters = {};
@@ -174,7 +171,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.deleteRestaurant = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -196,7 +193,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.deleteUser = function (restaurantId, userId, role, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/users/{userId}'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/users/{userId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'userId' + '}', String(userId));
         var queryParameters = {};
@@ -228,7 +225,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.findRestaurantsByUserPhone = function (phone, email, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/tenant/restaurants/find';
+        var localVarPath = this.config.basePath + '/api/core/admin/tenant/restaurants/find';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         if (phone !== undefined) {
@@ -251,7 +248,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.findUserByPhoneAsync = function (phone, email, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/tenant/users/find';
+        var localVarPath = this.config.basePath + '/api/core/admin/tenant/users/find';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         if (phone !== undefined) {
@@ -274,7 +271,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.getAllUserRestaurants = function (extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants';
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         var httpRequestParams = {
@@ -292,7 +289,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.getCustomSettings = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/settings/custom'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/settings/custom'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -314,7 +311,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.getInvitations = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -336,7 +333,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.getRegistrationToken = function (restaurantId, tableNumber, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/loyalty/token'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/loyalty/token'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -361,7 +358,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.getRestaurantById = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -383,7 +380,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.getRestaurantConfiguration = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/config'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/config'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -405,7 +402,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.getRestaurantSettings = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/settings'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/settings'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -427,7 +424,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.getUserProfile = function (extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/account/profile';
+        var localVarPath = this.config.basePath + '/api/core/admin/account/profile';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         var httpRequestParams = {
@@ -445,7 +442,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.getUsers = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/users'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/users'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -467,7 +464,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.me = function (extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/account/me';
+        var localVarPath = this.config.basePath + '/api/core/admin/account/me';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         var httpRequestParams = {
@@ -485,7 +482,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.postProfileImage = function (image, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/account/profile/image';
+        var localVarPath = this.config.basePath + '/api/core/admin/account/profile/image';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         if (!image) {
@@ -507,7 +504,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.profileImage = function (extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/account/profile/image';
+        var localVarPath = this.config.basePath + '/api/core/admin/account/profile/image';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         var httpRequestParams = {
@@ -525,7 +522,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.register = function (model, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/account/register';
+        var localVarPath = this.config.basePath + '/api/core/admin/account/register';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         if (!model) {
@@ -547,7 +544,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.reinvite = function (restaurantId, invitationCode, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations/{invitationCode}/reinvite'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations/{invitationCode}/reinvite'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'invitationCode' + '}', String(invitationCode));
         var queryParameters = {};
@@ -573,7 +570,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.resetPassword = function (model, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/account/password/reset';
+        var localVarPath = this.config.basePath + '/api/core/admin/account/password/reset';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         if (!model) {
@@ -595,7 +592,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.setCustomSettings = function (restaurantId, settings, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/setting/custom'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/setting/custom'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -621,7 +618,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.setRestaurantSettings = function (restaurantId, settings, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/settings'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/settings'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -647,7 +644,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.updateRestaurant = function (restaurantId, value, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}'
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -673,7 +670,7 @@ var AdminCoreApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminCoreApi.prototype.updateUserProfile = function (profile, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/core/admin/account/profile';
+        var localVarPath = this.config.basePath + '/api/core/admin/account/profile';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         if (!profile) {
@@ -694,7 +691,7 @@ var AdminCoreApi = (function () {
         this.authentications.default.applyToRequest(httpRequestParams);
         return this.$http(httpRequestParams);
     };
-    AdminCoreApi.$inject = ['$http', '$httpParamSerializer'];
+    AdminCoreApi.$inject = ['$http', 'IApiConfig', '$httpParamSerializer'];
     return AdminCoreApi;
 }());
 exports.AdminCoreApi = AdminCoreApi;

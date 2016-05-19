@@ -2,18 +2,15 @@
 var auth = require('./auth');
 'use strict';
 var ExternalAuthenticationApi = (function () {
-    function ExternalAuthenticationApi($http, $httpParamSerializer, basePath) {
+    function ExternalAuthenticationApi($http, config, $httpParamSerializer) {
         this.$http = $http;
+        this.config = config;
         this.$httpParamSerializer = $httpParamSerializer;
-        this.basePath = 'http://hostme-services-dev.azurewebsites.net';
         this.defaultHeaders = {};
         this.authentications = {
             'default': new auth.VoidAuth(),
             'oauth2': new auth.OAuth(),
         };
-        if (basePath) {
-            this.basePath = basePath;
-        }
     }
     Object.defineProperty(ExternalAuthenticationApi.prototype, "accessToken", {
         set: function (token) {
@@ -31,7 +28,7 @@ var ExternalAuthenticationApi = (function () {
         return objA;
     };
     ExternalAuthenticationApi.prototype.getExternalFacebookLogin = function (accessToken, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/authorization/externalFacebookLogin';
+        var localVarPath = this.config.basePath + '/authorization/externalFacebookLogin';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         if (!accessToken) {
@@ -54,7 +51,7 @@ var ExternalAuthenticationApi = (function () {
         return this.$http(httpRequestParams);
     };
     ExternalAuthenticationApi.prototype.getExternalLogin = function (provider, error, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/authorization/externalLogin';
+        var localVarPath = this.config.basePath + '/authorization/externalLogin';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         if (!provider) {
@@ -80,7 +77,7 @@ var ExternalAuthenticationApi = (function () {
         return this.$http(httpRequestParams);
     };
     ExternalAuthenticationApi.prototype.getExternalLogins = function (returnUrl, generateState, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/authorization/externalLogins';
+        var localVarPath = this.config.basePath + '/authorization/externalLogins';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         if (!returnUrl) {
@@ -105,7 +102,7 @@ var ExternalAuthenticationApi = (function () {
         this.authentications.default.applyToRequest(httpRequestParams);
         return this.$http(httpRequestParams);
     };
-    ExternalAuthenticationApi.$inject = ['$http', '$httpParamSerializer'];
+    ExternalAuthenticationApi.$inject = ['$http', 'IApiConfig', '$httpParamSerializer'];
     return ExternalAuthenticationApi;
 }());
 exports.ExternalAuthenticationApi = ExternalAuthenticationApi;

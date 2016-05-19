@@ -18,8 +18,7 @@
     "minify": "node minify-umd.js",
     "build": "npm run lint && npm run tsc && npm run umd && npm run minify",
     "all": "npm run clean && npm run build",
-    "version": "semver-sync",
-    "publish": "npm run version -- -t"
+    "version": "semver-sync"
   },
   "author": "HostMe",
   "license": "MIT",

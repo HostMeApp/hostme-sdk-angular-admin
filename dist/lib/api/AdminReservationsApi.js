@@ -2,18 +2,15 @@
 var auth = require('./auth');
 'use strict';
 var AdminReservationsApi = (function () {
-    function AdminReservationsApi($http, $httpParamSerializer, basePath) {
+    function AdminReservationsApi($http, config, $httpParamSerializer) {
         this.$http = $http;
+        this.config = config;
         this.$httpParamSerializer = $httpParamSerializer;
-        this.basePath = 'http://hostme-services-dev.azurewebsites.net';
         this.defaultHeaders = {};
         this.authentications = {
             'default': new auth.VoidAuth(),
             'oauth2': new auth.OAuth(),
         };
-        if (basePath) {
-            this.basePath = basePath;
-        }
     }
     Object.defineProperty(AdminReservationsApi.prototype, "accessToken", {
         set: function (token) {
@@ -31,7 +28,7 @@ var AdminReservationsApi = (function () {
         return objA;
     };
     AdminReservationsApi.prototype.addNewReservation = function (restaurantId, value, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -57,7 +54,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.cancelReservation = function (restaurantId, reservationId, cancelReservationContract, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/cancel'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/cancel'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'reservationId' + '}', String(reservationId));
         var queryParameters = {};
@@ -87,7 +84,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.closeAsNoShow = function (restaurantId, reservationId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/noshow'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/noshow'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'reservationId' + '}', String(reservationId));
         var queryParameters = {};
@@ -113,7 +110,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.closeAsSeated = function (restaurantId, reservationId, tableNumber, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/seat'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/seat'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'reservationId' + '}', String(reservationId));
         var queryParameters = {};
@@ -142,7 +139,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.getMessages = function (restaurantId, reservationId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/messages'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/messages'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'reservationId' + '}', String(reservationId));
         var queryParameters = {};
@@ -168,7 +165,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.getReservationAvailability = function (restaurantId, date, partySize, rangeInMinutes, tableTurnOver, type, areas, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/availability'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/availability'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -217,7 +214,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.getReservationById = function (restaurantId, reservationId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'reservationId' + '}', String(reservationId));
         var queryParameters = {};
@@ -243,7 +240,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.getReservationSettings = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/settings'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/settings'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -265,7 +262,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.getReservationsForPeriod = function (restaurantId, from, to, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -293,7 +290,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.getRestaurantReservationsStatistic = function (restaurantId, date, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/stats'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/stats'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -318,7 +315,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.getUnreadMessagesCount = function (restaurantId, from, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/messages/unread/count'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/messages/unread/count'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -343,7 +340,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.placeOnWaitList = function (restaurantId, reservationId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/schedule'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/schedule'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'reservationId' + '}', String(reservationId));
         var queryParameters = {};
@@ -369,7 +366,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.reOpenReservation = function (restaurantId, reservationId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/reopen'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/reopen'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'reservationId' + '}', String(reservationId));
         var queryParameters = {};
@@ -395,7 +392,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.readAllMessage = function (restaurantId, reservationId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/messages/readall'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/messages/readall'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'reservationId' + '}', String(reservationId));
         var queryParameters = {};
@@ -421,7 +418,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.sendGrid = function (from, html, text, to, subject, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/email/yelp';
+        var localVarPath = this.config.basePath + '/api/rsv/admin/email/yelp';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         if (!from) {
@@ -468,7 +465,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.sendMessage = function (restaurantId, reservationId, createMessageContract, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/messages'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/messages'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'reservationId' + '}', String(reservationId));
         var queryParameters = {};
@@ -498,7 +495,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.setReservationSettings = function (restaurantId, settings, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/settings'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/settings'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -524,7 +521,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.submitYelpReservation = function (extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/email/yelp/inbound';
+        var localVarPath = this.config.basePath + '/api/rsv/admin/email/yelp/inbound';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         var httpRequestParams = {
@@ -541,7 +538,7 @@ var AdminReservationsApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminReservationsApi.prototype.updateReservation = function (restaurantId, reservationId, value, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}'
+        var localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'reservationId' + '}', String(reservationId));
         var queryParameters = {};
@@ -570,7 +567,7 @@ var AdminReservationsApi = (function () {
         this.authentications.default.applyToRequest(httpRequestParams);
         return this.$http(httpRequestParams);
     };
-    AdminReservationsApi.$inject = ['$http', '$httpParamSerializer'];
+    AdminReservationsApi.$inject = ['$http', 'IApiConfig', '$httpParamSerializer'];
     return AdminReservationsApi;
 }());
 exports.AdminReservationsApi = AdminReservationsApi;

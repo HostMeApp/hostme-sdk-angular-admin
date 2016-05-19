@@ -1,12 +1,13 @@
 import * as models from '../model/models';
 import * as auth from './auth';
+import { IApiConfig } from '../client/IApiConfig';
 export declare class AdminTableManagementApi {
     protected $http: ng.IHttpService;
+    protected config: IApiConfig;
     protected $httpParamSerializer: (d: any) => any;
-    protected basePath: string;
     defaultHeaders: any;
     static $inject: string[];
-    constructor($http: ng.IHttpService, $httpParamSerializer?: (d: any) => any, basePath?: string);
+    constructor($http: ng.IHttpService, config: IApiConfig, $httpParamSerializer?: (d: any) => any);
     authentications: {
         'default': auth.Authentication;
         'oauth2': auth.OAuth;

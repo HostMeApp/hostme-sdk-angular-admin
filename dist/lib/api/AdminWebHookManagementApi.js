@@ -2,18 +2,15 @@
 var auth = require('./auth');
 'use strict';
 var AdminWebHookManagementApi = (function () {
-    function AdminWebHookManagementApi($http, $httpParamSerializer, basePath) {
+    function AdminWebHookManagementApi($http, config, $httpParamSerializer) {
         this.$http = $http;
+        this.config = config;
         this.$httpParamSerializer = $httpParamSerializer;
-        this.basePath = 'http://hostme-services-dev.azurewebsites.net';
         this.defaultHeaders = {};
         this.authentications = {
             'default': new auth.VoidAuth(),
             'oauth2': new auth.OAuth(),
         };
-        if (basePath) {
-            this.basePath = basePath;
-        }
     }
     Object.defineProperty(AdminWebHookManagementApi.prototype, "accessToken", {
         set: function (token) {
@@ -31,7 +28,7 @@ var AdminWebHookManagementApi = (function () {
         return objA;
     };
     AdminWebHookManagementApi.prototype._delete = function (id, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/webhooks/registrations/{id}'
+        var localVarPath = this.config.basePath + '/api/webhooks/registrations/{id}'
             .replace('{' + 'id' + '}', String(id));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -53,7 +50,7 @@ var AdminWebHookManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminWebHookManagementApi.prototype.deleteAll = function (extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/webhooks/registrations';
+        var localVarPath = this.config.basePath + '/api/webhooks/registrations';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         var httpRequestParams = {
@@ -71,7 +68,7 @@ var AdminWebHookManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminWebHookManagementApi.prototype.get = function (extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/webhooks/filters';
+        var localVarPath = this.config.basePath + '/api/webhooks/filters';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         var httpRequestParams = {
@@ -89,7 +86,7 @@ var AdminWebHookManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminWebHookManagementApi.prototype.get_1 = function (extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/webhooks/registrations';
+        var localVarPath = this.config.basePath + '/api/webhooks/registrations';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         var httpRequestParams = {
@@ -107,7 +104,7 @@ var AdminWebHookManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminWebHookManagementApi.prototype.lookup = function (id, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/webhooks/registrations/{id}'
+        var localVarPath = this.config.basePath + '/api/webhooks/registrations/{id}'
             .replace('{' + 'id' + '}', String(id));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -129,7 +126,7 @@ var AdminWebHookManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminWebHookManagementApi.prototype.post = function (webHook, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/webhooks/registrations';
+        var localVarPath = this.config.basePath + '/api/webhooks/registrations';
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
         if (!webHook) {
@@ -151,7 +148,7 @@ var AdminWebHookManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminWebHookManagementApi.prototype.put = function (id, webHook, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/webhooks/registrations/{id}'
+        var localVarPath = this.config.basePath + '/api/webhooks/registrations/{id}'
             .replace('{' + 'id' + '}', String(id));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -176,7 +173,7 @@ var AdminWebHookManagementApi = (function () {
         this.authentications.default.applyToRequest(httpRequestParams);
         return this.$http(httpRequestParams);
     };
-    AdminWebHookManagementApi.$inject = ['$http', '$httpParamSerializer'];
+    AdminWebHookManagementApi.$inject = ['$http', 'IApiConfig', '$httpParamSerializer'];
     return AdminWebHookManagementApi;
 }());
 exports.AdminWebHookManagementApi = AdminWebHookManagementApi;

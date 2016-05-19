@@ -2,18 +2,15 @@
 var auth = require('./auth');
 'use strict';
 var AdminTableManagementApi = (function () {
-    function AdminTableManagementApi($http, $httpParamSerializer, basePath) {
+    function AdminTableManagementApi($http, config, $httpParamSerializer) {
         this.$http = $http;
+        this.config = config;
         this.$httpParamSerializer = $httpParamSerializer;
-        this.basePath = 'http://hostme-services-dev.azurewebsites.net';
         this.defaultHeaders = {};
         this.authentications = {
             'default': new auth.VoidAuth(),
             'oauth2': new auth.OAuth(),
         };
-        if (basePath) {
-            this.basePath = basePath;
-        }
     }
     Object.defineProperty(AdminTableManagementApi.prototype, "accessToken", {
         set: function (token) {
@@ -31,7 +28,7 @@ var AdminTableManagementApi = (function () {
         return objA;
     };
     AdminTableManagementApi.prototype.createNewFloor = function (restaurantId, floor, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors'
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -57,7 +54,7 @@ var AdminTableManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminTableManagementApi.prototype.createOrUpdateTableConfiguration = function (restaurantId, tables, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables'
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -83,7 +80,7 @@ var AdminTableManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminTableManagementApi.prototype.deleteFloor = function (restaurantId, floorId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors/{floorId}'
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors/{floorId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'floorId' + '}', String(floorId));
         var queryParameters = {};
@@ -109,7 +106,7 @@ var AdminTableManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminTableManagementApi.prototype.getAllTableCombinations = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/combinations'
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/combinations'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -131,7 +128,7 @@ var AdminTableManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminTableManagementApi.prototype.getApprovedTableCombinations = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/combinations/approved'
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/combinations/approved'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -153,7 +150,7 @@ var AdminTableManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminTableManagementApi.prototype.getAvailableTables = function (restaurantId, date, partySize, areas, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/available'
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/available'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -190,7 +187,7 @@ var AdminTableManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminTableManagementApi.prototype.getFloorDetails = function (restaurantId, floorId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors/{floorId}'
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors/{floorId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'floorId' + '}', String(floorId));
         var queryParameters = {};
@@ -216,7 +213,7 @@ var AdminTableManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminTableManagementApi.prototype.getRestaurantFloors = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors'
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -238,7 +235,7 @@ var AdminTableManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminTableManagementApi.prototype.getTableMonitors = function (restaurantId, tableTurnOver, time, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/monitors'
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/monitors'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -266,7 +263,7 @@ var AdminTableManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminTableManagementApi.prototype.getTableUsersList = function (restaurantId, partySize, time, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/users'
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/users'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -294,7 +291,7 @@ var AdminTableManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminTableManagementApi.prototype.getTables = function (restaurantId, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables'
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -316,7 +313,7 @@ var AdminTableManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminTableManagementApi.prototype.releaseTable = function (restaurantId, tableNumber, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/{tableNumber}/release'
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/{tableNumber}/release'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'tableNumber' + '}', String(tableNumber));
         var queryParameters = {};
@@ -342,7 +339,7 @@ var AdminTableManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminTableManagementApi.prototype.seatPartyAtTable = function (restaurantId, tableNumber, partySize, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/{tableNumber}/seat'
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/{tableNumber}/seat'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'tableNumber' + '}', String(tableNumber));
         var queryParameters = {};
@@ -374,7 +371,7 @@ var AdminTableManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminTableManagementApi.prototype.setApprovedTableCombinations = function (restaurantId, combinations, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/combinations/approved'
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/combinations/approved'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));
         var queryParameters = {};
         var headerParams = this.extendObj({}, this.defaultHeaders);
@@ -400,7 +397,7 @@ var AdminTableManagementApi = (function () {
         return this.$http(httpRequestParams);
     };
     AdminTableManagementApi.prototype.updateFloor = function (restaurantId, floorId, floor, extraHttpRequestParams) {
-        var localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors/{floorId}'
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors/{floorId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))
             .replace('{' + 'floorId' + '}', String(floorId));
         var queryParameters = {};
@@ -429,7 +426,7 @@ var AdminTableManagementApi = (function () {
         this.authentications.default.applyToRequest(httpRequestParams);
         return this.$http(httpRequestParams);
     };
-    AdminTableManagementApi.$inject = ['$http', '$httpParamSerializer'];
+    AdminTableManagementApi.$inject = ['$http', 'IApiConfig', '$httpParamSerializer'];
     return AdminTableManagementApi;
 }());
 exports.AdminTableManagementApi = AdminTableManagementApi;
