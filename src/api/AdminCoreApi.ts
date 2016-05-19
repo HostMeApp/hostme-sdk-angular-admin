@@ -1,19 +1,17 @@
 /* tslint:disable:no-unused-variable member-ordering */
 import * as models from '../model/models';
 import * as auth from './auth';
+import {IApiConfig} from '../client/IApiConfig';
 
 'use strict';
                                  	
     export class AdminCoreApi {
-        protected basePath = 'http://hostme-services-dev.azurewebsites.net';
         public defaultHeaders : any = {};
 
-        static $inject: string[] = ['$http', '$httpParamSerializer'];
+        static $inject: string[] = ['$http','IApiConfig', '$httpParamSerializer'];
 
-        constructor(protected $http: ng.IHttpService, protected $httpParamSerializer?: (d: any) => any, basePath?: string) {
-            if (basePath) {
-                this.basePath = basePath;
-            }
+        constructor(protected $http: ng.IHttpService, protected config: IApiConfig, protected $httpParamSerializer?: (d: any) => any) {
+           
         }
         
         public authentications = {
@@ -41,7 +39,7 @@ import * as auth from './auth';
          * @param value 
          */
         public addNewRestaurant (value: models.CreateRestaurant, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.WithAccessTokenContract1RestaurantContract> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants';
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -73,7 +71,7 @@ import * as auth from './auth';
          * @param model 
          */
         public changePassword (model: models.ChangePassword, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/password/change';
+            const localVarPath = this.config.basePath + '/api/core/admin/account/password/change';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -106,7 +104,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public checkInvitationCode (invitationCode: string, restaurantId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.InvitationInfo> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations/{invitationCode}'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations/{invitationCode}'
                 .replace('{' + 'invitationCode' + '}', String(invitationCode))
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
@@ -144,7 +142,7 @@ import * as auth from './auth';
          * @param invitation 
          */
         public createInvitationCode (restaurantId: number, invitation: models.Invitation, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Token> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -181,7 +179,7 @@ import * as auth from './auth';
          * @param value 
          */
         public createNewAccountWithRestaurant (value: models.CreateAccountWithRestaurant, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/tenant/restaurants';
+            const localVarPath = this.config.basePath + '/api/core/admin/tenant/restaurants';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -213,7 +211,7 @@ import * as auth from './auth';
          * @param invitationCode 
          */
         public deleteInvitation (restaurantId: number, invitationCode: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations/{invitationCode}'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations/{invitationCode}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'invitationCode' + '}', String(invitationCode));
 
@@ -250,7 +248,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public deleteRestaurant (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -284,7 +282,7 @@ import * as auth from './auth';
          * @param role 
          */
         public deleteUser (restaurantId: number, userId: string, role: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/users/{userId}'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/users/{userId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'userId' + '}', String(userId));
 
@@ -330,7 +328,7 @@ import * as auth from './auth';
          * @param email 
          */
         public findRestaurantsByUserPhone (phone?: string, email?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Restaurant>> {
-            const localVarPath = this.basePath + '/api/core/admin/tenant/restaurants/find';
+            const localVarPath = this.config.basePath + '/api/core/admin/tenant/restaurants/find';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -365,7 +363,7 @@ import * as auth from './auth';
          * @param email 
          */
         public findUserByPhoneAsync (phone?: string, email?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.UserInfo> {
-            const localVarPath = this.basePath + '/api/core/admin/tenant/users/find';
+            const localVarPath = this.config.basePath + '/api/core/admin/tenant/users/find';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -398,7 +396,7 @@ import * as auth from './auth';
          * 
          */
         public getAllUserRestaurants (extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Restaurant>> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants';
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -425,7 +423,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getCustomSettings (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Object> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/settings/custom'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/settings/custom'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -457,7 +455,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getInvitations (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.InvitationInfo>> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -490,7 +488,7 @@ import * as auth from './auth';
          * @param tableNumber 
          */
         public getRegistrationToken (restaurantId: number, tableNumber?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Token> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/loyalty/token'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/loyalty/token'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -526,7 +524,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getRestaurantById (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Restaurant> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -558,7 +556,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getRestaurantConfiguration (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.RestaurantConfiguration> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/config'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/config'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -590,7 +588,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getRestaurantSettings (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.RestaurantSettings> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/settings'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/settings'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -621,7 +619,7 @@ import * as auth from './auth';
          * 
          */
         public getUserProfile (extraHttpRequestParams?: any ) : ng.IHttpPromise<models.UserProfile> {
-            const localVarPath = this.basePath + '/api/core/admin/account/profile';
+            const localVarPath = this.config.basePath + '/api/core/admin/account/profile';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -648,7 +646,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getUsers (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.RestaurantUserInfo>> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/users'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/users'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -679,7 +677,7 @@ import * as auth from './auth';
          * 
          */
         public me (extraHttpRequestParams?: any ) : ng.IHttpPromise<models.UserInfo> {
-            const localVarPath = this.basePath + '/api/core/admin/account/me';
+            const localVarPath = this.config.basePath + '/api/core/admin/account/me';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -706,7 +704,7 @@ import * as auth from './auth';
          * @param image 
          */
         public postProfileImage (image: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/profile/image';
+            const localVarPath = this.config.basePath + '/api/core/admin/account/profile/image';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -737,7 +735,7 @@ import * as auth from './auth';
          * 
          */
         public profileImage (extraHttpRequestParams?: any ) : ng.IHttpPromise<string> {
-            const localVarPath = this.basePath + '/api/core/admin/account/profile/image';
+            const localVarPath = this.config.basePath + '/api/core/admin/account/profile/image';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -764,7 +762,7 @@ import * as auth from './auth';
          * @param model 
          */
         public register (model: models.RegisterUser, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/register';
+            const localVarPath = this.config.basePath + '/api/core/admin/account/register';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -797,7 +795,7 @@ import * as auth from './auth';
          * @param invitationCode 
          */
         public reinvite (restaurantId: number, invitationCode: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations/{invitationCode}/reinvite'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/invitations/{invitationCode}/reinvite'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'invitationCode' + '}', String(invitationCode));
 
@@ -834,7 +832,7 @@ import * as auth from './auth';
          * @param model 
          */
         public resetPassword (model: models.ResetPassword, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/password/reset';
+            const localVarPath = this.config.basePath + '/api/core/admin/account/password/reset';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -867,7 +865,7 @@ import * as auth from './auth';
          * @param settings 
          */
         public setCustomSettings (restaurantId: number, settings: models.Object, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/setting/custom'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/setting/custom'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -905,7 +903,7 @@ import * as auth from './auth';
          * @param settings 
          */
         public setRestaurantSettings (restaurantId: number, settings: models.RestaurantSettings, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}/settings'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/settings'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -943,7 +941,7 @@ import * as auth from './auth';
          * @param value 
          */
         public updateRestaurant (restaurantId: number, value: models.Restaurant, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Restaurant> {
-            const localVarPath = this.basePath + '/api/core/admin/restaurants/{restaurantId}'
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -980,7 +978,7 @@ import * as auth from './auth';
          * @param profile 
          */
         public updateUserProfile (profile: models.UserProfile, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/core/admin/account/profile';
+            const localVarPath = this.config.basePath + '/api/core/admin/account/profile';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);

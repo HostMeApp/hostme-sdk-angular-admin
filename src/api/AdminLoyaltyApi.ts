@@ -1,19 +1,17 @@
 /* tslint:disable:no-unused-variable member-ordering */
 import * as models from '../model/models';
 import * as auth from './auth';
+import {IApiConfig} from '../client/IApiConfig';
 
 'use strict';
                                  	
     export class AdminLoyaltyApi {
-        protected basePath = 'http://hostme-services-dev.azurewebsites.net';
         public defaultHeaders : any = {};
 
-        static $inject: string[] = ['$http', '$httpParamSerializer'];
+        static $inject: string[] = ['$http','IApiConfig', '$httpParamSerializer'];
 
-        constructor(protected $http: ng.IHttpService, protected $httpParamSerializer?: (d: any) => any, basePath?: string) {
-            if (basePath) {
-                this.basePath = basePath;
-            }
+        constructor(protected $http: ng.IHttpService, protected config: IApiConfig, protected $httpParamSerializer?: (d: any) => any) {
+           
         }
         
         public authentications = {
@@ -42,7 +40,7 @@ import * as auth from './auth';
          * @param contract 
          */
         public addMember (restaurantId: number, contract: models.MembershipCreate, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Object> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -80,7 +78,7 @@ import * as auth from './auth';
          * @param reward 
          */
         public addNewReward (restaurantId: number, reward: models.Reward, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Reward> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -118,7 +116,7 @@ import * as auth from './auth';
          * @param redeemId 
          */
         public approveRedeemRequest (restaurantId: number, redeemId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.RedeemRequest> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/redeems/{redeemId}/approve'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/redeems/{redeemId}/approve'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'redeemId' + '}', String(redeemId));
 
@@ -156,7 +154,7 @@ import * as auth from './auth';
          * @param memberId 
          */
         public closeMembership (restaurantId: number, memberId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Member> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/close'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/close'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'memberId' + '}', String(memberId));
 
@@ -194,7 +192,7 @@ import * as auth from './auth';
          * @param rewardId 
          */
         public deleteReward (restaurantId: number, rewardId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'rewardId' + '}', String(rewardId));
 
@@ -233,7 +231,7 @@ import * as auth from './auth';
          * @param token 
          */
         public filter (restaurantId: number, take: number, token: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.CustomerProfile>> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/filter'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/filter'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -282,7 +280,7 @@ import * as auth from './auth';
          * @param phoneNumber 
          */
         public findMemberByPhoneNumber (restaurantId: number, phoneNumber: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Member> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/find'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/find'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -322,7 +320,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getAlRewards (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Reward>> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -354,7 +352,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getAllMembers (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.ODataPagedResult1MemberContract> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -386,7 +384,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getAllRedeemRequests (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.RedeemRequest>> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/redeems'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/redeems'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -418,7 +416,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getDefaultLoyaltySettings (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.LoyaltySettings> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/settings/default'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/settings/default'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -450,7 +448,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getLoyaltySettings (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.LoyaltySettings> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/settings'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/settings'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -483,7 +481,7 @@ import * as auth from './auth';
          * @param memberId 
          */
         public getMemberAvatar (restaurantId: number, memberId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<string> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/avatar'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/avatar'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'memberId' + '}', String(memberId));
 
@@ -521,7 +519,7 @@ import * as auth from './auth';
          * @param memberId 
          */
         public getMemberTransactions (restaurantId: number, memberId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.ODataPagedResult1TransactionContract> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/transactions'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/transactions'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'memberId' + '}', String(memberId));
 
@@ -559,7 +557,7 @@ import * as auth from './auth';
          * @param memberId 
          */
         public getMemberVisits (restaurantId: number, memberId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.ODataPagedResult1MembershipVisitItemContract> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/visits'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}/visits'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'memberId' + '}', String(memberId));
 
@@ -597,7 +595,7 @@ import * as auth from './auth';
          * @param memberId 
          */
         public getMembershipInfo (restaurantId: number, memberId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Member> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'memberId' + '}', String(memberId));
 
@@ -635,7 +633,7 @@ import * as auth from './auth';
          * @param rewardId 
          */
         public getRewardById (restaurantId: number, rewardId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Reward> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'rewardId' + '}', String(rewardId));
 
@@ -673,7 +671,7 @@ import * as auth from './auth';
          * @param rewardId 
          */
         public publishReward (restaurantId: number, rewardId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Reward> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}/publish'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}/publish'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'rewardId' + '}', String(rewardId));
 
@@ -712,7 +710,7 @@ import * as auth from './auth';
          * @param reject 
          */
         public rejectRedeemRequest (restaurantId: number, redeemId: string, reject: models.RedeemRequestReject, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.RedeemRequest> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/redeems/{redeemId}/reject'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/redeems/{redeemId}/reject'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'redeemId' + '}', String(redeemId));
 
@@ -755,7 +753,7 @@ import * as auth from './auth';
          * @param settings 
          */
         public setLoyaltySettings (restaurantId: number, settings: models.LoyaltySettings, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/settings'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/settings'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -793,7 +791,7 @@ import * as auth from './auth';
          * @param rewardId 
          */
         public unpublishReward (restaurantId: number, rewardId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Reward> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}/unpublish'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}/unpublish'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'rewardId' + '}', String(rewardId));
 
@@ -832,7 +830,7 @@ import * as auth from './auth';
          * @param contract 
          */
         public updateMember (restaurantId: number, memberId: number, contract: models.MembershipUpdate, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Object> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'memberId' + '}', String(memberId));
 
@@ -876,7 +874,7 @@ import * as auth from './auth';
          * @param reward 
          */
         public updateReward (restaurantId: number, rewardId: string, reward: models.Reward, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Reward> {
-            const localVarPath = this.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}'
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/rewards/{rewardId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'rewardId' + '}', String(rewardId));
 

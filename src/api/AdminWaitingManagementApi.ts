@@ -1,19 +1,17 @@
 /* tslint:disable:no-unused-variable member-ordering */
 import * as models from '../model/models';
 import * as auth from './auth';
+import {IApiConfig} from '../client/IApiConfig';
 
 'use strict';
                                  	
     export class AdminWaitingManagementApi {
-        protected basePath = 'http://hostme-services-dev.azurewebsites.net';
         public defaultHeaders : any = {};
 
-        static $inject: string[] = ['$http', '$httpParamSerializer'];
+        static $inject: string[] = ['$http','IApiConfig', '$httpParamSerializer'];
 
-        constructor(protected $http: ng.IHttpService, protected $httpParamSerializer?: (d: any) => any, basePath?: string) {
-            if (basePath) {
-                this.basePath = basePath;
-            }
+        constructor(protected $http: ng.IHttpService, protected config: IApiConfig, protected $httpParamSerializer?: (d: any) => any) {
+           
         }
         
         public authentications = {
@@ -42,7 +40,7 @@ import * as auth from './auth';
          * @param conf 
          */
         public addConfirmedWaiting (restaurantId: number, conf: models.PanelConfirmation, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.WaitingItem> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/confirmed'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/confirmed'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -79,7 +77,7 @@ import * as auth from './auth';
          * @param restaurantId Identifier of the restaurant registered in our system
          */
         public addNewWaiting (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.WaitingItem> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -113,7 +111,7 @@ import * as auth from './auth';
          * @param tableNumber Number of the table
          */
         public callWaitingParty (restaurantId: number, waitingItemId: number, tableNumber?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/call'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/call'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'waitingItemId' + '}', String(waitingItemId));
 
@@ -155,7 +153,7 @@ import * as auth from './auth';
          * @param waitingItemId Identifier of the waiting item
          */
         public close (restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/close'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/close'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'waitingItemId' + '}', String(waitingItemId));
 
@@ -194,7 +192,7 @@ import * as auth from './auth';
          * @param origin This parameter specifies who send the message. It could be host or client.
          */
         public closeAsCanceled (restaurantId: number, waitingItemId: number, origin: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/cancel'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/cancel'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'waitingItemId' + '}', String(waitingItemId));
 
@@ -240,7 +238,7 @@ import * as auth from './auth';
          * @param waitingItemId Identifier of the waiting item
          */
         public closeAsSeated (restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/sited'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/sited'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'waitingItemId' + '}', String(waitingItemId));
 
@@ -279,7 +277,7 @@ import * as auth from './auth';
          * @param conf Confirmation model
          */
         public confirm (restaurantId: number, waitingItemId: number, conf: models.PanelConfirmation, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.WaitingItem> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/confirm'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/confirm'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'waitingItemId' + '}', String(waitingItemId));
 
@@ -324,7 +322,7 @@ import * as auth from './auth';
          * @param groupSize 
          */
         public getAllWaitings (restaurantId: number, queryOptions?: string, area?: string, groupSize?: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.WaitingItem>> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -369,7 +367,7 @@ import * as auth from './auth';
          * @param waitingItemId 
          */
         public getMessages (restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Message>> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/messages'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/messages'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'waitingItemId' + '}', String(waitingItemId));
 
@@ -407,7 +405,7 @@ import * as auth from './auth';
          * @param area 
          */
         public getRestaurantWaitingsStatistic (restaurantId: number, area?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.WaitingsStatistic> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/stats'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/stats'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -443,7 +441,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getTodayStats (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.WaitingStats> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/stats'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/stats'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -475,7 +473,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getUnreadMessagesCount (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Count> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/messages/unread/count'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/messages/unread/count'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -508,7 +506,7 @@ import * as auth from './auth';
          * @param waitingItemId Identifier of the waiting item
          */
         public getWaitingById (restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.WaitingItem> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'waitingItemId' + '}', String(waitingItemId));
 
@@ -545,7 +543,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getWaitingSettings (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.WaitingSettings> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/settings'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/settings'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -579,7 +577,7 @@ import * as auth from './auth';
          * @param to 
          */
         public getWaitingTimeByGroup (restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.WaitingsStatReportItem>> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/groupby/partysize'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/groupby/partysize'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -621,7 +619,7 @@ import * as auth from './auth';
          * @param to 
          */
         public getWaitingTimeByHour (restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.WaitingsStatReportItem>> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/groupby/hour'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/groupby/hour'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -663,7 +661,7 @@ import * as auth from './auth';
          * @param to 
          */
         public getWaitingTimeByLine (restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.WaitingsStatReportItem>> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/waitings/groupby/line'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/waitings/groupby/line'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -705,7 +703,7 @@ import * as auth from './auth';
          * @param to 
          */
         public getWaitingTimeByMeal (restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.WaitingsStatReportItem>> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/groupby/mealtype'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/groupby/mealtype'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -747,7 +745,7 @@ import * as auth from './auth';
          * @param to 
          */
         public getWaitingTimeByWeek (restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.WaitingsStatReportItem>> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/groupby/week'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/groupby/week'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -789,7 +787,7 @@ import * as auth from './auth';
          * @param to 
          */
         public getWaitingTimeByWeekDay (restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.WaitingsStatReportItem>> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/groupby/weekday'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/groupby/weekday'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -831,7 +829,7 @@ import * as auth from './auth';
          * @param to 
          */
         public getWaitingsForPeriod (restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.WaitingReportItem>> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -874,7 +872,7 @@ import * as auth from './auth';
          * @param to 
          */
         public getWaitingsGroupBy (restaurantId: number, groupBy: string, from?: Date, to?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.WaitingsStatReportItem>> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/groupby'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/analytics/waitings/groupby'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -924,7 +922,7 @@ import * as auth from './auth';
          * @param body 
          */
         public incoming (from: string, to: string, body: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Object> {
-            const localVarPath = this.basePath + '/api/wm/admin/smsclient/incoming';
+            const localVarPath = this.config.basePath + '/api/wm/admin/smsclient/incoming';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -975,7 +973,7 @@ import * as auth from './auth';
          * @param waitingItemId Waiting item identifier
          */
         public markAllMessagesAsRead (restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/messages/readall'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/messages/readall'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'waitingItemId' + '}', String(waitingItemId));
 
@@ -1013,7 +1011,7 @@ import * as auth from './auth';
          * @param waitingItemId Waiting item identifier
          */
         public putOnHold (restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/putonhold'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/putonhold'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'waitingItemId' + '}', String(waitingItemId));
 
@@ -1051,7 +1049,7 @@ import * as auth from './auth';
          * @param waitingItemId Waiting item identifier
          */
         public reOpenWaiting (restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.WaitingItem> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/reopen'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/reopen'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'waitingItemId' + '}', String(waitingItemId));
 
@@ -1091,7 +1089,7 @@ import * as auth from './auth';
          * @param createMessage The message with body
          */
         public sendMessage (restaurantId: number, waitingItemId: number, origin: string, createMessage: models.CreateMessage, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Message> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/sendmessage'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/sendmessage'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'waitingItemId' + '}', String(waitingItemId));
 
@@ -1142,7 +1140,7 @@ import * as auth from './auth';
          * @param settings 
          */
         public setWaitingSettings (restaurantId: number, settings: models.WaitingSettings, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/settings'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/settings'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -1180,7 +1178,7 @@ import * as auth from './auth';
          * @param waitingItemId Waiting item identifier
          */
         public takeOffHold (restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/takeoffhold'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}/takeoffhold'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'waitingItemId' + '}', String(waitingItemId));
 
@@ -1219,7 +1217,7 @@ import * as auth from './auth';
          * @param item Update model of waiting record
          */
         public updateWaiting (restaurantId: number, waitingItemId: number, item: models.UpdateWaitingItem, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.WaitingItem> {
-            const localVarPath = this.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}'
+            const localVarPath = this.config.basePath + '/api/wm/admin/restaurant/{restaurantId}/waitings/{waitingItemId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'waitingItemId' + '}', String(waitingItemId));
 

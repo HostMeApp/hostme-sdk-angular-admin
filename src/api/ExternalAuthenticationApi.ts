@@ -1,19 +1,17 @@
 /* tslint:disable:no-unused-variable member-ordering */
 import * as models from '../model/models';
 import * as auth from './auth';
+import {IApiConfig} from '../client/IApiConfig';
 
 'use strict';
                                  	
     export class ExternalAuthenticationApi {
-        protected basePath = 'http://hostme-services-dev.azurewebsites.net';
         public defaultHeaders : any = {};
 
-        static $inject: string[] = ['$http', '$httpParamSerializer'];
+        static $inject: string[] = ['$http','IApiConfig', '$httpParamSerializer'];
 
-        constructor(protected $http: ng.IHttpService, protected $httpParamSerializer?: (d: any) => any, basePath?: string) {
-            if (basePath) {
-                this.basePath = basePath;
-            }
+        constructor(protected $http: ng.IHttpService, protected config: IApiConfig, protected $httpParamSerializer?: (d: any) => any) {
+           
         }
         
         public authentications = {
@@ -41,7 +39,7 @@ import * as auth from './auth';
          * @param accessToken 
          */
         public getExternalFacebookLogin (accessToken: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/authorization/externalFacebookLogin';
+            const localVarPath = this.config.basePath + '/authorization/externalFacebookLogin';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -76,7 +74,7 @@ import * as auth from './auth';
          * @param error 
          */
         public getExternalLogin (provider: string, error?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/authorization/externalLogin';
+            const localVarPath = this.config.basePath + '/authorization/externalLogin';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -115,7 +113,7 @@ import * as auth from './auth';
          * @param generateState 
          */
         public getExternalLogins (returnUrl: string, generateState?: boolean, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.ExternalLogin>> {
-            const localVarPath = this.basePath + '/authorization/externalLogins';
+            const localVarPath = this.config.basePath + '/authorization/externalLogins';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);

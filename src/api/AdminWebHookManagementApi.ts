@@ -1,19 +1,17 @@
 /* tslint:disable:no-unused-variable member-ordering */
 import * as models from '../model/models';
 import * as auth from './auth';
+import {IApiConfig} from '../client/IApiConfig';
 
 'use strict';
                                  	
     export class AdminWebHookManagementApi {
-        protected basePath = 'http://hostme-services-dev.azurewebsites.net';
         public defaultHeaders : any = {};
 
-        static $inject: string[] = ['$http', '$httpParamSerializer'];
+        static $inject: string[] = ['$http','IApiConfig', '$httpParamSerializer'];
 
-        constructor(protected $http: ng.IHttpService, protected $httpParamSerializer?: (d: any) => any, basePath?: string) {
-            if (basePath) {
-                this.basePath = basePath;
-            }
+        constructor(protected $http: ng.IHttpService, protected config: IApiConfig, protected $httpParamSerializer?: (d: any) => any) {
+           
         }
         
         public authentications = {
@@ -41,7 +39,7 @@ import * as auth from './auth';
          * @param id 
          */
         public _delete (id: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Object> {
-            const localVarPath = this.basePath + '/api/webhooks/registrations/{id}'
+            const localVarPath = this.config.basePath + '/api/webhooks/registrations/{id}'
                 .replace('{' + 'id' + '}', String(id));
 
             let queryParameters: any = {};
@@ -72,7 +70,7 @@ import * as auth from './auth';
          * 
          */
         public deleteAll (extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Object> {
-            const localVarPath = this.basePath + '/api/webhooks/registrations';
+            const localVarPath = this.config.basePath + '/api/webhooks/registrations';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -98,7 +96,7 @@ import * as auth from './auth';
          * 
          */
         public get (extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.WebHookFilter>> {
-            const localVarPath = this.basePath + '/api/webhooks/filters';
+            const localVarPath = this.config.basePath + '/api/webhooks/filters';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -124,7 +122,7 @@ import * as auth from './auth';
          * 
          */
         public get_1 (extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.WebHook>> {
-            const localVarPath = this.basePath + '/api/webhooks/registrations';
+            const localVarPath = this.config.basePath + '/api/webhooks/registrations';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -151,7 +149,7 @@ import * as auth from './auth';
          * @param id 
          */
         public lookup (id: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.WebHook> {
-            const localVarPath = this.basePath + '/api/webhooks/registrations/{id}'
+            const localVarPath = this.config.basePath + '/api/webhooks/registrations/{id}'
                 .replace('{' + 'id' + '}', String(id));
 
             let queryParameters: any = {};
@@ -183,7 +181,7 @@ import * as auth from './auth';
          * @param webHook 
          */
         public post (webHook: models.WebHook, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.WebHook> {
-            const localVarPath = this.basePath + '/api/webhooks/registrations';
+            const localVarPath = this.config.basePath + '/api/webhooks/registrations';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -216,7 +214,7 @@ import * as auth from './auth';
          * @param webHook 
          */
         public put (id: string, webHook: models.WebHook, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Object> {
-            const localVarPath = this.basePath + '/api/webhooks/registrations/{id}'
+            const localVarPath = this.config.basePath + '/api/webhooks/registrations/{id}'
                 .replace('{' + 'id' + '}', String(id));
 
             let queryParameters: any = {};

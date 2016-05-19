@@ -1,19 +1,17 @@
 /* tslint:disable:no-unused-variable member-ordering */
 import * as models from '../model/models';
 import * as auth from './auth';
+import {IApiConfig} from '../client/IApiConfig';
 
 'use strict';
                                  	
     export class AdminTableManagementApi {
-        protected basePath = 'http://hostme-services-dev.azurewebsites.net';
         public defaultHeaders : any = {};
 
-        static $inject: string[] = ['$http', '$httpParamSerializer'];
+        static $inject: string[] = ['$http','IApiConfig', '$httpParamSerializer'];
 
-        constructor(protected $http: ng.IHttpService, protected $httpParamSerializer?: (d: any) => any, basePath?: string) {
-            if (basePath) {
-                this.basePath = basePath;
-            }
+        constructor(protected $http: ng.IHttpService, protected config: IApiConfig, protected $httpParamSerializer?: (d: any) => any) {
+           
         }
         
         public authentications = {
@@ -42,7 +40,7 @@ import * as auth from './auth';
          * @param floor 
          */
         public createNewFloor (restaurantId: number, floor: models.Floor, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Floor> {
-            const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors'
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -80,7 +78,7 @@ import * as auth from './auth';
          * @param tables 
          */
         public createOrUpdateTableConfiguration (restaurantId: number, tables: Array<models.Table>, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables'
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -118,7 +116,7 @@ import * as auth from './auth';
          * @param floorId 
          */
         public deleteFloor (restaurantId: number, floorId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors/{floorId}'
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors/{floorId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'floorId' + '}', String(floorId));
 
@@ -155,7 +153,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getAllTableCombinations (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.TableInfo>> {
-            const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/combinations'
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/combinations'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -187,7 +185,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getApprovedTableCombinations (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.TableInfo>> {
-            const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/combinations/approved'
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/combinations/approved'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -222,7 +220,7 @@ import * as auth from './auth';
          * @param areas 
          */
         public getAvailableTables (restaurantId: number, date: Date, partySize: number, areas?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.TableInfo>> {
-            const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/available'
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/available'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -275,7 +273,7 @@ import * as auth from './auth';
          * @param floorId 
          */
         public getFloorDetails (restaurantId: number, floorId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Floor> {
-            const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors/{floorId}'
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors/{floorId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'floorId' + '}', String(floorId));
 
@@ -312,7 +310,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getRestaurantFloors (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.FloorInfo>> {
-            const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors'
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -346,7 +344,7 @@ import * as auth from './auth';
          * @param time 
          */
         public getTableMonitors (restaurantId: number, tableTurnOver?: number, time?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.TableMonitor>> {
-            const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/monitors'
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/monitors'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -388,7 +386,7 @@ import * as auth from './auth';
          * @param time 
          */
         public getTableUsersList (restaurantId: number, partySize?: number, time?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.TableUser>> {
-            const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/users'
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/users'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -428,7 +426,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getTables (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Table>> {
-            const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables'
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -461,7 +459,7 @@ import * as auth from './auth';
          * @param tableNumber 
          */
         public releaseTable (restaurantId: number, tableNumber: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.TableMonitor> {
-            const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/{tableNumber}/release'
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/{tableNumber}/release'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'tableNumber' + '}', String(tableNumber));
 
@@ -500,7 +498,7 @@ import * as auth from './auth';
          * @param partySize 
          */
         public seatPartyAtTable (restaurantId: number, tableNumber: string, partySize: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.TableMonitor> {
-            const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/{tableNumber}/seat'
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/{tableNumber}/seat'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'tableNumber' + '}', String(tableNumber));
 
@@ -546,7 +544,7 @@ import * as auth from './auth';
          * @param combinations 
          */
         public setApprovedTableCombinations (restaurantId: number, combinations: Array<models.Table>, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/combinations/approved'
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/combinations/approved'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -585,7 +583,7 @@ import * as auth from './auth';
          * @param floor 
          */
         public updateFloor (restaurantId: number, floorId: string, floor: models.Floor, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Floor> {
-            const localVarPath = this.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors/{floorId}'
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors/{floorId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'floorId' + '}', String(floorId));
 

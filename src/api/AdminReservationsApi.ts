@@ -1,19 +1,17 @@
 /* tslint:disable:no-unused-variable member-ordering */
 import * as models from '../model/models';
 import * as auth from './auth';
+import {IApiConfig} from '../client/IApiConfig';
 
 'use strict';
                                  	
     export class AdminReservationsApi {
-        protected basePath = 'http://hostme-services-dev.azurewebsites.net';
         public defaultHeaders : any = {};
 
-        static $inject: string[] = ['$http', '$httpParamSerializer'];
+        static $inject: string[] = ['$http','IApiConfig', '$httpParamSerializer'];
 
-        constructor(protected $http: ng.IHttpService, protected $httpParamSerializer?: (d: any) => any, basePath?: string) {
-            if (basePath) {
-                this.basePath = basePath;
-            }
+        constructor(protected $http: ng.IHttpService, protected config: IApiConfig, protected $httpParamSerializer?: (d: any) => any) {
+           
         }
         
         public authentications = {
@@ -42,7 +40,7 @@ import * as auth from './auth';
          * @param value 
          */
         public addNewReservation (restaurantId: number, value: models.CreateReservation, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Reservation> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -81,7 +79,7 @@ import * as auth from './auth';
          * @param cancelReservationContract 
          */
         public cancelReservation (restaurantId: number, reservationId: string, cancelReservationContract: models.CancelReservation, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Reservation> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/cancel'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/cancel'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'reservationId' + '}', String(reservationId));
 
@@ -124,7 +122,7 @@ import * as auth from './auth';
          * @param reservationId 
          */
         public closeAsNoShow (restaurantId: number, reservationId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Reservation> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/noshow'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/noshow'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'reservationId' + '}', String(reservationId));
 
@@ -163,7 +161,7 @@ import * as auth from './auth';
          * @param tableNumber 
          */
         public closeAsSeated (restaurantId: number, reservationId: string, tableNumber?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Reservation> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/seat'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/seat'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'reservationId' + '}', String(reservationId));
 
@@ -205,7 +203,7 @@ import * as auth from './auth';
          * @param reservationId 
          */
         public getMessages (restaurantId: number, reservationId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Message>> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/messages'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/messages'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'reservationId' + '}', String(reservationId));
 
@@ -248,7 +246,7 @@ import * as auth from './auth';
          * @param areas 
          */
         public getReservationAvailability (restaurantId: number, date: Date, partySize: number, rangeInMinutes: number, tableTurnOver?: number, type?: string, areas?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.AvailabilityResponse> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/availability'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/availability'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -317,7 +315,7 @@ import * as auth from './auth';
          * @param reservationId 
          */
         public getReservationById (restaurantId: number, reservationId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Reservation> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'reservationId' + '}', String(reservationId));
 
@@ -354,7 +352,7 @@ import * as auth from './auth';
          * @param restaurantId 
          */
         public getReservationSettings (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.ReservationSettings> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/settings'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/settings'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -388,7 +386,7 @@ import * as auth from './auth';
          * @param to 
          */
         public getReservationsForPeriod (restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Reservation>> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -429,7 +427,7 @@ import * as auth from './auth';
          * @param date 
          */
         public getRestaurantReservationsStatistic (restaurantId: number, date?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.ReservationsStatistic> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/stats'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/stats'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -466,7 +464,7 @@ import * as auth from './auth';
          * @param from 
          */
         public getUnreadMessagesCount (restaurantId: number, from?: Date, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Count> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/messages/unread/count'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/messages/unread/count'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -503,7 +501,7 @@ import * as auth from './auth';
          * @param reservationId 
          */
         public placeOnWaitList (restaurantId: number, reservationId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.WaitingItem> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/schedule'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/schedule'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'reservationId' + '}', String(reservationId));
 
@@ -541,7 +539,7 @@ import * as auth from './auth';
          * @param reservationId 
          */
         public reOpenReservation (restaurantId: number, reservationId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Reservation> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/reopen'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/reopen'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'reservationId' + '}', String(reservationId));
 
@@ -579,7 +577,7 @@ import * as auth from './auth';
          * @param reservationId Reservation identifier
          */
         public readAllMessage (restaurantId: number, reservationId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/messages/readall'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/messages/readall'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'reservationId' + '}', String(reservationId));
 
@@ -620,7 +618,7 @@ import * as auth from './auth';
          * @param subject 
          */
         public sendGrid (from: string, html: string, text: string, to: string, subject: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Reservation> {
-            const localVarPath = this.basePath + '/api/rsv/admin/email/yelp';
+            const localVarPath = this.config.basePath + '/api/rsv/admin/email/yelp';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -688,7 +686,7 @@ import * as auth from './auth';
          * @param createMessageContract The message with body
          */
         public sendMessage (restaurantId: number, reservationId: string, createMessageContract: models.CreateMessage, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Message> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/messages'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}/messages'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'reservationId' + '}', String(reservationId));
 
@@ -731,7 +729,7 @@ import * as auth from './auth';
          * @param settings 
          */
         public setReservationSettings (restaurantId: number, settings: models.ReservationSettings, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/settings'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/settings'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
             let queryParameters: any = {};
@@ -767,7 +765,7 @@ import * as auth from './auth';
          * 
          */
         public submitYelpReservation (extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/rsv/admin/email/yelp/inbound';
+            const localVarPath = this.config.basePath + '/api/rsv/admin/email/yelp/inbound';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -795,7 +793,7 @@ import * as auth from './auth';
          * @param value 
          */
         public updateReservation (restaurantId: number, reservationId: string, value: models.CreateReservation, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}'
+            const localVarPath = this.config.basePath + '/api/rsv/admin/restaurants/{restaurantId}/reservations/{reservationId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'reservationId' + '}', String(reservationId));
 
