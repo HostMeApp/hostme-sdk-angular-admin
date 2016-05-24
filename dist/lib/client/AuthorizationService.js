@@ -35,6 +35,8 @@ var AuthorizationService = (function () {
         };
         this.$http(httpRequestParams).then(function (response) {
             deffer.resolve(response.data);
+        }, function (err) {
+            deffer.reject(err);
         });
         return deffer.promise;
     };
