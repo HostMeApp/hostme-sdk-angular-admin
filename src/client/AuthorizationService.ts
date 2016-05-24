@@ -56,6 +56,8 @@ export class AuthorizationService {
         
         this.$http(httpRequestParams).then(function (response) {
             deffer.resolve(response.data);
+        }, (err) => {
+            deffer.reject(err);
         });
         
         return  deffer.promise;
