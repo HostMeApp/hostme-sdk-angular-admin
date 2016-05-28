@@ -52,9 +52,84 @@ var userInfo = {
             confirmPassword: 'password1234'
         };
         this.AdminCoreApi.register(userInfo);
+```
 
-Get token:
+##Get token:
+```
 var token = AuthenticationService.getToken(user.email, user.login.password).then((result) => {
     this.AdminCoreApi.accessToken = result.access_token;
 });
+```
+
+##Create new restaurant
+```
+let r: hm.Restaurant = {
+            name: 'Demo 1',
+            address: 'Bellevue, WA 98004',
+            phone: '+1888 888 8888',
+            imageUrl: '',
+            facebookId: '',
+            twitterAccount: '',
+            websiteUrl: '',
+            foursquareId: ''
+        };
+    
+adminCoreApi.addNewRestaurant(r).then((response) => {
+        restaurant = response.data.data;
+    }, (err) => {
+        console.log(err);
+        done();
+    });    
+```
+
+##Get list of all users restaurants and his\her roles in each of them
+```
+adminCoreApi.getAllUserRestaurants().then((resut) => {
+            expect(resut.data[0].name).toEqual(restaurant.name);
+            done();
+        }, (err) => {
+            console.log(err);
+            done();
+        });
+```
+
+##Change restaurant's general settings
+```
+function  BuildBusinessHours(openTime:string, closeTime: string): hm.WeekDayOpenHours[] {
+    let result: hm.WeekDayOpenHours[] = [];
+    let time: hm.HourlyInterval = {};
+    time.open = openTime;
+    time.close = closeTime;
+    
+    for(var i = 0; i < 7; i++) {
+        let h: hm.WeekDayOpenHours = {};
+        h.weekDay = i;
+        h.time = [time];
+        result.push(h);
+    }
+    
+    return  result;
+}
+
+ adminCoreApi.getRestaurantById(1).then((resut) => {
+            var r1 = resut.data;
+            r1.settings.areas = ['area1', 'area2', 'area3'];
+            r1.settings.tableSizes = [1, 2, 4, 6, 8];
+            r1.settings.openingHours = BuildBusinessHours('8:00', '2:00');
+            r1.isPublished = true;
+            r1.websiteUrl = '';
+            r1.facebookId = '12321321';
+            r1.foursquareId = 'fdfdsfdsfsd';
+            r1.googlePlaceId = 'dfsdfsdfdsfsd';
+            r1.yelpId = '1111';
+
+            adminCoreApi.updateRestaurant(r1.id, r1).then((result) => {
+                expect(resut.data).toEqual(r1);
+            }, (err) => {
+                console.error(JSON.stringify(err));
+            })
+
+        }, (err) => {
+            console.error(JSON.stringify(err));
+        });
 ```
