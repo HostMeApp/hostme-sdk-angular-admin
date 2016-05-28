@@ -162,9 +162,9 @@ function  BuildBusinessHours(openTime:string, closeTime: string): hm.WeekDayOpen
 ## Add new guest
 ```
 let m: hm.MembershipCreate = {};
-            m.fullName = users[i].name.first + ' ' + users[i].name.last;
+            m.fullName = 'Guest Name';
             m.note = 'imported from external system';
-            m.phoneNumber = users[i].phone;
+            m.phoneNumber = '+1 888 888 8888';
             m.profile = { allergy: ['onion', 'mayo'], vegetarian: true };
 
             adminLoyaltyApi.addMember(restaurant.id, m)
@@ -173,13 +173,4 @@ let m: hm.MembershipCreate = {};
             }, (err) => {
                 console.error(err);
             })
-            
-.then((result) => {
-            return this.AdminCoreApi.getUserProfile();
-        }).then((result) => {
-            profile = result.data;
-            profile.dob = new Date('1980-08-01');
-            profile.gender = 'Male';
-            return this.AdminCoreApi.updateUserProfile(profile);
-        })
 ```
