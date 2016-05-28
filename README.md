@@ -136,35 +136,33 @@ function  BuildBusinessHours(openTime:string, closeTime: string): hm.WeekDayOpen
 
 ##Add restaurant's staff (managers and hostess)
 ```
-var user: IUser = g.GetRandomStaffProfile();
-        var r1;
-        let inv: hm.Invitation = { email: user.email, role: 'host' };
+        let inv: hm.Invitation = { email: 'joe@example.com', role: 'host' };
         var uInfo: hm.UserInfo;
+        let u: hm.RegisterUser = {
+            fullName: 'Joe Doe',
+            email: 'joe@example.com',
+            phoneNumber: '+1 888 888 8888',
+            password: 'password123456',
+            confirmPassword: 'password123456'
+        };
 
-        adminCoreApi.getRestaurantById(restaurant.id).then((result) => {
-            return result.data;
+        this.adminCoreApi.createInvitationCode(1, inv).then((result) => {
+            return this.AdminCoreApi.register(u);
         }).then((result) => {
-            r1 = result;
-            adminCoreApi.getUsers(r1.id).then((result) => {
-                var promise: ng.IHttpPromise<{}>;
-                result.data.forEach((r) => {
-                    if (r.email === inv.email && r.role === inv.role) {
-                        return adminCoreApi.deleteUser(r1.id, r.userId, r.role);
-                    }
-                })
-            })
+            return this.AuthenticationService.Authorize(this.AdminCoreApi, u.email, u.password);
         }).then((result) => {
-            return adminCoreApi.createInvitationCode(r1.id, inv);
+            return this.AdminCoreApi.getUserProfile();
         }).then((result) => {
-            return accountHelper.RegisterNewUserIfNotExists(user);
+            profile = result.data;
+            profile.dob = new Date('1980-08-01');
+            profile.gender = 'Male';
+            return this.AdminCoreApi.updateUserProfile(profile);
+        }).then((result) => {
+            return this.AdminCoreApi.me();
         }).then((result) => {
             uInfo = result.data;
             console.log(uInfo);
-            adminCoreApi.getUsers(r1.id).then((result) => {
-                let u: hm.RestaurantUserInfo = { email: inv.email, role: inv.role, userId: uInfo.id, userName: uInfo.fullName };
-                expect(result.data).toContain(u);
-                done();
-            })
         }).catch((err) => {
-            fail(JSON.stringify(err));
+            console.error(JSON.stringify(err));
         })
+```
