@@ -133,3 +133,38 @@ function  BuildBusinessHours(openTime:string, closeTime: string): hm.WeekDayOpen
             console.error(JSON.stringify(err));
         });
 ```
+
+##Add restaurant's staff (managers and hostess)
+```
+var user: IUser = g.GetRandomStaffProfile();
+        var r1;
+        let inv: hm.Invitation = { email: user.email, role: 'host' };
+        var uInfo: hm.UserInfo;
+
+        adminCoreApi.getRestaurantById(restaurant.id).then((result) => {
+            return result.data;
+        }).then((result) => {
+            r1 = result;
+            adminCoreApi.getUsers(r1.id).then((result) => {
+                var promise: ng.IHttpPromise<{}>;
+                result.data.forEach((r) => {
+                    if (r.email === inv.email && r.role === inv.role) {
+                        return adminCoreApi.deleteUser(r1.id, r.userId, r.role);
+                    }
+                })
+            })
+        }).then((result) => {
+            return adminCoreApi.createInvitationCode(r1.id, inv);
+        }).then((result) => {
+            return accountHelper.RegisterNewUserIfNotExists(user);
+        }).then((result) => {
+            uInfo = result.data;
+            console.log(uInfo);
+            adminCoreApi.getUsers(r1.id).then((result) => {
+                let u: hm.RestaurantUserInfo = { email: inv.email, role: inv.role, userId: uInfo.id, userName: uInfo.fullName };
+                expect(result.data).toContain(u);
+                done();
+            })
+        }).catch((err) => {
+            fail(JSON.stringify(err));
+        })
