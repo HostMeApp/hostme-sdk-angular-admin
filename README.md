@@ -151,18 +151,35 @@ function  BuildBusinessHours(openTime:string, closeTime: string): hm.WeekDayOpen
         }).then((result) => {
             return this.AuthenticationService.Authorize(this.AdminCoreApi, u.email, u.password);
         }).then((result) => {
-            return this.AdminCoreApi.getUserProfile();
-        }).then((result) => {
-            profile = result.data;
-            profile.dob = new Date('1980-08-01');
-            profile.gender = 'Male';
-            return this.AdminCoreApi.updateUserProfile(profile);
-        }).then((result) => {
             return this.AdminCoreApi.me();
         }).then((result) => {
             uInfo = result.data;
             console.log(uInfo);
         }).catch((err) => {
             console.error(JSON.stringify(err));
+        })
+```
+## Add new guest
+```
+let m: hm.MembershipCreate = {};
+            m.fullName = users[i].name.first + ' ' + users[i].name.last;
+            m.note = 'imported from external system';
+            m.phoneNumber = users[i].phone;
+            m.profile = { allergy: ['onion', 'mayo'], vegetarian: true };
+
+            adminLoyaltyApi.addMember(restaurant.id, m)
+            .then((result) => {
+                console.log(result.data);
+            }, (err) => {
+                console.error(err);
+            })
+            
+.then((result) => {
+            return this.AdminCoreApi.getUserProfile();
+        }).then((result) => {
+            profile = result.data;
+            profile.dob = new Date('1980-08-01');
+            profile.gender = 'Male';
+            return this.AdminCoreApi.updateUserProfile(profile);
         })
 ```
