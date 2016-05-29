@@ -8,10 +8,10 @@ npm install hostme-sdk-angular-admin
 ##Initialize API clients:
 
 ```
-import * as HostmeSdk from 'hostme-sdk-angular-admin';
+import * as hm from 'hostme-sdk-angular-admin';
 import * as angular from 'angular';
 
-class ApiConfig implements HostmeSdk.IApiConfig {
+class ApiConfig implements hm.IApiConfig {
     constructor(
         public basePath: string,
         public timeout: number,
@@ -28,16 +28,16 @@ angular.module('app', ['ngComponentRouter', commonModule.name, componentsModule.
     .value('state', { value: 'home' })
     .constant('apiConfig', new ApiConfig('http://hostme-services-dev.azurewebsites.net', 30))
     .service('coreAdminApi', ['$http', 'apiConfig',
-        ($http: ng.IHttpService, apiConfig: HostmeSdk.IApiConfig) => {
-            return new HostmeSdk.AdminCoreApi($http, apiConfig);
+        ($http: ng.IHttpService, apiConfig: hm.IApiConfig) => {
+            return new hm.AdminCoreApi($http, apiConfig);
         }])
     .service('loyaltyAdminApi', ['$http', 'apiConfig',
-        ($http: ng.IHttpService, apiConfig: HostmeSdk.IApiConfig) => {
-            return new HostmeSdk.AdminLoyaltyApi($http, apiConfig);
+        ($http: ng.IHttpService, apiConfig: hm.IApiConfig) => {
+            return new hm.AdminLoyaltyApi($http, apiConfig);
         }])
     .service('authenticationApi', ['$http', 'apiConfig',
-        ($http: ng.IHttpService, apiConfig: HostmeSdk.IApiConfig) => {
-            return new HostmeSdk.AuthorizationService($http, $q, apiConfig);
+        ($http: ng.IHttpService, apiConfig: hm.IApiConfig) => {
+            return new hm.AuthorizationService($http, $q, apiConfig);
         }])
 ```
 
