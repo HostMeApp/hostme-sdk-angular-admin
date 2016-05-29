@@ -174,3 +174,19 @@ let m: hm.MembershipCreate = {};
                 console.error(err);
             })
 ```
+
+#Integrarion options
+##Web Hook
+
+To receive notifications from the HostMe system you need to register your web hook:
+```
+POST http://hostme-services-dev.azurewebsites.net/api/webhooks/registrations
+{
+  "webHookUri": "YOUR API ENDPOINT",
+  "description": "",
+  "secret": "12345678901234567890123456789012",
+  "properties": {"RestaurantId": 1}
+}
+
+You can test notifictions with Slack Incoming WebHooks plugin.
+```
