@@ -175,6 +175,13 @@ let m: hm.MembershipCreate = {};
             })
 ```
 
+##Find Guest by phone number
+```
+ adminLoyaltyApi.findMemberByPhoneNumber(restaurant.id, '7033037416').then((result) => {
+            let m: hm.Member = result.data;
+        })
+```
+
 #Integrarion options
 ##Web Hook
 
