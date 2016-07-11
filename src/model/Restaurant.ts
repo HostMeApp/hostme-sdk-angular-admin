@@ -42,5 +42,7 @@ export interface Restaurant {
     country?: string;
 
     isPublished?: boolean;
+
+    reservationIncomeEmail?: string;
 }
 

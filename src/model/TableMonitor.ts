@@ -24,6 +24,10 @@ export interface TableMonitor {
     registrationTime?: Date;
 
     estimatedReleaseTime?: Date;
+
+    waiter?: models.WaiterMonitor;
+
+    state?: string;
 }
 
 export namespace TableMonitor {

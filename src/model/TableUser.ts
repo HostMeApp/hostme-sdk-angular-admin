@@ -10,5 +10,7 @@ export interface TableUser {
     registrationTime?: Date;
 
     estimatedReleaseTime?: Date;
+
+    state?: string;
 }
 

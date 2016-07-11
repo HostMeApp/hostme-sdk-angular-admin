@@ -579,6 +579,50 @@ import {IApiConfig} from '../client/IApiConfig';
          * 
          * 
          * @param restaurantId 
+         * @param tableNumber 
+         * @param stateContract 
+         */
+        public setTableState (restaurantId: number, tableNumber: string, stateContract: models.ChangeTableState, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/{tableNumber}/state'
+                .replace('{' + 'restaurantId' + '}', String(restaurantId))
+                .replace('{' + 'tableNumber' + '}', String(tableNumber));
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'restaurantId' is set
+            if (!restaurantId) {
+                throw new Error('Missing required parameter restaurantId when calling setTableState');
+            }
+            // verify required parameter 'tableNumber' is set
+            if (!tableNumber) {
+                throw new Error('Missing required parameter tableNumber when calling setTableState');
+            }
+            // verify required parameter 'stateContract' is set
+            if (!stateContract) {
+                throw new Error('Missing required parameter stateContract when calling setTableState');
+            }
+            let httpRequestParams: any = {
+                method: 'PUT',
+                url: localVarPath,
+                json: true,
+                data: stateContract,
+                                params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+            
+                this.authentications.oauth2.applyToRequest(httpRequestParams);
+            this.authentications.default.applyToRequest(httpRequestParams);
+
+            return this.$http(httpRequestParams);
+        }
+        /**
+         * 
+         * 
+         * @param restaurantId 
          * @param floorId 
          * @param floor 
          */

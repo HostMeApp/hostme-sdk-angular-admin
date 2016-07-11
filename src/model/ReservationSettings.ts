@@ -39,6 +39,8 @@ export interface ReservationSettings {
 
     statusMessages?: Array<models.StatusMessage>;
 
+    tableStates?: Array<models.TableState>;
+
     tableTurnOver?: number;
 
     tableTurnOverByGroup?: Array<Array<number>>;
