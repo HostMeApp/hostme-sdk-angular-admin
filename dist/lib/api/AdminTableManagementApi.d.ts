@@ -28,5 +28,6 @@ export declare class AdminTableManagementApi {
     releaseTable(restaurantId: number, tableNumber: string, extraHttpRequestParams?: any): ng.IHttpPromise<models.TableMonitor>;
     seatPartyAtTable(restaurantId: number, tableNumber: string, partySize: number, extraHttpRequestParams?: any): ng.IHttpPromise<models.TableMonitor>;
     setApprovedTableCombinations(restaurantId: number, combinations: Array<models.Table>, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    setTableState(restaurantId: number, tableNumber: string, stateContract: models.ChangeTableState, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
     updateFloor(restaurantId: number, floorId: string, floor: models.Floor, extraHttpRequestParams?: any): ng.IHttpPromise<models.Floor>;
 }

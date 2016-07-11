@@ -49,6 +49,88 @@ var AdminCoreApi = (function () {
         this.authentications.default.applyToRequest(httpRequestParams);
         return this.$http(httpRequestParams);
     };
+    AdminCoreApi.prototype.addRestaurantZone = function (restaurantId, contract, extraHttpRequestParams) {
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/zones'
+            .replace('{' + 'restaurantId' + '}', String(restaurantId));
+        var queryParameters = {};
+        var headerParams = this.extendObj({}, this.defaultHeaders);
+        if (!restaurantId) {
+            throw new Error('Missing required parameter restaurantId when calling addRestaurantZone');
+        }
+        if (!contract) {
+            throw new Error('Missing required parameter contract when calling addRestaurantZone');
+        }
+        var httpRequestParams = {
+            method: 'POST',
+            url: localVarPath,
+            json: true,
+            data: contract,
+            params: queryParameters,
+            headers: headerParams
+        };
+        if (extraHttpRequestParams) {
+            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+        }
+        this.authentications.oauth2.applyToRequest(httpRequestParams);
+        this.authentications.default.applyToRequest(httpRequestParams);
+        return this.$http(httpRequestParams);
+    };
+    AdminCoreApi.prototype.addWaiter = function (restaurantId, contract, extraHttpRequestParams) {
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/waiters'
+            .replace('{' + 'restaurantId' + '}', String(restaurantId));
+        var queryParameters = {};
+        var headerParams = this.extendObj({}, this.defaultHeaders);
+        if (!restaurantId) {
+            throw new Error('Missing required parameter restaurantId when calling addWaiter');
+        }
+        if (!contract) {
+            throw new Error('Missing required parameter contract when calling addWaiter');
+        }
+        var httpRequestParams = {
+            method: 'POST',
+            url: localVarPath,
+            json: true,
+            data: contract,
+            params: queryParameters,
+            headers: headerParams
+        };
+        if (extraHttpRequestParams) {
+            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+        }
+        this.authentications.oauth2.applyToRequest(httpRequestParams);
+        this.authentications.default.applyToRequest(httpRequestParams);
+        return this.$http(httpRequestParams);
+    };
+    AdminCoreApi.prototype.addWaiterToZone = function (restaurantId, zoneId, contract, extraHttpRequestParams) {
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/zones/{zoneId}/waiter'
+            .replace('{' + 'restaurantId' + '}', String(restaurantId))
+            .replace('{' + 'zoneId' + '}', String(zoneId));
+        var queryParameters = {};
+        var headerParams = this.extendObj({}, this.defaultHeaders);
+        if (!restaurantId) {
+            throw new Error('Missing required parameter restaurantId when calling addWaiterToZone');
+        }
+        if (!zoneId) {
+            throw new Error('Missing required parameter zoneId when calling addWaiterToZone');
+        }
+        if (!contract) {
+            throw new Error('Missing required parameter contract when calling addWaiterToZone');
+        }
+        var httpRequestParams = {
+            method: 'PUT',
+            url: localVarPath,
+            json: true,
+            data: contract,
+            params: queryParameters,
+            headers: headerParams
+        };
+        if (extraHttpRequestParams) {
+            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+        }
+        this.authentications.oauth2.applyToRequest(httpRequestParams);
+        this.authentications.default.applyToRequest(httpRequestParams);
+        return this.$http(httpRequestParams);
+    };
     AdminCoreApi.prototype.changePassword = function (model, extraHttpRequestParams) {
         var localVarPath = this.config.basePath + '/api/core/admin/account/password/change';
         var queryParameters = {};
@@ -209,6 +291,58 @@ var AdminCoreApi = (function () {
         }
         if (role !== undefined) {
             queryParameters['role'] = role;
+        }
+        var httpRequestParams = {
+            method: 'DELETE',
+            url: localVarPath,
+            json: true,
+            params: queryParameters,
+            headers: headerParams
+        };
+        if (extraHttpRequestParams) {
+            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+        }
+        this.authentications.oauth2.applyToRequest(httpRequestParams);
+        this.authentications.default.applyToRequest(httpRequestParams);
+        return this.$http(httpRequestParams);
+    };
+    AdminCoreApi.prototype.deleteWaiter = function (restaurantId, waiterId, extraHttpRequestParams) {
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/waiters/{waiterId}'
+            .replace('{' + 'restaurantId' + '}', String(restaurantId))
+            .replace('{' + 'waiterId' + '}', String(waiterId));
+        var queryParameters = {};
+        var headerParams = this.extendObj({}, this.defaultHeaders);
+        if (!restaurantId) {
+            throw new Error('Missing required parameter restaurantId when calling deleteWaiter');
+        }
+        if (!waiterId) {
+            throw new Error('Missing required parameter waiterId when calling deleteWaiter');
+        }
+        var httpRequestParams = {
+            method: 'DELETE',
+            url: localVarPath,
+            json: true,
+            params: queryParameters,
+            headers: headerParams
+        };
+        if (extraHttpRequestParams) {
+            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+        }
+        this.authentications.oauth2.applyToRequest(httpRequestParams);
+        this.authentications.default.applyToRequest(httpRequestParams);
+        return this.$http(httpRequestParams);
+    };
+    AdminCoreApi.prototype.deleteZone = function (restaurantId, zoneId, extraHttpRequestParams) {
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/zones/{zoneId}'
+            .replace('{' + 'restaurantId' + '}', String(restaurantId))
+            .replace('{' + 'zoneId' + '}', String(zoneId));
+        var queryParameters = {};
+        var headerParams = this.extendObj({}, this.defaultHeaders);
+        if (!restaurantId) {
+            throw new Error('Missing required parameter restaurantId when calling deleteZone');
+        }
+        if (!zoneId) {
+            throw new Error('Missing required parameter zoneId when calling deleteZone');
         }
         var httpRequestParams = {
             method: 'DELETE',
@@ -423,6 +557,28 @@ var AdminCoreApi = (function () {
         this.authentications.default.applyToRequest(httpRequestParams);
         return this.$http(httpRequestParams);
     };
+    AdminCoreApi.prototype.getRestaurantZones = function (restaurantId, extraHttpRequestParams) {
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/zones'
+            .replace('{' + 'restaurantId' + '}', String(restaurantId));
+        var queryParameters = {};
+        var headerParams = this.extendObj({}, this.defaultHeaders);
+        if (!restaurantId) {
+            throw new Error('Missing required parameter restaurantId when calling getRestaurantZones');
+        }
+        var httpRequestParams = {
+            method: 'GET',
+            url: localVarPath,
+            json: true,
+            params: queryParameters,
+            headers: headerParams
+        };
+        if (extraHttpRequestParams) {
+            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+        }
+        this.authentications.oauth2.applyToRequest(httpRequestParams);
+        this.authentications.default.applyToRequest(httpRequestParams);
+        return this.$http(httpRequestParams);
+    };
     AdminCoreApi.prototype.getUserProfile = function (extraHttpRequestParams) {
         var localVarPath = this.config.basePath + '/api/core/admin/account/profile';
         var queryParameters = {};
@@ -448,6 +604,54 @@ var AdminCoreApi = (function () {
         var headerParams = this.extendObj({}, this.defaultHeaders);
         if (!restaurantId) {
             throw new Error('Missing required parameter restaurantId when calling getUsers');
+        }
+        var httpRequestParams = {
+            method: 'GET',
+            url: localVarPath,
+            json: true,
+            params: queryParameters,
+            headers: headerParams
+        };
+        if (extraHttpRequestParams) {
+            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+        }
+        this.authentications.oauth2.applyToRequest(httpRequestParams);
+        this.authentications.default.applyToRequest(httpRequestParams);
+        return this.$http(httpRequestParams);
+    };
+    AdminCoreApi.prototype.getWaiterZones = function (restaurantId, waiterId, extraHttpRequestParams) {
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/waiters/{waiterId}/zones'
+            .replace('{' + 'restaurantId' + '}', String(restaurantId))
+            .replace('{' + 'waiterId' + '}', String(waiterId));
+        var queryParameters = {};
+        var headerParams = this.extendObj({}, this.defaultHeaders);
+        if (!restaurantId) {
+            throw new Error('Missing required parameter restaurantId when calling getWaiterZones');
+        }
+        if (!waiterId) {
+            throw new Error('Missing required parameter waiterId when calling getWaiterZones');
+        }
+        var httpRequestParams = {
+            method: 'GET',
+            url: localVarPath,
+            json: true,
+            params: queryParameters,
+            headers: headerParams
+        };
+        if (extraHttpRequestParams) {
+            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+        }
+        this.authentications.oauth2.applyToRequest(httpRequestParams);
+        this.authentications.default.applyToRequest(httpRequestParams);
+        return this.$http(httpRequestParams);
+    };
+    AdminCoreApi.prototype.getWaiters = function (restaurantId, extraHttpRequestParams) {
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/waiters'
+            .replace('{' + 'restaurantId' + '}', String(restaurantId));
+        var queryParameters = {};
+        var headerParams = this.extendObj({}, this.defaultHeaders);
+        if (!restaurantId) {
+            throw new Error('Missing required parameter restaurantId when calling getWaiters');
         }
         var httpRequestParams = {
             method: 'GET',
@@ -569,6 +773,32 @@ var AdminCoreApi = (function () {
         this.authentications.default.applyToRequest(httpRequestParams);
         return this.$http(httpRequestParams);
     };
+    AdminCoreApi.prototype.removeWaiterFromZone = function (restaurantId, zoneId, extraHttpRequestParams) {
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/zones/{zoneId}/waiter'
+            .replace('{' + 'restaurantId' + '}', String(restaurantId))
+            .replace('{' + 'zoneId' + '}', String(zoneId));
+        var queryParameters = {};
+        var headerParams = this.extendObj({}, this.defaultHeaders);
+        if (!restaurantId) {
+            throw new Error('Missing required parameter restaurantId when calling removeWaiterFromZone');
+        }
+        if (!zoneId) {
+            throw new Error('Missing required parameter zoneId when calling removeWaiterFromZone');
+        }
+        var httpRequestParams = {
+            method: 'DELETE',
+            url: localVarPath,
+            json: true,
+            params: queryParameters,
+            headers: headerParams
+        };
+        if (extraHttpRequestParams) {
+            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+        }
+        this.authentications.oauth2.applyToRequest(httpRequestParams);
+        this.authentications.default.applyToRequest(httpRequestParams);
+        return this.$http(httpRequestParams);
+    };
     AdminCoreApi.prototype.resetPassword = function (model, extraHttpRequestParams) {
         var localVarPath = this.config.basePath + '/api/core/admin/account/password/reset';
         var queryParameters = {};
@@ -669,6 +899,36 @@ var AdminCoreApi = (function () {
         this.authentications.default.applyToRequest(httpRequestParams);
         return this.$http(httpRequestParams);
     };
+    AdminCoreApi.prototype.updateRestaurantZone = function (restaurantId, zoneId, contract, extraHttpRequestParams) {
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/zones/{zoneId}'
+            .replace('{' + 'restaurantId' + '}', String(restaurantId))
+            .replace('{' + 'zoneId' + '}', String(zoneId));
+        var queryParameters = {};
+        var headerParams = this.extendObj({}, this.defaultHeaders);
+        if (!restaurantId) {
+            throw new Error('Missing required parameter restaurantId when calling updateRestaurantZone');
+        }
+        if (!zoneId) {
+            throw new Error('Missing required parameter zoneId when calling updateRestaurantZone');
+        }
+        if (!contract) {
+            throw new Error('Missing required parameter contract when calling updateRestaurantZone');
+        }
+        var httpRequestParams = {
+            method: 'PUT',
+            url: localVarPath,
+            json: true,
+            data: contract,
+            params: queryParameters,
+            headers: headerParams
+        };
+        if (extraHttpRequestParams) {
+            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+        }
+        this.authentications.oauth2.applyToRequest(httpRequestParams);
+        this.authentications.default.applyToRequest(httpRequestParams);
+        return this.$http(httpRequestParams);
+    };
     AdminCoreApi.prototype.updateUserProfile = function (profile, extraHttpRequestParams) {
         var localVarPath = this.config.basePath + '/api/core/admin/account/profile';
         var queryParameters = {};
@@ -681,6 +941,36 @@ var AdminCoreApi = (function () {
             url: localVarPath,
             json: true,
             data: profile,
+            params: queryParameters,
+            headers: headerParams
+        };
+        if (extraHttpRequestParams) {
+            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+        }
+        this.authentications.oauth2.applyToRequest(httpRequestParams);
+        this.authentications.default.applyToRequest(httpRequestParams);
+        return this.$http(httpRequestParams);
+    };
+    AdminCoreApi.prototype.updateWaiterZone = function (restaurantId, waiterId, contract, extraHttpRequestParams) {
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/waiters/{waiterId}/zones'
+            .replace('{' + 'restaurantId' + '}', String(restaurantId))
+            .replace('{' + 'waiterId' + '}', String(waiterId));
+        var queryParameters = {};
+        var headerParams = this.extendObj({}, this.defaultHeaders);
+        if (!restaurantId) {
+            throw new Error('Missing required parameter restaurantId when calling updateWaiterZone');
+        }
+        if (!waiterId) {
+            throw new Error('Missing required parameter waiterId when calling updateWaiterZone');
+        }
+        if (!contract) {
+            throw new Error('Missing required parameter contract when calling updateWaiterZone');
+        }
+        var httpRequestParams = {
+            method: 'PUT',
+            url: localVarPath,
+            json: true,
+            data: contract,
             params: queryParameters,
             headers: headerParams
         };

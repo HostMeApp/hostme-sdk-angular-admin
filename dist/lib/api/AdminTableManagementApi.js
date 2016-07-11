@@ -396,6 +396,36 @@ var AdminTableManagementApi = (function () {
         this.authentications.default.applyToRequest(httpRequestParams);
         return this.$http(httpRequestParams);
     };
+    AdminTableManagementApi.prototype.setTableState = function (restaurantId, tableNumber, stateContract, extraHttpRequestParams) {
+        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables/{tableNumber}/state'
+            .replace('{' + 'restaurantId' + '}', String(restaurantId))
+            .replace('{' + 'tableNumber' + '}', String(tableNumber));
+        var queryParameters = {};
+        var headerParams = this.extendObj({}, this.defaultHeaders);
+        if (!restaurantId) {
+            throw new Error('Missing required parameter restaurantId when calling setTableState');
+        }
+        if (!tableNumber) {
+            throw new Error('Missing required parameter tableNumber when calling setTableState');
+        }
+        if (!stateContract) {
+            throw new Error('Missing required parameter stateContract when calling setTableState');
+        }
+        var httpRequestParams = {
+            method: 'PUT',
+            url: localVarPath,
+            json: true,
+            data: stateContract,
+            params: queryParameters,
+            headers: headerParams
+        };
+        if (extraHttpRequestParams) {
+            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+        }
+        this.authentications.oauth2.applyToRequest(httpRequestParams);
+        this.authentications.default.applyToRequest(httpRequestParams);
+        return this.$http(httpRequestParams);
+    };
     AdminTableManagementApi.prototype.updateFloor = function (restaurantId, floorId, floor, extraHttpRequestParams) {
         var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors/{floorId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))

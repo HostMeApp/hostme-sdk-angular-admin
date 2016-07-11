@@ -18,6 +18,7 @@ export interface ReservationSettings {
     reservationHours?: Array<models.WeekDayOpenHours>;
     reservationHoursStep?: number;
     statusMessages?: Array<models.StatusMessage>;
+    tableStates?: Array<models.TableState>;
     tableTurnOver?: number;
     tableTurnOverByGroup?: Array<Array<number>>;
     totalCovers?: number;

@@ -4,4 +4,5 @@ export interface TableUser {
     user?: models.UserProfile;
     registrationTime?: Date;
     estimatedReleaseTime?: Date;
+    state?: string;
 }

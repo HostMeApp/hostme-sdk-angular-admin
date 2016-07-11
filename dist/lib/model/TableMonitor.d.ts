@@ -11,6 +11,8 @@ export interface TableMonitor {
     assignmentTime?: Date;
     registrationTime?: Date;
     estimatedReleaseTime?: Date;
+    waiter?: models.WaiterMonitor;
+    state?: string;
 }
 export declare namespace TableMonitor {
     enum StatusEnum {
