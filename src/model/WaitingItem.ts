@@ -7,9 +7,9 @@ export interface WaitingItem {
 
     status?: string;
 
-    created?: Date;
+    created?: string;
 
-    closed?: Date;
+    closed?: string;
 
     confirmationCode?: number;
 
@@ -27,7 +27,7 @@ export interface WaitingItem {
 
     areas?: string;
 
-    expectedTime?: Date;
+    expectedTime?: string;
 
     position?: number;
 
@@ -35,7 +35,7 @@ export interface WaitingItem {
 
     tableNumber?: string;
 
-    statusTime?: Date;
+    statusTime?: string;
 
     restaurantId?: number;
 
@@ -45,9 +45,9 @@ export interface WaitingItem {
 
     onHoldMode?: string;
 
-    onHoldTime?: Date;
+    onHoldTime?: string;
 
-    onHoldEndTime?: Date;
+    onHoldEndTime?: string;
 
     messages?: Array<models.Message>;
 

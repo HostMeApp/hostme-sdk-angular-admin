@@ -9,11 +9,11 @@ export interface Reservation {
 
     restaurant?: models.RestaurantContactInfo;
 
-    created?: Date;
+    created?: string;
 
-    closed?: Date;
+    closed?: string;
 
-    reservationTime?: Date;
+    reservationTime?: string;
 
     status?: string;
 

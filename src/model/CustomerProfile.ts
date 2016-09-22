@@ -3,7 +3,7 @@ import * as models from './models';
 
 export interface CustomerProfile {
 
-    lastVisitDate?: Date;
+    lastVisitDate?: string;
 
     phoneNumber?: string;
 

@@ -73,7 +73,7 @@ import {IApiConfig} from '../client/IApiConfig';
         }
         /**
          * Adds new waiting item
-         * Preregister customer for the specified restaurant and returns waiting record with Confirmation Code. Use this method when  customer is going to use HostMe mobile application.\r\n            This registration requires customer confirmation by entering confirmation number.
+         * Preregister customer for the specified restaurant and returns waiting record with Confirmation Code. Use this method when  customer is going to use HostMe mobile application.\r\nThis registration requires customer confirmation by entering confirmation number.
          * @param restaurantId Identifier of the restaurant registered in our system
          */
         public addNewWaiting (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.WaitingItem> {
@@ -921,7 +921,7 @@ import {IApiConfig} from '../client/IApiConfig';
          * @param to 
          * @param body 
          */
-        public incoming (from: string, to: string, body: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Object> {
+        public incoming (from: string, to: string, body: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<any> {
             const localVarPath = this.config.basePath + '/api/wm/admin/smsclient/incoming';
 
             let queryParameters: any = {};

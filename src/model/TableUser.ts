@@ -7,9 +7,9 @@ export interface TableUser {
 
     user?: models.UserProfile;
 
-    registrationTime?: Date;
+    registrationTime?: string;
 
-    estimatedReleaseTime?: Date;
+    estimatedReleaseTime?: string;
 
     state?: string;
 }

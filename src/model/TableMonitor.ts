@@ -17,13 +17,13 @@ export interface TableMonitor {
 
     membership?: models.MembershipInfo;
 
-    nextReservationTime?: Date;
+    nextReservationTime?: string;
 
-    assignmentTime?: Date;
+    assignmentTime?: string;
 
-    registrationTime?: Date;
+    registrationTime?: string;
 
-    estimatedReleaseTime?: Date;
+    estimatedReleaseTime?: string;
 
     waiter?: models.WaiterMonitor;
 

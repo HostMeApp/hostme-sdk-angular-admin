@@ -4,4 +4,3 @@ export * from './AdminReservationsApi';
 export * from './AdminTableManagementApi';
 export * from './AdminWaitingManagementApi';
 export * from './AdminWebHookManagementApi';
-export * from './ExternalAuthenticationApi';

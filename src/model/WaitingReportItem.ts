@@ -5,7 +5,7 @@ export interface WaitingReportItem {
 
     status?: string;
 
-    created?: Date;
+    created?: string;
 
     groupSize?: number;
 

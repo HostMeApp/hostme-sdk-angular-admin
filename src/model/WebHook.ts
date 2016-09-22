@@ -17,6 +17,6 @@ export interface WebHook {
 
     headers?: { [key: string]: string; };
 
-    properties?: { [key: string]: models.Object; };
+    properties?: { [key: string]: any; };
 }
 

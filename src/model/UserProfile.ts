@@ -11,6 +11,6 @@ export interface UserProfile {
 
     gender?: string;
 
-    dob?: Date;
+    dob?: string;
 }
 

@@ -75,44 +75,6 @@ import {IApiConfig} from '../client/IApiConfig';
          * 
          * 
          * @param restaurantId 
-         * @param tables 
-         */
-        public createOrUpdateTableConfiguration (restaurantId: number, tables: Array<models.Table>, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-            const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables'
-                .replace('{' + 'restaurantId' + '}', String(restaurantId));
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            // verify required parameter 'restaurantId' is set
-            if (!restaurantId) {
-                throw new Error('Missing required parameter restaurantId when calling createOrUpdateTableConfiguration');
-            }
-            // verify required parameter 'tables' is set
-            if (!tables) {
-                throw new Error('Missing required parameter tables when calling createOrUpdateTableConfiguration');
-            }
-            let httpRequestParams: any = {
-                method: 'PUT',
-                url: localVarPath,
-                json: true,
-                data: tables,
-                                params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-            
-                this.authentications.oauth2.applyToRequest(httpRequestParams);
-            this.authentications.default.applyToRequest(httpRequestParams);
-
-            return this.$http(httpRequestParams);
-        }
-        /**
-         * 
-         * 
-         * @param restaurantId 
          * @param floorId 
          */
         public deleteFloor (restaurantId: number, floorId: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
@@ -626,7 +588,7 @@ import {IApiConfig} from '../client/IApiConfig';
          * @param floorId 
          * @param floor 
          */
-        public updateFloor (restaurantId: number, floorId: string, floor: models.Floor, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Floor> {
+        public updateFloor (restaurantId: number, floorId: string, floor: models.Floor, extraHttpRequestParams?: any ) : ng.IHttpPromise<any> {
             const localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors/{floorId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'floorId' + '}', String(floorId));

@@ -9,7 +9,7 @@ export interface Member {
 
     points?: number;
 
-    joinDate?: Date;
+    joinDate?: string;
 
     status?: string;
 
@@ -17,7 +17,7 @@ export interface Member {
 
     numberOfVisitsTotal?: number;
 
-    lastVisitDate?: Date;
+    lastVisitDate?: string;
 
     customer?: models.UserProfile;
 

@@ -7,7 +7,7 @@ export interface Message {
 
     body?: string;
 
-    time?: Date;
+    time?: string;
 
     origin?: string;
 
@@ -15,7 +15,7 @@ export interface Message {
 
     deliveryStatus?: string;
 
-    deliveryTime?: Date;
+    deliveryTime?: string;
 
     deliveryFailureReason?: string;
 

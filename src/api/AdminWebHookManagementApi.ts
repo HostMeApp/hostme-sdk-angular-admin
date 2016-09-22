@@ -38,7 +38,7 @@ import {IApiConfig} from '../client/IApiConfig';
          * 
          * @param id 
          */
-        public _delete (id: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Object> {
+        public _delete (id: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<any> {
             const localVarPath = this.config.basePath + '/api/webhooks/registrations/{id}'
                 .replace('{' + 'id' + '}', String(id));
 
@@ -69,7 +69,7 @@ import {IApiConfig} from '../client/IApiConfig';
          * 
          * 
          */
-        public deleteAll (extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Object> {
+        public deleteAll (extraHttpRequestParams?: any ) : ng.IHttpPromise<any> {
             const localVarPath = this.config.basePath + '/api/webhooks/registrations';
 
             let queryParameters: any = {};
@@ -213,7 +213,7 @@ import {IApiConfig} from '../client/IApiConfig';
          * @param id 
          * @param webHook 
          */
-        public put (id: string, webHook: models.WebHook, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Object> {
+        public put (id: string, webHook: models.WebHook, extraHttpRequestParams?: any ) : ng.IHttpPromise<any> {
             const localVarPath = this.config.basePath + '/api/webhooks/registrations/{id}'
                 .replace('{' + 'id' + '}', String(id));
 

@@ -9,6 +9,6 @@ export interface MembershipVisitItem {
 
     groupSize?: number;
 
-    visitDate?: Date;
+    visitDate?: string;
 }
 

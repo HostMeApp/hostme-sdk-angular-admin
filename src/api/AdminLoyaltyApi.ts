@@ -39,7 +39,7 @@ import {IApiConfig} from '../client/IApiConfig';
          * @param restaurantId 
          * @param contract 
          */
-        public addMember (restaurantId: number, contract: models.MembershipCreate, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Object> {
+        public addMember (restaurantId: number, contract: models.MembershipCreate, extraHttpRequestParams?: any ) : ng.IHttpPromise<any> {
             const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
@@ -208,6 +208,38 @@ import {IApiConfig} from '../client/IApiConfig';
             }
             let httpRequestParams: any = {
                 method: 'DELETE',
+                url: localVarPath,
+                json: true,
+                                                params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+            
+                this.authentications.oauth2.applyToRequest(httpRequestParams);
+            this.authentications.default.applyToRequest(httpRequestParams);
+
+            return this.$http(httpRequestParams);
+        }
+        /**
+         * 
+         * 
+         * @param restaurantId 
+         */
+        public exportMembers (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<any> {
+            const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/export'
+                .replace('{' + 'restaurantId' + '}', String(restaurantId));
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'restaurantId' is set
+            if (!restaurantId) {
+                throw new Error('Missing required parameter restaurantId when calling exportMembers');
+            }
+            let httpRequestParams: any = {
+                method: 'POST',
                 url: localVarPath,
                 json: true,
                                                 params: queryParameters,
@@ -829,7 +861,7 @@ import {IApiConfig} from '../client/IApiConfig';
          * @param memberId 
          * @param contract 
          */
-        public updateMember (restaurantId: number, memberId: number, contract: models.MembershipUpdate, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Object> {
+        public updateMember (restaurantId: number, memberId: number, contract: models.MembershipUpdate, extraHttpRequestParams?: any ) : ng.IHttpPromise<any> {
             const localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/{memberId}'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId))
                 .replace('{' + 'memberId' + '}', String(memberId));

@@ -7,6 +7,6 @@ export interface ValueProviderResult {
 
     culture?: string;
 
-    rawValue?: models.Object;
+    rawValue?: any;
 }
 

@@ -16,5 +16,7 @@ export interface Waiter {
     tables?: Array<string>;
 
     workLoad?: number;
+
+    image?: string;
 }
 

@@ -188,6 +188,50 @@ import {IApiConfig} from '../client/IApiConfig';
         /**
          * 
          * 
+         * @param restaurantId 
+         * @param tableNumber 
+         * @param contract 
+         */
+        public assignWaiterToTable (restaurantId: number, tableNumber: string, contract: models.WaiterAssign, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/tables/{tableNumber}/waiter'
+                .replace('{' + 'restaurantId' + '}', String(restaurantId))
+                .replace('{' + 'tableNumber' + '}', String(tableNumber));
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'restaurantId' is set
+            if (!restaurantId) {
+                throw new Error('Missing required parameter restaurantId when calling assignWaiterToTable');
+            }
+            // verify required parameter 'tableNumber' is set
+            if (!tableNumber) {
+                throw new Error('Missing required parameter tableNumber when calling assignWaiterToTable');
+            }
+            // verify required parameter 'contract' is set
+            if (!contract) {
+                throw new Error('Missing required parameter contract when calling assignWaiterToTable');
+            }
+            let httpRequestParams: any = {
+                method: 'PUT',
+                url: localVarPath,
+                json: true,
+                data: contract,
+                                params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+            
+                this.authentications.oauth2.applyToRequest(httpRequestParams);
+            this.authentications.default.applyToRequest(httpRequestParams);
+
+            return this.$http(httpRequestParams);
+        }
+        /**
+         * 
+         * 
          * @param model 
          */
         public changePassword (model: models.ChangePassword, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
@@ -618,7 +662,7 @@ import {IApiConfig} from '../client/IApiConfig';
          * 
          * @param restaurantId 
          */
-        public getCustomSettings (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Object> {
+        public getCustomSettings (restaurantId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<any> {
             const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/settings/custom'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
@@ -1200,7 +1244,7 @@ import {IApiConfig} from '../client/IApiConfig';
          * @param restaurantId 
          * @param settings 
          */
-        public setCustomSettings (restaurantId: number, settings: models.Object, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+        public setCustomSettings (restaurantId: number, settings: any, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
             const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/setting/custom'
                 .replace('{' + 'restaurantId' + '}', String(restaurantId));
 
@@ -1371,6 +1415,50 @@ import {IApiConfig} from '../client/IApiConfig';
                 url: localVarPath,
                 json: true,
                 data: profile,
+                                params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+            
+                this.authentications.oauth2.applyToRequest(httpRequestParams);
+            this.authentications.default.applyToRequest(httpRequestParams);
+
+            return this.$http(httpRequestParams);
+        }
+        /**
+         * 
+         * 
+         * @param restaurantId 
+         * @param waiterId 
+         * @param contract 
+         */
+        public updateWaiter (restaurantId: number, waiterId: number, contract: models.WaiterUpdate, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+            const localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/waiters/{waiterId}'
+                .replace('{' + 'restaurantId' + '}', String(restaurantId))
+                .replace('{' + 'waiterId' + '}', String(waiterId));
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            // verify required parameter 'restaurantId' is set
+            if (!restaurantId) {
+                throw new Error('Missing required parameter restaurantId when calling updateWaiter');
+            }
+            // verify required parameter 'waiterId' is set
+            if (!waiterId) {
+                throw new Error('Missing required parameter waiterId when calling updateWaiter');
+            }
+            // verify required parameter 'contract' is set
+            if (!contract) {
+                throw new Error('Missing required parameter contract when calling updateWaiter');
+            }
+            let httpRequestParams: any = {
+                method: 'PUT',
+                url: localVarPath,
+                json: true,
+                data: contract,
                                 params: queryParameters,
                 headers: headerParams
             };
