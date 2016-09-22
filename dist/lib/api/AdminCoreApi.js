@@ -131,6 +131,36 @@ var AdminCoreApi = (function () {
         this.authentications.default.applyToRequest(httpRequestParams);
         return this.$http(httpRequestParams);
     };
+    AdminCoreApi.prototype.assignWaiterToTable = function (restaurantId, tableNumber, contract, extraHttpRequestParams) {
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/tables/{tableNumber}/waiter'
+            .replace('{' + 'restaurantId' + '}', String(restaurantId))
+            .replace('{' + 'tableNumber' + '}', String(tableNumber));
+        var queryParameters = {};
+        var headerParams = this.extendObj({}, this.defaultHeaders);
+        if (!restaurantId) {
+            throw new Error('Missing required parameter restaurantId when calling assignWaiterToTable');
+        }
+        if (!tableNumber) {
+            throw new Error('Missing required parameter tableNumber when calling assignWaiterToTable');
+        }
+        if (!contract) {
+            throw new Error('Missing required parameter contract when calling assignWaiterToTable');
+        }
+        var httpRequestParams = {
+            method: 'PUT',
+            url: localVarPath,
+            json: true,
+            data: contract,
+            params: queryParameters,
+            headers: headerParams
+        };
+        if (extraHttpRequestParams) {
+            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+        }
+        this.authentications.oauth2.applyToRequest(httpRequestParams);
+        this.authentications.default.applyToRequest(httpRequestParams);
+        return this.$http(httpRequestParams);
+    };
     AdminCoreApi.prototype.changePassword = function (model, extraHttpRequestParams) {
         var localVarPath = this.config.basePath + '/api/core/admin/account/password/change';
         var queryParameters = {};
@@ -941,6 +971,36 @@ var AdminCoreApi = (function () {
             url: localVarPath,
             json: true,
             data: profile,
+            params: queryParameters,
+            headers: headerParams
+        };
+        if (extraHttpRequestParams) {
+            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+        }
+        this.authentications.oauth2.applyToRequest(httpRequestParams);
+        this.authentications.default.applyToRequest(httpRequestParams);
+        return this.$http(httpRequestParams);
+    };
+    AdminCoreApi.prototype.updateWaiter = function (restaurantId, waiterId, contract, extraHttpRequestParams) {
+        var localVarPath = this.config.basePath + '/api/core/admin/restaurants/{restaurantId}/waiters/{waiterId}'
+            .replace('{' + 'restaurantId' + '}', String(restaurantId))
+            .replace('{' + 'waiterId' + '}', String(waiterId));
+        var queryParameters = {};
+        var headerParams = this.extendObj({}, this.defaultHeaders);
+        if (!restaurantId) {
+            throw new Error('Missing required parameter restaurantId when calling updateWaiter');
+        }
+        if (!waiterId) {
+            throw new Error('Missing required parameter waiterId when calling updateWaiter');
+        }
+        if (!contract) {
+            throw new Error('Missing required parameter contract when calling updateWaiter');
+        }
+        var httpRequestParams = {
+            method: 'PUT',
+            url: localVarPath,
+            json: true,
+            data: contract,
             params: queryParameters,
             headers: headerParams
         };

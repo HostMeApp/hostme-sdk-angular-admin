@@ -14,11 +14,11 @@ export declare class AdminWebHookManagementApi {
     };
     accessToken: string;
     private extendObj<T1, T2>(objA, objB);
-    _delete(id: string, extraHttpRequestParams?: any): ng.IHttpPromise<models.Object>;
-    deleteAll(extraHttpRequestParams?: any): ng.IHttpPromise<models.Object>;
+    _delete(id: string, extraHttpRequestParams?: any): ng.IHttpPromise<any>;
+    deleteAll(extraHttpRequestParams?: any): ng.IHttpPromise<any>;
     get(extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.WebHookFilter>>;
     get_1(extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.WebHook>>;
     lookup(id: string, extraHttpRequestParams?: any): ng.IHttpPromise<models.WebHook>;
     post(webHook: models.WebHook, extraHttpRequestParams?: any): ng.IHttpPromise<models.WebHook>;
-    put(id: string, webHook: models.WebHook, extraHttpRequestParams?: any): ng.IHttpPromise<models.Object>;
+    put(id: string, webHook: models.WebHook, extraHttpRequestParams?: any): ng.IHttpPromise<any>;
 }

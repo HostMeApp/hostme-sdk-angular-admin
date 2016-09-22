@@ -1,6 +1,6 @@
 export interface Transaction {
     id?: number;
-    time?: Date;
+    time?: string;
     type?: string;
     points?: number;
     note?: string;

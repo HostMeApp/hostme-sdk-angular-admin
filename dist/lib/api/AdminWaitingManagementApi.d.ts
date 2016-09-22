@@ -36,7 +36,7 @@ export declare class AdminWaitingManagementApi {
     getWaitingTimeByWeekDay(restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.WaitingsStatReportItem>>;
     getWaitingsForPeriod(restaurantId: number, from?: Date, to?: Date, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.WaitingReportItem>>;
     getWaitingsGroupBy(restaurantId: number, groupBy: string, from?: Date, to?: Date, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.WaitingsStatReportItem>>;
-    incoming(from: string, to: string, body: string, extraHttpRequestParams?: any): ng.IHttpPromise<models.Object>;
+    incoming(from: string, to: string, body: string, extraHttpRequestParams?: any): ng.IHttpPromise<any>;
     markAllMessagesAsRead(restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
     putOnHold(restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
     reOpenWaiting(restaurantId: number, waitingItemId: number, extraHttpRequestParams?: any): ng.IHttpPromise<models.WaitingItem>;

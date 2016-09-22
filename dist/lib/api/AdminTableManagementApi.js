@@ -53,32 +53,6 @@ var AdminTableManagementApi = (function () {
         this.authentications.default.applyToRequest(httpRequestParams);
         return this.$http(httpRequestParams);
     };
-    AdminTableManagementApi.prototype.createOrUpdateTableConfiguration = function (restaurantId, tables, extraHttpRequestParams) {
-        var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/tables'
-            .replace('{' + 'restaurantId' + '}', String(restaurantId));
-        var queryParameters = {};
-        var headerParams = this.extendObj({}, this.defaultHeaders);
-        if (!restaurantId) {
-            throw new Error('Missing required parameter restaurantId when calling createOrUpdateTableConfiguration');
-        }
-        if (!tables) {
-            throw new Error('Missing required parameter tables when calling createOrUpdateTableConfiguration');
-        }
-        var httpRequestParams = {
-            method: 'PUT',
-            url: localVarPath,
-            json: true,
-            data: tables,
-            params: queryParameters,
-            headers: headerParams
-        };
-        if (extraHttpRequestParams) {
-            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-        }
-        this.authentications.oauth2.applyToRequest(httpRequestParams);
-        this.authentications.default.applyToRequest(httpRequestParams);
-        return this.$http(httpRequestParams);
-    };
     AdminTableManagementApi.prototype.deleteFloor = function (restaurantId, floorId, extraHttpRequestParams) {
         var localVarPath = this.config.basePath + '/api/tm/admin/restaurants/{restaurantId}/floors/{floorId}'
             .replace('{' + 'restaurantId' + '}', String(restaurantId))

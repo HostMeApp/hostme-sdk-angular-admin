@@ -14,11 +14,12 @@ export declare class AdminLoyaltyApi {
     };
     accessToken: string;
     private extendObj<T1, T2>(objA, objB);
-    addMember(restaurantId: number, contract: models.MembershipCreate, extraHttpRequestParams?: any): ng.IHttpPromise<models.Object>;
+    addMember(restaurantId: number, contract: models.MembershipCreate, extraHttpRequestParams?: any): ng.IHttpPromise<any>;
     addNewReward(restaurantId: number, reward: models.Reward, extraHttpRequestParams?: any): ng.IHttpPromise<models.Reward>;
     approveRedeemRequest(restaurantId: number, redeemId: string, extraHttpRequestParams?: any): ng.IHttpPromise<models.RedeemRequest>;
     closeMembership(restaurantId: number, memberId: number, extraHttpRequestParams?: any): ng.IHttpPromise<models.Member>;
     deleteReward(restaurantId: number, rewardId: string, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    exportMembers(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<any>;
     filter(restaurantId: number, take: number, token: string, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.CustomerProfile>>;
     findMemberByPhoneNumber(restaurantId: number, phoneNumber: string, extraHttpRequestParams?: any): ng.IHttpPromise<models.Member>;
     getAlRewards(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.Reward>>;
@@ -35,6 +36,6 @@ export declare class AdminLoyaltyApi {
     rejectRedeemRequest(restaurantId: number, redeemId: string, reject: models.RedeemRequestReject, extraHttpRequestParams?: any): ng.IHttpPromise<models.RedeemRequest>;
     setLoyaltySettings(restaurantId: number, settings: models.LoyaltySettings, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
     unpublishReward(restaurantId: number, rewardId: string, extraHttpRequestParams?: any): ng.IHttpPromise<models.Reward>;
-    updateMember(restaurantId: number, memberId: number, contract: models.MembershipUpdate, extraHttpRequestParams?: any): ng.IHttpPromise<models.Object>;
+    updateMember(restaurantId: number, memberId: number, contract: models.MembershipUpdate, extraHttpRequestParams?: any): ng.IHttpPromise<any>;
     updateReward(restaurantId: number, rewardId: string, reward: models.Reward, extraHttpRequestParams?: any): ng.IHttpPromise<models.Reward>;
 }

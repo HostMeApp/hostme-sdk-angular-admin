@@ -3,9 +3,9 @@ export interface Reservation {
     unreadMessageCount?: number;
     id?: string;
     restaurant?: models.RestaurantContactInfo;
-    created?: Date;
-    closed?: Date;
-    reservationTime?: Date;
+    created?: string;
+    closed?: string;
+    reservationTime?: string;
     status?: string;
     customerName?: string;
     groupSize?: number;

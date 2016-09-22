@@ -157,6 +157,28 @@ var AdminLoyaltyApi = (function () {
         this.authentications.default.applyToRequest(httpRequestParams);
         return this.$http(httpRequestParams);
     };
+    AdminLoyaltyApi.prototype.exportMembers = function (restaurantId, extraHttpRequestParams) {
+        var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/export'
+            .replace('{' + 'restaurantId' + '}', String(restaurantId));
+        var queryParameters = {};
+        var headerParams = this.extendObj({}, this.defaultHeaders);
+        if (!restaurantId) {
+            throw new Error('Missing required parameter restaurantId when calling exportMembers');
+        }
+        var httpRequestParams = {
+            method: 'POST',
+            url: localVarPath,
+            json: true,
+            params: queryParameters,
+            headers: headerParams
+        };
+        if (extraHttpRequestParams) {
+            httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+        }
+        this.authentications.oauth2.applyToRequest(httpRequestParams);
+        this.authentications.default.applyToRequest(httpRequestParams);
+        return this.$http(httpRequestParams);
+    };
     AdminLoyaltyApi.prototype.filter = function (restaurantId, take, token, extraHttpRequestParams) {
         var localVarPath = this.config.basePath + '/api/loyalty/admin/restaurants/{restaurantId}/members/filter'
             .replace('{' + 'restaurantId' + '}', String(restaurantId));

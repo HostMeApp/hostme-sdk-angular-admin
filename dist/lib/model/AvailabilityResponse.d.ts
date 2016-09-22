@@ -1,7 +1,7 @@
 import * as models from './models';
 export interface AvailabilityResponse {
     availabilities?: Array<models.Availability>;
-    requestedTime?: Date;
+    requestedTime?: string;
     totalCovers?: number;
     totalReservationCovers?: number;
     totalWaitCovers?: number;

@@ -1,4 +1,3 @@
-import * as models from './models';
 export interface WebHook {
     id?: string;
     webHookUri?: string;
@@ -10,6 +9,6 @@ export interface WebHook {
         [key: string]: string;
     };
     properties?: {
-        [key: string]: models.Object;
+        [key: string]: any;
     };
 }

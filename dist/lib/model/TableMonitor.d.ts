@@ -7,10 +7,10 @@ export interface TableMonitor {
     registrationId?: number;
     partySize?: number;
     membership?: models.MembershipInfo;
-    nextReservationTime?: Date;
-    assignmentTime?: Date;
-    registrationTime?: Date;
-    estimatedReleaseTime?: Date;
+    nextReservationTime?: string;
+    assignmentTime?: string;
+    registrationTime?: string;
+    estimatedReleaseTime?: string;
     waiter?: models.WaiterMonitor;
     state?: string;
 }

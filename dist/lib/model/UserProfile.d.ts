@@ -3,5 +3,5 @@ export interface UserProfile {
     fullName?: string;
     phoneNumber?: string;
     gender?: string;
-    dob?: Date;
+    dob?: string;
 }

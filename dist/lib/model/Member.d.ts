@@ -3,11 +3,11 @@ export interface Member {
     id?: number;
     membershipLevel?: string;
     points?: number;
-    joinDate?: Date;
+    joinDate?: string;
     status?: string;
     numberOfVisits30Days?: number;
     numberOfVisitsTotal?: number;
-    lastVisitDate?: Date;
+    lastVisitDate?: string;
     customer?: models.UserProfile;
     profile?: models.Profile;
     note?: string;

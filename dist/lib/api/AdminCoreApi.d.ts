@@ -18,6 +18,7 @@ export declare class AdminCoreApi {
     addRestaurantZone(restaurantId: number, contract: models.ZoneCreate, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
     addWaiter(restaurantId: number, contract: models.WaiterCreate, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
     addWaiterToZone(restaurantId: number, zoneId: number, contract: models.WaiterAssign, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    assignWaiterToTable(restaurantId: number, tableNumber: string, contract: models.WaiterAssign, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
     changePassword(model: models.ChangePassword, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
     checkInvitationCode(invitationCode: string, restaurantId: string, extraHttpRequestParams?: any): ng.IHttpPromise<models.InvitationInfo>;
     createInvitationCode(restaurantId: number, invitation: models.Invitation, extraHttpRequestParams?: any): ng.IHttpPromise<models.Token>;
@@ -30,7 +31,7 @@ export declare class AdminCoreApi {
     findRestaurantsByUserPhone(phone?: string, email?: string, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.Restaurant>>;
     findUserByPhoneAsync(phone?: string, email?: string, extraHttpRequestParams?: any): ng.IHttpPromise<models.UserInfo>;
     getAllUserRestaurants(extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.Restaurant>>;
-    getCustomSettings(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<models.Object>;
+    getCustomSettings(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<any>;
     getInvitations(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<Array<models.InvitationInfo>>;
     getRegistrationToken(restaurantId: number, tableNumber?: string, extraHttpRequestParams?: any): ng.IHttpPromise<models.Token>;
     getRestaurantById(restaurantId: number, extraHttpRequestParams?: any): ng.IHttpPromise<models.Restaurant>;
@@ -48,10 +49,11 @@ export declare class AdminCoreApi {
     reinvite(restaurantId: number, invitationCode: string, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
     removeWaiterFromZone(restaurantId: number, zoneId: number, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
     resetPassword(model: models.ResetPassword, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
-    setCustomSettings(restaurantId: number, settings: models.Object, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    setCustomSettings(restaurantId: number, settings: any, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
     setRestaurantSettings(restaurantId: number, settings: models.RestaurantSettings, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
     updateRestaurant(restaurantId: number, value: models.Restaurant, extraHttpRequestParams?: any): ng.IHttpPromise<models.Restaurant>;
     updateRestaurantZone(restaurantId: number, zoneId: number, contract: models.ZoneCreate, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
     updateUserProfile(profile: models.UserProfile, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
+    updateWaiter(restaurantId: number, waiterId: number, contract: models.WaiterUpdate, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
     updateWaiterZone(restaurantId: number, waiterId: number, contract: models.ZoneCreate, extraHttpRequestParams?: any): ng.IHttpPromise<{}>;
 }

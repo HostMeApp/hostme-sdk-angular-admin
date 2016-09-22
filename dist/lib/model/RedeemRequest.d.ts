@@ -1,10 +1,10 @@
 import * as models from './models';
 export interface RedeemRequest {
     id?: string;
-    submited?: Date;
+    submited?: string;
     status?: RedeemRequest.StatusEnum;
     statusComment?: string;
-    closed?: Date;
+    closed?: string;
     rewardId?: string;
     tableNumber?: string;
     memberInfo?: models.Member;
